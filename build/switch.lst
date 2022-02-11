@@ -1,0 +1,195 @@
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"switch.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Switch_Control,"ax",%progbits
+  18              		.align	1
+  19              		.global	Switch_Control
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  24              	Switch_Control:
+  25              	.LFB65:
+  26              		.file 1 "Core/Src/switch.c"
+   1:Core/Src/switch.c **** #include "switch.h"
+   2:Core/Src/switch.c **** 
+   3:Core/Src/switch.c **** uint8 switch_status1,switch_status2,switch_status3,switch_status4;
+   4:Core/Src/switch.c **** uint8 cup_in;
+   5:Core/Src/switch.c **** 
+   6:Core/Src/switch.c **** void Switch_Control(void)
+   7:Core/Src/switch.c **** {
+  27              		.loc 1 7 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 24
+  34              		.cfi_offset 3, -24
+  35              		.cfi_offset 4, -20
+  36              		.cfi_offset 5, -16
+  37              		.cfi_offset 6, -12
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+   8:Core/Src/switch.c ****     switch_status1 = HAL_GPIO_ReadPin(SWITCH_GROUP_1,SWITCH_PIN_1);
+  40              		.loc 1 8 5 view .LVU1
+  41              		.loc 1 8 22 is_stmt 0 view .LVU2
+  42 0002 134C     		ldr	r4, .L3
+  43 0004 4FF48061 		mov	r1, #1024
+  44 0008 2046     		mov	r0, r4
+  45 000a FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  46              	.LVL0:
+  47              		.loc 1 8 20 view .LVU3
+  48 000e 114F     		ldr	r7, .L3+4
+  49 0010 3870     		strb	r0, [r7]
+   9:Core/Src/switch.c ****     switch_status2 = HAL_GPIO_ReadPin(SWITCH_GROUP_2,SWITCH_PIN_2);
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s 			page 2
+
+
+  50              		.loc 1 9 5 is_stmt 1 view .LVU4
+  51              		.loc 1 9 22 is_stmt 0 view .LVU5
+  52 0012 4FF40061 		mov	r1, #2048
+  53 0016 2046     		mov	r0, r4
+  54 0018 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  55              	.LVL1:
+  56              		.loc 1 9 20 view .LVU6
+  57 001c 0E4E     		ldr	r6, .L3+8
+  58 001e 3070     		strb	r0, [r6]
+  10:Core/Src/switch.c ****     switch_status3 = HAL_GPIO_ReadPin(SWITCH_GROUP_3,SWITCH_PIN_3);
+  59              		.loc 1 10 5 is_stmt 1 view .LVU7
+  60              		.loc 1 10 22 is_stmt 0 view .LVU8
+  61 0020 4FF48051 		mov	r1, #4096
+  62 0024 2046     		mov	r0, r4
+  63 0026 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  64              	.LVL2:
+  65              		.loc 1 10 20 view .LVU9
+  66 002a 0C4D     		ldr	r5, .L3+12
+  67 002c 2870     		strb	r0, [r5]
+  11:Core/Src/switch.c ****     cup_in = HAL_GPIO_ReadPin(CUP_GROUP,CUP_PIN); 
+  68              		.loc 1 11 5 is_stmt 1 view .LVU10
+  69              		.loc 1 11 14 is_stmt 0 view .LVU11
+  70 002e 4FF40071 		mov	r1, #512
+  71 0032 2046     		mov	r0, r4
+  72 0034 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+  73              	.LVL3:
+  74              		.loc 1 11 12 view .LVU12
+  75 0038 094B     		ldr	r3, .L3+16
+  76 003a 1870     		strb	r0, [r3]
+  12:Core/Src/switch.c **** 
+  13:Core/Src/switch.c ****     switch_status1 = 0;
+  77              		.loc 1 13 5 is_stmt 1 view .LVU13
+  78              		.loc 1 13 20 is_stmt 0 view .LVU14
+  79 003c 0022     		movs	r2, #0
+  80 003e 3A70     		strb	r2, [r7]
+  14:Core/Src/switch.c ****     switch_status2 = 0;
+  81              		.loc 1 14 5 is_stmt 1 view .LVU15
+  82              		.loc 1 14 20 is_stmt 0 view .LVU16
+  83 0040 3270     		strb	r2, [r6]
+  15:Core/Src/switch.c ****     switch_status3 = 0;
+  84              		.loc 1 15 5 is_stmt 1 view .LVU17
+  85              		.loc 1 15 20 is_stmt 0 view .LVU18
+  86 0042 2A70     		strb	r2, [r5]
+  16:Core/Src/switch.c **** 
+  17:Core/Src/switch.c ****     if((1 == switch_status1)||(1 == switch_status2)||(1 == switch_status3))
+  87              		.loc 1 17 5 is_stmt 1 view .LVU19
+  18:Core/Src/switch.c ****     {   
+  19:Core/Src/switch.c ****         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_SET);
+  20:Core/Src/switch.c ****     }
+  21:Core/Src/switch.c ****     else
+  22:Core/Src/switch.c ****     {
+  23:Core/Src/switch.c ****         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_RESET);       
+  88              		.loc 1 23 9 view .LVU20
+  89 0044 4FF40051 		mov	r1, #8192
+  90 0048 0648     		ldr	r0, .L3+20
+  91 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  92              	.LVL4:
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s 			page 3
+
+
+  24:Core/Src/switch.c ****     }
+  25:Core/Src/switch.c **** 
+  26:Core/Src/switch.c ****     return;
+  93              		.loc 1 26 5 view .LVU21
+  27:Core/Src/switch.c **** }...
+  94              		.loc 1 27 1 is_stmt 0 view .LVU22
+  95 004e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  96              	.L4:
+  97              		.align	2
+  98              	.L3:
+  99 0050 00080140 		.word	1073809408
+ 100 0054 00000000 		.word	.LANCHOR0
+ 101 0058 00000000 		.word	.LANCHOR1
+ 102 005c 00000000 		.word	.LANCHOR2
+ 103 0060 00000000 		.word	.LANCHOR3
+ 104 0064 000C0140 		.word	1073810432
+ 105              		.cfi_endproc
+ 106              	.LFE65:
+ 108              		.global	cup_in
+ 109              		.global	switch_status4
+ 110              		.global	switch_status3
+ 111              		.global	switch_status2
+ 112              		.global	switch_status1
+ 113              		.section	.bss.cup_in,"aw",%nobits
+ 114              		.set	.LANCHOR3,. + 0
+ 117              	cup_in:
+ 118 0000 00       		.space	1
+ 119              		.section	.bss.switch_status1,"aw",%nobits
+ 120              		.set	.LANCHOR0,. + 0
+ 123              	switch_status1:
+ 124 0000 00       		.space	1
+ 125              		.section	.bss.switch_status2,"aw",%nobits
+ 126              		.set	.LANCHOR1,. + 0
+ 129              	switch_status2:
+ 130 0000 00       		.space	1
+ 131              		.section	.bss.switch_status3,"aw",%nobits
+ 132              		.set	.LANCHOR2,. + 0
+ 135              	switch_status3:
+ 136 0000 00       		.space	1
+ 137              		.section	.bss.switch_status4,"aw",%nobits
+ 140              	switch_status4:
+ 141 0000 00       		.space	1
+ 142              		.text
+ 143              	.Letext0:
+ 144              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 145              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 146              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 147              		.file 5 "Core/Inc/vardef.h"
+ 148              		.file 6 "Core/Inc/switch.h"
+ 149              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 switch.c
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:18     .text.Switch_Control:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:24     .text.Switch_Control:00000000 Switch_Control
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:99     .text.Switch_Control:00000050 $d
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:117    .bss.cup_in:00000000 cup_in
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:140    .bss.switch_status4:00000000 switch_status4
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:135    .bss.switch_status3:00000000 switch_status3
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:129    .bss.switch_status2:00000000 switch_status2
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:123    .bss.switch_status1:00000000 switch_status1
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:118    .bss.cup_in:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:124    .bss.switch_status1:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:130    .bss.switch_status2:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:136    .bss.switch_status3:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccs3qxwA.s:141    .bss.switch_status4:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_ReadPin
+HAL_GPIO_WritePin

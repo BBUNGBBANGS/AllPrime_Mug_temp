@@ -1,0 +1,575 @@
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"temp.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_ui2f
+  18              		.global	__aeabi_fmul
+  19              		.global	__aeabi_fdiv
+  20              		.global	__aeabi_f2uiz
+  21              		.global	__aeabi_fsub
+  22              		.global	__aeabi_f2iz
+  23              		.global	__aeabi_fadd
+  24              		.section	.text.Temp_Read,"ax",%progbits
+  25              		.align	1
+  26              		.global	Temp_Read
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	Temp_Read:
+  32              	.LFB65:
+  33              		.file 1 "Core/Src/temp.c"
+   1:Core/Src/temp.c **** #include "temp.h"
+   2:Core/Src/temp.c **** 
+   3:Core/Src/temp.c **** uint16 Temp_Adc_TP_Raw;
+   4:Core/Src/temp.c **** uint16 Temp_Adc_CPU_Raw;
+   5:Core/Src/temp.c **** uint8 Temp_Adc_TP_Status;
+   6:Core/Src/temp.c **** uint8 Temp_Adc_CPU_Status;
+   7:Core/Src/temp.c **** 
+   8:Core/Src/temp.c **** uint8 Temp_Avg_TP_Count = 10;
+   9:Core/Src/temp.c **** uint8 Temp_Avg_CPU_Count = 10;
+  10:Core/Src/temp.c **** 
+  11:Core/Src/temp.c **** uint32 Temp_Adc_TP_Sum;
+  12:Core/Src/temp.c **** uint32 Temp_Adc_CPU_Sum;
+  13:Core/Src/temp.c **** 
+  14:Core/Src/temp.c **** uint16 Temp_Adc_TP_Volt;
+  15:Core/Src/temp.c **** uint16 Temp_Adc_CPU_Volt;
+  16:Core/Src/temp.c **** 
+  17:Core/Src/temp.c **** sint16 Temp_Adc_TP;
+  18:Core/Src/temp.c **** sint16 Temp_Adc_CPU;
+  19:Core/Src/temp.c **** void Temp_Read(void)
+  20:Core/Src/temp.c **** {
+  34              		.loc 1 20 1 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 2
+
+
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 4, -8
+  42              		.cfi_offset 14, -4
+  21:Core/Src/temp.c ****     HAL_ADC_Start(&TEMP_MODULE);
+  43              		.loc 1 21 5 view .LVU1
+  44 0002 4A4C     		ldr	r4, .L13
+  45 0004 2046     		mov	r0, r4
+  46 0006 FFF7FEFF 		bl	HAL_ADC_Start
+  47              	.LVL0:
+  22:Core/Src/temp.c ****     if(HAL_OK == HAL_ADC_PollForConversion(&TEMP_MODULE,10))
+  48              		.loc 1 22 5 view .LVU2
+  49              		.loc 1 22 18 is_stmt 0 view .LVU3
+  50 000a 0A21     		movs	r1, #10
+  51 000c 2046     		mov	r0, r4
+  52 000e FFF7FEFF 		bl	HAL_ADC_PollForConversion
+  53              	.LVL1:
+  54              		.loc 1 22 7 view .LVU4
+  55 0012 B8B1     		cbz	r0, .L9
+  23:Core/Src/temp.c ****     {
+  24:Core/Src/temp.c ****         Temp_Adc_TP_Raw = HAL_ADC_GetValue(&TEMP_MODULE);
+  25:Core/Src/temp.c ****         Temp_Adc_TP_Status = 1;
+  26:Core/Src/temp.c ****     }
+  27:Core/Src/temp.c ****     else
+  28:Core/Src/temp.c ****     {
+  29:Core/Src/temp.c ****         Temp_Adc_TP_Status = 0;
+  56              		.loc 1 29 9 is_stmt 1 view .LVU5
+  57              		.loc 1 29 28 is_stmt 0 view .LVU6
+  58 0014 464B     		ldr	r3, .L13+4
+  59 0016 0022     		movs	r2, #0
+  60 0018 1A70     		strb	r2, [r3]
+  61              	.L3:
+  30:Core/Src/temp.c ****     }
+  31:Core/Src/temp.c **** 
+  32:Core/Src/temp.c ****     HAL_ADC_Start(&TEMP_MODULE);
+  62              		.loc 1 32 5 is_stmt 1 view .LVU7
+  63 001a 444C     		ldr	r4, .L13
+  64 001c 2046     		mov	r0, r4
+  65 001e FFF7FEFF 		bl	HAL_ADC_Start
+  66              	.LVL2:
+  33:Core/Src/temp.c ****     if(HAL_OK == HAL_ADC_PollForConversion(&TEMP_MODULE,10))
+  67              		.loc 1 33 5 view .LVU8
+  68              		.loc 1 33 18 is_stmt 0 view .LVU9
+  69 0022 0A21     		movs	r1, #10
+  70 0024 2046     		mov	r0, r4
+  71 0026 FFF7FEFF 		bl	HAL_ADC_PollForConversion
+  72              	.LVL3:
+  73              		.loc 1 33 7 view .LVU10
+  74 002a A0B1     		cbz	r0, .L10
+  34:Core/Src/temp.c ****     {
+  35:Core/Src/temp.c ****         Temp_Adc_CPU_Raw = HAL_ADC_GetValue(&TEMP_MODULE);
+  36:Core/Src/temp.c ****         Temp_Adc_CPU_Status = 1;
+  37:Core/Src/temp.c ****     }
+  38:Core/Src/temp.c ****     else
+  39:Core/Src/temp.c ****     {
+  40:Core/Src/temp.c ****         Temp_Adc_CPU_Status = 0;
+  75              		.loc 1 40 9 is_stmt 1 view .LVU11
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 3
+
+
+  76              		.loc 1 40 29 is_stmt 0 view .LVU12
+  77 002c 414B     		ldr	r3, .L13+8
+  78 002e 0022     		movs	r2, #0
+  79 0030 1A70     		strb	r2, [r3]
+  80              	.L5:
+  41:Core/Src/temp.c ****     }
+  42:Core/Src/temp.c **** 
+  43:Core/Src/temp.c **** 
+  44:Core/Src/temp.c ****     if(1 == Temp_Adc_TP_Status)
+  81              		.loc 1 44 5 is_stmt 1 view .LVU13
+  82              		.loc 1 44 10 is_stmt 0 view .LVU14
+  83 0032 3F4B     		ldr	r3, .L13+4
+  84 0034 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  85              		.loc 1 44 7 view .LVU15
+  86 0036 012B     		cmp	r3, #1
+  87 0038 16D0     		beq	.L11
+  88              	.L6:
+  45:Core/Src/temp.c ****     {
+  46:Core/Src/temp.c ****         Temp_Avg_TP_Count++;
+  47:Core/Src/temp.c ****         Temp_Adc_TP_Sum += Temp_Adc_TP_Raw;
+  48:Core/Src/temp.c ****         if(Temp_Avg_TP_Count>=10)
+  49:Core/Src/temp.c ****         {
+  50:Core/Src/temp.c ****             Temp_Adc_TP_Volt = (uint16)((float)(Temp_Adc_TP_Sum / Temp_Avg_TP_Count)*5000.0f/4095.0
+  51:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+  52:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+  53:Core/Src/temp.c ****             Temp_Adc_TP_Sum = 0;
+  54:Core/Src/temp.c ****         }
+  55:Core/Src/temp.c ****     }
+  56:Core/Src/temp.c ****     
+  57:Core/Src/temp.c ****     if(1 == Temp_Adc_CPU_Status)
+  89              		.loc 1 57 5 is_stmt 1 view .LVU16
+  90              		.loc 1 57 10 is_stmt 0 view .LVU17
+  91 003a 3E4B     		ldr	r3, .L13+8
+  92 003c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  93              		.loc 1 57 7 view .LVU18
+  94 003e 012B     		cmp	r3, #1
+  95 0040 43D0     		beq	.L12
+  96              	.L1:
+  58:Core/Src/temp.c ****     {
+  59:Core/Src/temp.c ****         Temp_Avg_CPU_Count++;
+  60:Core/Src/temp.c ****         Temp_Adc_CPU_Sum += Temp_Adc_CPU_Raw;
+  61:Core/Src/temp.c ****         if(Temp_Avg_CPU_Count>=10)
+  62:Core/Src/temp.c ****         {
+  63:Core/Src/temp.c ****             Temp_Adc_CPU_Volt = (uint16)((float)(Temp_Adc_CPU_Sum / Temp_Avg_CPU_Count)*3300.0f/409
+  64:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+  65:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+  66:Core/Src/temp.c ****             Temp_Adc_CPU_Sum = 0;
+  67:Core/Src/temp.c ****         }
+  68:Core/Src/temp.c ****     }
+  69:Core/Src/temp.c **** 
+  70:Core/Src/temp.c ****     return;
+  71:Core/Src/temp.c **** }
+  97              		.loc 1 71 1 view .LVU19
+  98 0042 10BD     		pop	{r4, pc}
+  99              	.L9:
+  24:Core/Src/temp.c ****         Temp_Adc_TP_Status = 1;
+ 100              		.loc 1 24 9 is_stmt 1 view .LVU20
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 4
+
+
+  24:Core/Src/temp.c ****         Temp_Adc_TP_Status = 1;
+ 101              		.loc 1 24 27 is_stmt 0 view .LVU21
+ 102 0044 2046     		mov	r0, r4
+ 103 0046 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 104              	.LVL4:
+  24:Core/Src/temp.c ****         Temp_Adc_TP_Status = 1;
+ 105              		.loc 1 24 25 view .LVU22
+ 106 004a 3B4B     		ldr	r3, .L13+12
+ 107 004c 1860     		str	r0, [r3]
+  25:Core/Src/temp.c ****     }
+ 108              		.loc 1 25 9 is_stmt 1 view .LVU23
+  25:Core/Src/temp.c ****     }
+ 109              		.loc 1 25 28 is_stmt 0 view .LVU24
+ 110 004e 384B     		ldr	r3, .L13+4
+ 111 0050 0122     		movs	r2, #1
+ 112 0052 1A70     		strb	r2, [r3]
+ 113 0054 E1E7     		b	.L3
+ 114              	.L10:
+  35:Core/Src/temp.c ****         Temp_Adc_CPU_Status = 1;
+ 115              		.loc 1 35 9 is_stmt 1 view .LVU25
+  35:Core/Src/temp.c ****         Temp_Adc_CPU_Status = 1;
+ 116              		.loc 1 35 28 is_stmt 0 view .LVU26
+ 117 0056 2046     		mov	r0, r4
+ 118 0058 FFF7FEFF 		bl	HAL_ADC_GetValue
+ 119              	.LVL5:
+  35:Core/Src/temp.c ****         Temp_Adc_CPU_Status = 1;
+ 120              		.loc 1 35 26 view .LVU27
+ 121 005c 374B     		ldr	r3, .L13+16
+ 122 005e 1860     		str	r0, [r3]
+  36:Core/Src/temp.c ****     }
+ 123              		.loc 1 36 9 is_stmt 1 view .LVU28
+  36:Core/Src/temp.c ****     }
+ 124              		.loc 1 36 29 is_stmt 0 view .LVU29
+ 125 0060 344B     		ldr	r3, .L13+8
+ 126 0062 0122     		movs	r2, #1
+ 127 0064 1A70     		strb	r2, [r3]
+ 128 0066 E4E7     		b	.L5
+ 129              	.L11:
+  46:Core/Src/temp.c ****         Temp_Adc_TP_Sum += Temp_Adc_TP_Raw;
+ 130              		.loc 1 46 9 is_stmt 1 view .LVU30
+  46:Core/Src/temp.c ****         Temp_Adc_TP_Sum += Temp_Adc_TP_Raw;
+ 131              		.loc 1 46 26 is_stmt 0 view .LVU31
+ 132 0068 354A     		ldr	r2, .L13+20
+ 133 006a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 134 006c 0133     		adds	r3, r3, #1
+ 135 006e DBB2     		uxtb	r3, r3
+ 136 0070 1370     		strb	r3, [r2]
+  47:Core/Src/temp.c ****         if(Temp_Avg_TP_Count>=10)
+ 137              		.loc 1 47 9 is_stmt 1 view .LVU32
+  47:Core/Src/temp.c ****         if(Temp_Avg_TP_Count>=10)
+ 138              		.loc 1 47 25 is_stmt 0 view .LVU33
+ 139 0072 344A     		ldr	r2, .L13+24
+ 140 0074 1068     		ldr	r0, [r2]
+ 141 0076 3049     		ldr	r1, .L13+12
+ 142 0078 0968     		ldr	r1, [r1]
+ 143 007a 0844     		add	r0, r0, r1
+ 144 007c 1060     		str	r0, [r2]
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 5
+
+
+  48:Core/Src/temp.c ****         {
+ 145              		.loc 1 48 9 is_stmt 1 view .LVU34
+  48:Core/Src/temp.c ****         {
+ 146              		.loc 1 48 11 is_stmt 0 view .LVU35
+ 147 007e 092B     		cmp	r3, #9
+ 148 0080 DBD9     		bls	.L6
+  50:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+ 149              		.loc 1 50 13 is_stmt 1 view .LVU36
+  50:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+ 150              		.loc 1 50 41 is_stmt 0 view .LVU37
+ 151 0082 B0FBF3F0 		udiv	r0, r0, r3
+ 152 0086 FFF7FEFF 		bl	__aeabi_ui2f
+ 153              	.LVL6:
+  50:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+ 154              		.loc 1 50 85 view .LVU38
+ 155 008a 2F49     		ldr	r1, .L13+28
+ 156 008c FFF7FEFF 		bl	__aeabi_fmul
+ 157              	.LVL7:
+  50:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+ 158              		.loc 1 50 93 view .LVU39
+ 159 0090 2E49     		ldr	r1, .L13+32
+ 160 0092 FFF7FEFF 		bl	__aeabi_fdiv
+ 161              	.LVL8:
+  50:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+ 162              		.loc 1 50 32 view .LVU40
+ 163 0096 FFF7FEFF 		bl	__aeabi_f2uiz
+ 164              	.LVL9:
+  50:Core/Src/temp.c ****             Temp_Adc_TP = (sint16)((4750 - (float)Temp_Adc_TP_Volt)*0.0375f - 40.0f);
+ 165              		.loc 1 50 30 view .LVU41
+ 166 009a 2D4B     		ldr	r3, .L13+36
+ 167 009c 1860     		str	r0, [r3]
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 168              		.loc 1 51 13 is_stmt 1 view .LVU42
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 169              		.loc 1 51 44 is_stmt 0 view .LVU43
+ 170 009e FFF7FEFF 		bl	__aeabi_ui2f
+ 171              	.LVL10:
+ 172 00a2 0146     		mov	r1, r0
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 173              		.loc 1 51 42 view .LVU44
+ 174 00a4 2B48     		ldr	r0, .L13+40
+ 175 00a6 FFF7FEFF 		bl	__aeabi_fsub
+ 176              	.LVL11:
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 177              		.loc 1 51 68 view .LVU45
+ 178 00aa 2B49     		ldr	r1, .L13+44
+ 179 00ac FFF7FEFF 		bl	__aeabi_fmul
+ 180              	.LVL12:
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 181              		.loc 1 51 77 view .LVU46
+ 182 00b0 2A49     		ldr	r1, .L13+48
+ 183 00b2 FFF7FEFF 		bl	__aeabi_fsub
+ 184              	.LVL13:
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 185              		.loc 1 51 27 view .LVU47
+ 186 00b6 FFF7FEFF 		bl	__aeabi_f2iz
+ 187              	.LVL14:
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 6
+
+
+  51:Core/Src/temp.c ****             Temp_Avg_TP_Count = 0;
+ 188              		.loc 1 51 25 view .LVU48
+ 189 00ba 294B     		ldr	r3, .L13+52
+ 190 00bc 1860     		str	r0, [r3]
+  52:Core/Src/temp.c ****             Temp_Adc_TP_Sum = 0;
+ 191              		.loc 1 52 13 is_stmt 1 view .LVU49
+  52:Core/Src/temp.c ****             Temp_Adc_TP_Sum = 0;
+ 192              		.loc 1 52 31 is_stmt 0 view .LVU50
+ 193 00be 0023     		movs	r3, #0
+ 194 00c0 1F4A     		ldr	r2, .L13+20
+ 195 00c2 1370     		strb	r3, [r2]
+  53:Core/Src/temp.c ****         }
+ 196              		.loc 1 53 13 is_stmt 1 view .LVU51
+  53:Core/Src/temp.c ****         }
+ 197              		.loc 1 53 29 is_stmt 0 view .LVU52
+ 198 00c4 1F4A     		ldr	r2, .L13+24
+ 199 00c6 1360     		str	r3, [r2]
+ 200 00c8 B7E7     		b	.L6
+ 201              	.L12:
+  59:Core/Src/temp.c ****         Temp_Adc_CPU_Sum += Temp_Adc_CPU_Raw;
+ 202              		.loc 1 59 9 is_stmt 1 view .LVU53
+  59:Core/Src/temp.c ****         Temp_Adc_CPU_Sum += Temp_Adc_CPU_Raw;
+ 203              		.loc 1 59 27 is_stmt 0 view .LVU54
+ 204 00ca 264A     		ldr	r2, .L13+56
+ 205 00cc 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 206 00ce 0133     		adds	r3, r3, #1
+ 207 00d0 DBB2     		uxtb	r3, r3
+ 208 00d2 1370     		strb	r3, [r2]
+  60:Core/Src/temp.c ****         if(Temp_Avg_CPU_Count>=10)
+ 209              		.loc 1 60 9 is_stmt 1 view .LVU55
+  60:Core/Src/temp.c ****         if(Temp_Avg_CPU_Count>=10)
+ 210              		.loc 1 60 26 is_stmt 0 view .LVU56
+ 211 00d4 244A     		ldr	r2, .L13+60
+ 212 00d6 1068     		ldr	r0, [r2]
+ 213 00d8 1849     		ldr	r1, .L13+16
+ 214 00da 0968     		ldr	r1, [r1]
+ 215 00dc 0844     		add	r0, r0, r1
+ 216 00de 1060     		str	r0, [r2]
+  61:Core/Src/temp.c ****         {
+ 217              		.loc 1 61 9 is_stmt 1 view .LVU57
+  61:Core/Src/temp.c ****         {
+ 218              		.loc 1 61 11 is_stmt 0 view .LVU58
+ 219 00e0 092B     		cmp	r3, #9
+ 220 00e2 AED9     		bls	.L1
+  63:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+ 221              		.loc 1 63 13 is_stmt 1 view .LVU59
+  63:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+ 222              		.loc 1 63 42 is_stmt 0 view .LVU60
+ 223 00e4 B0FBF3F0 		udiv	r0, r0, r3
+ 224 00e8 FFF7FEFF 		bl	__aeabi_ui2f
+ 225              	.LVL15:
+  63:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+ 226              		.loc 1 63 88 view .LVU61
+ 227 00ec 1F49     		ldr	r1, .L13+64
+ 228 00ee FFF7FEFF 		bl	__aeabi_fmul
+ 229              	.LVL16:
+  63:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 7
+
+
+ 230              		.loc 1 63 96 view .LVU62
+ 231 00f2 1649     		ldr	r1, .L13+32
+ 232 00f4 FFF7FEFF 		bl	__aeabi_fdiv
+ 233              	.LVL17:
+  63:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+ 234              		.loc 1 63 33 view .LVU63
+ 235 00f8 FFF7FEFF 		bl	__aeabi_f2uiz
+ 236              	.LVL18:
+  63:Core/Src/temp.c ****             Temp_Adc_CPU = (sint16)(((float)Temp_Adc_CPU_Volt - 760.0f) / 2.5f + 25.0f);
+ 237              		.loc 1 63 31 view .LVU64
+ 238 00fc 1C4B     		ldr	r3, .L13+68
+ 239 00fe 1860     		str	r0, [r3]
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 240              		.loc 1 64 13 is_stmt 1 view .LVU65
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 241              		.loc 1 64 38 is_stmt 0 view .LVU66
+ 242 0100 FFF7FEFF 		bl	__aeabi_ui2f
+ 243              	.LVL19:
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 244              		.loc 1 64 63 view .LVU67
+ 245 0104 1B49     		ldr	r1, .L13+72
+ 246 0106 FFF7FEFF 		bl	__aeabi_fsub
+ 247              	.LVL20:
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 248              		.loc 1 64 73 view .LVU68
+ 249 010a 1B49     		ldr	r1, .L13+76
+ 250 010c FFF7FEFF 		bl	__aeabi_fdiv
+ 251              	.LVL21:
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 252              		.loc 1 64 80 view .LVU69
+ 253 0110 1A49     		ldr	r1, .L13+80
+ 254 0112 FFF7FEFF 		bl	__aeabi_fadd
+ 255              	.LVL22:
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 256              		.loc 1 64 28 view .LVU70
+ 257 0116 FFF7FEFF 		bl	__aeabi_f2iz
+ 258              	.LVL23:
+  64:Core/Src/temp.c ****             Temp_Avg_CPU_Count = 0;
+ 259              		.loc 1 64 26 view .LVU71
+ 260 011a 194B     		ldr	r3, .L13+84
+ 261 011c 1860     		str	r0, [r3]
+  65:Core/Src/temp.c ****             Temp_Adc_CPU_Sum = 0;
+ 262              		.loc 1 65 13 is_stmt 1 view .LVU72
+  65:Core/Src/temp.c ****             Temp_Adc_CPU_Sum = 0;
+ 263              		.loc 1 65 32 is_stmt 0 view .LVU73
+ 264 011e 0023     		movs	r3, #0
+ 265 0120 104A     		ldr	r2, .L13+56
+ 266 0122 1370     		strb	r3, [r2]
+  66:Core/Src/temp.c ****         }
+ 267              		.loc 1 66 13 is_stmt 1 view .LVU74
+  66:Core/Src/temp.c ****         }
+ 268              		.loc 1 66 30 is_stmt 0 view .LVU75
+ 269 0124 104A     		ldr	r2, .L13+60
+ 270 0126 1360     		str	r3, [r2]
+  70:Core/Src/temp.c **** }
+ 271              		.loc 1 70 5 is_stmt 1 view .LVU76
+ 272 0128 8BE7     		b	.L1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 8
+
+
+ 273              	.L14:
+ 274 012a 00BF     		.align	2
+ 275              	.L13:
+ 276 012c 00000000 		.word	hadc1
+ 277 0130 00000000 		.word	.LANCHOR1
+ 278 0134 00000000 		.word	.LANCHOR3
+ 279 0138 00000000 		.word	.LANCHOR0
+ 280 013c 00000000 		.word	.LANCHOR2
+ 281 0140 00000000 		.word	.LANCHOR4
+ 282 0144 00000000 		.word	.LANCHOR5
+ 283 0148 00409C45 		.word	1167867904
+ 284 014c 00F07F45 		.word	1166012416
+ 285 0150 00000000 		.word	.LANCHOR6
+ 286 0154 00709445 		.word	1167355904
+ 287 0158 9A99193D 		.word	1025087898
+ 288 015c 00002042 		.word	1109393408
+ 289 0160 00000000 		.word	.LANCHOR7
+ 290 0164 00000000 		.word	.LANCHOR8
+ 291 0168 00000000 		.word	.LANCHOR9
+ 292 016c 00404E45 		.word	1162756096
+ 293 0170 00000000 		.word	.LANCHOR10
+ 294 0174 00003E44 		.word	1144913920
+ 295 0178 00002040 		.word	1075838976
+ 296 017c 0000C841 		.word	1103626240
+ 297 0180 00000000 		.word	.LANCHOR11
+ 298              		.cfi_endproc
+ 299              	.LFE65:
+ 301              		.global	Temp_Adc_CPU
+ 302              		.global	Temp_Adc_TP
+ 303              		.global	Temp_Adc_CPU_Volt
+ 304              		.global	Temp_Adc_TP_Volt
+ 305              		.global	Temp_Adc_CPU_Sum
+ 306              		.global	Temp_Adc_TP_Sum
+ 307              		.global	Temp_Avg_CPU_Count
+ 308              		.global	Temp_Avg_TP_Count
+ 309              		.global	Temp_Adc_CPU_Status
+ 310              		.global	Temp_Adc_TP_Status
+ 311              		.global	Temp_Adc_CPU_Raw
+ 312              		.global	Temp_Adc_TP_Raw
+ 313              		.section	.bss.Temp_Adc_CPU,"aw",%nobits
+ 314              		.align	2
+ 315              		.set	.LANCHOR11,. + 0
+ 318              	Temp_Adc_CPU:
+ 319 0000 00000000 		.space	4
+ 320              		.section	.bss.Temp_Adc_CPU_Raw,"aw",%nobits
+ 321              		.align	2
+ 322              		.set	.LANCHOR2,. + 0
+ 325              	Temp_Adc_CPU_Raw:
+ 326 0000 00000000 		.space	4
+ 327              		.section	.bss.Temp_Adc_CPU_Status,"aw",%nobits
+ 328              		.set	.LANCHOR3,. + 0
+ 331              	Temp_Adc_CPU_Status:
+ 332 0000 00       		.space	1
+ 333              		.section	.bss.Temp_Adc_CPU_Sum,"aw",%nobits
+ 334              		.align	2
+ 335              		.set	.LANCHOR9,. + 0
+ 338              	Temp_Adc_CPU_Sum:
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 9
+
+
+ 339 0000 00000000 		.space	4
+ 340              		.section	.bss.Temp_Adc_CPU_Volt,"aw",%nobits
+ 341              		.align	2
+ 342              		.set	.LANCHOR10,. + 0
+ 345              	Temp_Adc_CPU_Volt:
+ 346 0000 00000000 		.space	4
+ 347              		.section	.bss.Temp_Adc_TP,"aw",%nobits
+ 348              		.align	2
+ 349              		.set	.LANCHOR7,. + 0
+ 352              	Temp_Adc_TP:
+ 353 0000 00000000 		.space	4
+ 354              		.section	.bss.Temp_Adc_TP_Raw,"aw",%nobits
+ 355              		.align	2
+ 356              		.set	.LANCHOR0,. + 0
+ 359              	Temp_Adc_TP_Raw:
+ 360 0000 00000000 		.space	4
+ 361              		.section	.bss.Temp_Adc_TP_Status,"aw",%nobits
+ 362              		.set	.LANCHOR1,. + 0
+ 365              	Temp_Adc_TP_Status:
+ 366 0000 00       		.space	1
+ 367              		.section	.bss.Temp_Adc_TP_Sum,"aw",%nobits
+ 368              		.align	2
+ 369              		.set	.LANCHOR5,. + 0
+ 372              	Temp_Adc_TP_Sum:
+ 373 0000 00000000 		.space	4
+ 374              		.section	.bss.Temp_Adc_TP_Volt,"aw",%nobits
+ 375              		.align	2
+ 376              		.set	.LANCHOR6,. + 0
+ 379              	Temp_Adc_TP_Volt:
+ 380 0000 00000000 		.space	4
+ 381              		.section	.data.Temp_Avg_CPU_Count,"aw"
+ 382              		.set	.LANCHOR8,. + 0
+ 385              	Temp_Avg_CPU_Count:
+ 386 0000 0A       		.byte	10
+ 387              		.section	.data.Temp_Avg_TP_Count,"aw"
+ 388              		.set	.LANCHOR4,. + 0
+ 391              	Temp_Avg_TP_Count:
+ 392 0000 0A       		.byte	10
+ 393              		.text
+ 394              	.Letext0:
+ 395              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 396              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 397              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 398              		.file 5 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h"
+ 399              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 400              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 401              		.file 8 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h"
+ 402              		.file 9 "Core/Inc/vardef.h"
+ 403              		.file 10 "Core/Inc/main.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 temp.c
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:25     .text.Temp_Read:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:31     .text.Temp_Read:00000000 Temp_Read
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:276    .text.Temp_Read:0000012c $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:318    .bss.Temp_Adc_CPU:00000000 Temp_Adc_CPU
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:352    .bss.Temp_Adc_TP:00000000 Temp_Adc_TP
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:345    .bss.Temp_Adc_CPU_Volt:00000000 Temp_Adc_CPU_Volt
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:379    .bss.Temp_Adc_TP_Volt:00000000 Temp_Adc_TP_Volt
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:338    .bss.Temp_Adc_CPU_Sum:00000000 Temp_Adc_CPU_Sum
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:372    .bss.Temp_Adc_TP_Sum:00000000 Temp_Adc_TP_Sum
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:385    .data.Temp_Avg_CPU_Count:00000000 Temp_Avg_CPU_Count
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:391    .data.Temp_Avg_TP_Count:00000000 Temp_Avg_TP_Count
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:331    .bss.Temp_Adc_CPU_Status:00000000 Temp_Adc_CPU_Status
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:365    .bss.Temp_Adc_TP_Status:00000000 Temp_Adc_TP_Status
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:325    .bss.Temp_Adc_CPU_Raw:00000000 Temp_Adc_CPU_Raw
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:359    .bss.Temp_Adc_TP_Raw:00000000 Temp_Adc_TP_Raw
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:314    .bss.Temp_Adc_CPU:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:321    .bss.Temp_Adc_CPU_Raw:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:332    .bss.Temp_Adc_CPU_Status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:334    .bss.Temp_Adc_CPU_Sum:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:341    .bss.Temp_Adc_CPU_Volt:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:348    .bss.Temp_Adc_TP:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:355    .bss.Temp_Adc_TP_Raw:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:366    .bss.Temp_Adc_TP_Status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:368    .bss.Temp_Adc_TP_Sum:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccyImXj4.s:375    .bss.Temp_Adc_TP_Volt:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_ui2f
+__aeabi_fmul
+__aeabi_fdiv
+__aeabi_f2uiz
+__aeabi_fsub
+__aeabi_f2iz
+__aeabi_fadd
+HAL_ADC_Start
+HAL_ADC_PollForConversion
+HAL_ADC_GetValue
+hadc1
