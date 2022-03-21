@@ -4,6 +4,10 @@
     "files.associations": {
         "switch.h": "c",
         "main.h": "c",
-        "blutooth.h": "c"
+        "blutooth.h": "c",
+        "pwm.h": "c",
+        "vardef.h": "c",
+        "oled.h": "c",
+        "string.h": "c"
     }
 }

@@ -1,6 +1,7 @@
 #include "main.h"
 #include "string.h"
 #include "oled_fonts.h"
+#include "switch.h"
 
 #define OLED_HW_MODULE              (hi2c1)
 #define OLED_ADDRESS                (0x3C)

@@ -20,7 +20,7 @@ void Os_Init_Task(void)
 {
 	OLED_Init();
 	CO2_Init();
-	Blutooth_Init();
+	//Blutooth_Init();
 }
 static void Os_1ms_Task(void)
 {
@@ -29,17 +29,17 @@ static void Os_1ms_Task(void)
 
 static void Os_10ms_Task(void)
 {
-	OLED_FindAddress();
+	//OLED_FindAddress();
 	Pwm_Output();
 	Switch_Control();
 	Temp_Read();
-	Blutooth_Communication();
+	CO2_Communication();
+	//Blutooth_Communication();
 }
 
 static void Os_100ms_Task(void)
 {
 	LED_Control();
-	CO2_Communication();
 	OLED_Display();
 }
 

@@ -1,37 +1,42 @@
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s 			page 1
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 1
 
 
    1              		.cpu cortex-m3
-   2              		.arch armv7-m
-   3              		.fpu softvfp
-   4              		.eabi_attribute 20, 1
-   5              		.eabi_attribute 21, 1
-   6              		.eabi_attribute 23, 3
-   7              		.eabi_attribute 24, 1
-   8              		.eabi_attribute 25, 1
-   9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
-  11              		.eabi_attribute 34, 1
-  12              		.eabi_attribute 18, 4
-  13              		.file	"led.c"
-  14              		.text
-  15              	.Ltext0:
-  16              		.cfi_sections	.debug_frame
-  17              		.section	.text.LED_Control,"ax",%progbits
-  18              		.align	1
-  19              		.global	LED_Control
-  20              		.syntax unified
-  21              		.thumb
-  22              		.thumb_func
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"led.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.LED_Control,"ax",%progbits
+  16              		.align	1
+  17              		.global	LED_Control
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
   24              	LED_Control:
   25              	.LFB65:
   26              		.file 1 "Core/Src/led.c"
    1:Core/Src/led.c **** #include "led.h"
-   2:Core/Src/led.c **** 
-   3:Core/Src/led.c **** uint16 LED_TimeCounter;
-   4:Core/Src/led.c **** void LED_Control(void)
-   5:Core/Src/led.c **** {
-  27              		.loc 1 5 1 view -0
+   2:Core/Src/led.c **** #include "switch.h"
+   3:Core/Src/led.c **** #include "temp.h"
+   4:Core/Src/led.c **** #include "pwm.h"
+   5:Core/Src/led.c **** #include "co2.h"
+   6:Core/Src/led.c **** 
+   7:Core/Src/led.c **** uint16 LED_TimeCounter;
+   8:Core/Src/led.c **** uint16 LED_TimeCounter_Co2;
+   9:Core/Src/led.c **** void LED_Control(void)
+  10:Core/Src/led.c **** {
+  27              		.loc 1 10 1 view -0
   28              		.cfi_startproc
   29              		@ args = 0, pretend = 0, frame = 0
   30              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -40,196 +45,545 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s 			page 1
   33              		.cfi_def_cfa_offset 8
   34              		.cfi_offset 4, -8
   35              		.cfi_offset 14, -4
-   6:Core/Src/led.c ****     LED_TimeCounter++;
-  36              		.loc 1 6 5 view .LVU1
-  37              		.loc 1 6 20 is_stmt 0 view .LVU2
-  38 0002 304A     		ldr	r2, .L6
-  39 0004 1368     		ldr	r3, [r2]
-  40 0006 0133     		adds	r3, r3, #1
-  41 0008 1360     		str	r3, [r2]
-   7:Core/Src/led.c **** 
-   8:Core/Src/led.c ****     if(LED_TimeCounter>5)
-  42              		.loc 1 8 5 is_stmt 1 view .LVU3
-  43              		.loc 1 8 7 is_stmt 0 view .LVU4
-  44 000a 052B     		cmp	r3, #5
-  45 000c 02D9     		bls	.L2
-   9:Core/Src/led.c ****     {
-  10:Core/Src/led.c ****         LED_TimeCounter = 0;
-  46              		.loc 1 10 9 is_stmt 1 view .LVU5
-  47              		.loc 1 10 25 is_stmt 0 view .LVU6
-  48 000e 1346     		mov	r3, r2
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s 			page 2
+  11:Core/Src/led.c ****     LED_TimeCounter++;
+  36              		.loc 1 11 5 view .LVU1
+  37              		.loc 1 11 20 is_stmt 0 view .LVU2
+  38 0002 754B     		ldr	r3, .L32
+  39 0004 1A88     		ldrh	r2, [r3]
+  40 0006 0132     		adds	r2, r2, #1
+  41 0008 92B2     		uxth	r2, r2
+  42 000a 1A80     		strh	r2, [r3]	@ movhi
+  12:Core/Src/led.c ****     LED_TimeCounter_Co2++;
+  43              		.loc 1 12 5 is_stmt 1 view .LVU3
+  44              		.loc 1 12 24 is_stmt 0 view .LVU4
+  45 000c 7349     		ldr	r1, .L32+4
+  46 000e 0B88     		ldrh	r3, [r1]
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 2
 
 
-  49 0010 0022     		movs	r2, #0
-  50 0012 1A60     		str	r2, [r3]
-  51              	.L2:
-  11:Core/Src/led.c ****     }
-  12:Core/Src/led.c ****     if(LED_TimeCounter % 5 == 0)
-  52              		.loc 1 12 5 is_stmt 1 view .LVU7
-  53              		.loc 1 12 24 is_stmt 0 view .LVU8
-  54 0014 2B4B     		ldr	r3, .L6
-  55 0016 1968     		ldr	r1, [r3]
-  56 0018 2B4B     		ldr	r3, .L6+4
-  57 001a A3FB0123 		umull	r2, r3, r3, r1
-  58 001e 23F00302 		bic	r2, r3, #3
-  59 0022 02EB9303 		add	r3, r2, r3, lsr #2
-  60              		.loc 1 12 7 view .LVU9
-  61 0026 9942     		cmp	r1, r3
-  62 0028 28D1     		bne	.L3
-  13:Core/Src/led.c ****     {
-  14:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_ON);
-  63              		.loc 1 14 9 is_stmt 1 view .LVU10
-  64 002a 284C     		ldr	r4, .L6+8
-  65 002c 0122     		movs	r2, #1
-  66 002e 0221     		movs	r1, #2
-  67 0030 2046     		mov	r0, r4
-  68 0032 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  69              	.LVL0:
-  15:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_ON);
-  70              		.loc 1 15 9 view .LVU11
-  71 0036 0122     		movs	r2, #1
-  72 0038 0421     		movs	r1, #4
-  73 003a 2046     		mov	r0, r4
-  74 003c FFF7FEFF 		bl	HAL_GPIO_WritePin
-  75              	.LVL1:
-  16:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_1_GROUP,LED_2_1_PIN,LED_ON);
-  76              		.loc 1 16 9 view .LVU12
-  77 0040 04F58064 		add	r4, r4, #1024
-  78 0044 0122     		movs	r2, #1
-  79 0046 1021     		movs	r1, #16
-  80 0048 2046     		mov	r0, r4
-  81 004a FFF7FEFF 		bl	HAL_GPIO_WritePin
-  82              	.LVL2:
-  17:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_2_GROUP,LED_2_2_PIN,LED_ON); 
-  83              		.loc 1 17 9 view .LVU13
-  84 004e 0122     		movs	r2, #1
-  85 0050 2021     		movs	r1, #32
-  86 0052 2046     		mov	r0, r4
-  87 0054 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  88              	.LVL3:
-  18:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_1_PIN,LED_ON);
-  89              		.loc 1 18 9 view .LVU14
-  90 0058 0122     		movs	r2, #1
-  91 005a 4FF48051 		mov	r1, #4096
-  92 005e 2046     		mov	r0, r4
-  93 0060 FFF7FEFF 		bl	HAL_GPIO_WritePin
-  94              	.LVL4:
-  19:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_2_PIN,LED_ON);
-  95              		.loc 1 19 9 view .LVU15
-  96 0064 0122     		movs	r2, #1
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s 			page 3
-
-
-  97 0066 4FF48041 		mov	r1, #16384
-  98 006a 2046     		mov	r0, r4
-  99 006c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 100              	.LVL5:
- 101              	.L4:
+  47 0010 0133     		adds	r3, r3, #1
+  48 0012 9BB2     		uxth	r3, r3
+  49 0014 0B80     		strh	r3, [r1]	@ movhi
+  13:Core/Src/led.c ****     if(LED_TimeCounter>20)
+  50              		.loc 1 13 5 is_stmt 1 view .LVU5
+  51              		.loc 1 13 7 is_stmt 0 view .LVU6
+  52 0016 142A     		cmp	r2, #20
+  53 0018 02D9     		bls	.L2
+  14:Core/Src/led.c ****     {
+  15:Core/Src/led.c ****         LED_TimeCounter = 0;
+  54              		.loc 1 15 9 is_stmt 1 view .LVU7
+  55              		.loc 1 15 25 is_stmt 0 view .LVU8
+  56 001a 6F4A     		ldr	r2, .L32
+  57 001c 0021     		movs	r1, #0
+  58 001e 1180     		strh	r1, [r2]	@ movhi
+  59              	.L2:
+  16:Core/Src/led.c ****     }
+  17:Core/Src/led.c ****     if(LED_TimeCounter_Co2>10)
+  60              		.loc 1 17 5 is_stmt 1 view .LVU9
+  61              		.loc 1 17 7 is_stmt 0 view .LVU10
+  62 0020 0A2B     		cmp	r3, #10
+  63 0022 02D9     		bls	.L3
+  18:Core/Src/led.c ****     {
+  19:Core/Src/led.c ****         LED_TimeCounter_Co2 = 0;
+  64              		.loc 1 19 9 is_stmt 1 view .LVU11
+  65              		.loc 1 19 29 is_stmt 0 view .LVU12
+  66 0024 6D4B     		ldr	r3, .L32+4
+  67 0026 0022     		movs	r2, #0
+  68 0028 1A80     		strh	r2, [r3]	@ movhi
+  69              	.L3:
   20:Core/Src/led.c ****     }
-  21:Core/Src/led.c ****     else
-  22:Core/Src/led.c ****     {
-  23:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_OFF);
-  24:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_OFF);
-  25:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_1_GROUP,LED_2_1_PIN,LED_OFF);
-  26:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_2_GROUP,LED_2_2_PIN,LED_OFF);
-  27:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_1_PIN,LED_OFF);
-  28:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_2_PIN,LED_OFF);
+  21:Core/Src/led.c **** 
+  22:Core/Src/led.c ****     if((Target_Run_Time == 0)&&(Pwm_Led_Mode == PWM_LED_MODE_COOLING))
+  70              		.loc 1 22 5 is_stmt 1 view .LVU13
+  71              		.loc 1 22 25 is_stmt 0 view .LVU14
+  72 002a 6D4B     		ldr	r3, .L32+8
+  73 002c 1B68     		ldr	r3, [r3]
+  74              		.loc 1 22 7 view .LVU15
+  75 002e 1BB9     		cbnz	r3, .L4
+  76              		.loc 1 22 46 discriminator 1 view .LVU16
+  77 0030 6C4B     		ldr	r3, .L32+12
+  78 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  79              		.loc 1 22 30 discriminator 1 view .LVU17
+  80 0034 012B     		cmp	r3, #1
+  81 0036 53D0     		beq	.L20
+  82              	.L4:
+  23:Core/Src/led.c ****     {
+  24:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_ON);
+  25:Core/Src/led.c ****     }
+  26:Core/Src/led.c ****     if((Target_Run_Time == 0)&&(Pwm_Led_Mode != PWM_LED_MODE_COOLING))
+  83              		.loc 1 26 5 is_stmt 1 view .LVU18
+  84              		.loc 1 26 25 is_stmt 0 view .LVU19
+  85 0038 694B     		ldr	r3, .L32+8
+  86 003a 1B68     		ldr	r3, [r3]
+  87              		.loc 1 26 7 view .LVU20
+  88 003c 1BB9     		cbnz	r3, .L5
+  89              		.loc 1 26 46 discriminator 1 view .LVU21
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 3
+
+
+  90 003e 694B     		ldr	r3, .L32+12
+  91 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  92              		.loc 1 26 30 discriminator 1 view .LVU22
+  93 0042 012B     		cmp	r3, #1
+  94 0044 53D1     		bne	.L21
+  95              	.L5:
+  27:Core/Src/led.c ****     {
+  28:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_OFF);
   29:Core/Src/led.c ****     }
-  30:Core/Src/led.c **** 
-  31:Core/Src/led.c ****     HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET);
- 102              		.loc 1 31 5 view .LVU16
- 103 0070 0122     		movs	r2, #1
- 104 0072 2021     		movs	r1, #32
- 105 0074 1548     		ldr	r0, .L6+8
- 106 0076 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 107              	.LVL6:
-  32:Core/Src/led.c **** 
-  33:Core/Src/led.c ****     return;
- 108              		.loc 1 33 5 view .LVU17
-  34:Core/Src/led.c **** }...
- 109              		.loc 1 34 1 is_stmt 0 view .LVU18
- 110 007a 10BD     		pop	{r4, pc}
- 111              	.L3:
-  23:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_OFF);
- 112              		.loc 1 23 9 is_stmt 1 view .LVU19
- 113 007c 134C     		ldr	r4, .L6+8
- 114 007e 0022     		movs	r2, #0
- 115 0080 0221     		movs	r1, #2
- 116 0082 2046     		mov	r0, r4
- 117 0084 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 118              	.LVL7:
-  24:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_OFF);
- 119              		.loc 1 24 9 view .LVU20
- 120 0088 0022     		movs	r2, #0
- 121 008a 0421     		movs	r1, #4
- 122 008c 2046     		mov	r0, r4
- 123 008e FFF7FEFF 		bl	HAL_GPIO_WritePin
- 124              	.LVL8:
-  25:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_1_GROUP,LED_2_1_PIN,LED_OFF);
- 125              		.loc 1 25 9 view .LVU21
- 126 0092 04F58064 		add	r4, r4, #1024
- 127 0096 0022     		movs	r2, #0
- 128 0098 1021     		movs	r1, #16
- 129 009a 2046     		mov	r0, r4
- 130 009c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 131              	.LVL9:
-  26:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_2_GROUP,LED_2_2_PIN,LED_OFF);
- 132              		.loc 1 26 9 view .LVU22
- 133 00a0 0022     		movs	r2, #0
- 134 00a2 2021     		movs	r1, #32
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s 			page 4
+  30:Core/Src/led.c ****     if((Target_Run_Time == 0)&&(Pwm_Led_Mode == PWM_LED_MODE_HEATING))
+  96              		.loc 1 30 5 is_stmt 1 view .LVU23
+  97              		.loc 1 30 25 is_stmt 0 view .LVU24
+  98 0046 664B     		ldr	r3, .L32+8
+  99 0048 1B68     		ldr	r3, [r3]
+ 100              		.loc 1 30 7 view .LVU25
+ 101 004a 1BB9     		cbnz	r3, .L6
+ 102              		.loc 1 30 46 discriminator 1 view .LVU26
+ 103 004c 654B     		ldr	r3, .L32+12
+ 104 004e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 105              		.loc 1 30 30 discriminator 1 view .LVU27
+ 106 0050 022B     		cmp	r3, #2
+ 107 0052 53D0     		beq	.L22
+ 108              	.L6:
+  31:Core/Src/led.c ****     {
+  32:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_ON);
+  33:Core/Src/led.c ****     }
+  34:Core/Src/led.c ****     if((Target_Run_Time == 0)&&(Pwm_Led_Mode != PWM_LED_MODE_HEATING))
+ 109              		.loc 1 34 5 is_stmt 1 view .LVU28
+ 110              		.loc 1 34 25 is_stmt 0 view .LVU29
+ 111 0054 624B     		ldr	r3, .L32+8
+ 112 0056 1B68     		ldr	r3, [r3]
+ 113              		.loc 1 34 7 view .LVU30
+ 114 0058 1BB9     		cbnz	r3, .L7
+ 115              		.loc 1 34 46 discriminator 1 view .LVU31
+ 116 005a 624B     		ldr	r3, .L32+12
+ 117 005c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 118              		.loc 1 34 30 discriminator 1 view .LVU32
+ 119 005e 022B     		cmp	r3, #2
+ 120 0060 52D1     		bne	.L23
+ 121              	.L7:
+  35:Core/Src/led.c ****     {
+  36:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_OFF);
+  37:Core/Src/led.c ****     }
+  38:Core/Src/led.c **** 
+  39:Core/Src/led.c ****     if(CO2_Data16 >= LED_CO2_BLANKING_THRESHOLD)
+ 122              		.loc 1 39 5 is_stmt 1 view .LVU33
+ 123              		.loc 1 39 19 is_stmt 0 view .LVU34
+ 124 0062 614B     		ldr	r3, .L32+16
+ 125 0064 1A88     		ldrh	r2, [r3]
+ 126              		.loc 1 39 7 view .LVU35
+ 127 0066 40F6C313 		movw	r3, #2499
+ 128 006a 9A42     		cmp	r2, r3
+ 129 006c 6ED9     		bls	.L8
+  40:Core/Src/led.c ****     {
+  41:Core/Src/led.c ****         if(LED_TimeCounter_Co2 < LED_BLANKING_TIME_0P5S)
+ 130              		.loc 1 41 9 is_stmt 1 view .LVU36
+ 131              		.loc 1 41 32 is_stmt 0 view .LVU37
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 4
 
 
- 135 00a4 2046     		mov	r0, r4
- 136 00a6 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 137              	.LVL10:
-  27:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_1_PIN,LED_OFF);
- 138              		.loc 1 27 9 view .LVU23
- 139 00aa 0022     		movs	r2, #0
- 140 00ac 4FF48051 		mov	r1, #4096
- 141 00b0 2046     		mov	r0, r4
- 142 00b2 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 143              	.LVL11:
-  28:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_2_PIN,LED_OFF);
- 144              		.loc 1 28 9 view .LVU24
- 145 00b6 0022     		movs	r2, #0
- 146 00b8 4FF48041 		mov	r1, #16384
- 147 00bc 2046     		mov	r0, r4
- 148 00be FFF7FEFF 		bl	HAL_GPIO_WritePin
- 149              	.LVL12:
- 150 00c2 D5E7     		b	.L4
- 151              	.L7:
- 152              		.align	2
- 153              	.L6:
- 154 00c4 00000000 		.word	.LANCHOR0
- 155 00c8 CDCCCCCC 		.word	-858993459
- 156 00cc 00080140 		.word	1073809408
- 157              		.cfi_endproc
- 158              	.LFE65:
- 160              		.global	LED_TimeCounter
- 161              		.section	.bss.LED_TimeCounter,"aw",%nobits
- 162              		.align	2
- 163              		.set	.LANCHOR0,. + 0
- 166              	LED_TimeCounter:
- 167 0000 00000000 		.space	4
- 168              		.text
- 169              	.Letext0:
- 170              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
- 171              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
- 172              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 173              		.file 5 "Core/Inc/vardef.h"
- 174              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s 			page 5
+ 132 006e 5B4B     		ldr	r3, .L32+4
+ 133 0070 1B88     		ldrh	r3, [r3]
+ 134              		.loc 1 41 11 view .LVU38
+ 135 0072 042B     		cmp	r3, #4
+ 136 0074 4ED9     		bls	.L24
+ 137              	.L9:
+  42:Core/Src/led.c ****         {
+  43:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_ON);                
+  44:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_OFF);        
+  45:Core/Src/led.c ****         }
+  46:Core/Src/led.c ****         if(LED_TimeCounter_Co2 >= LED_BLANKING_TIME_0P5S)
+ 138              		.loc 1 46 9 is_stmt 1 view .LVU39
+ 139              		.loc 1 46 32 is_stmt 0 view .LVU40
+ 140 0076 594B     		ldr	r3, .L32+4
+ 141 0078 1B88     		ldrh	r3, [r3]
+ 142              		.loc 1 46 11 view .LVU41
+ 143 007a 042B     		cmp	r3, #4
+ 144 007c 58D8     		bhi	.L25
+ 145              	.L10:
+  47:Core/Src/led.c ****         {
+  48:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_OFF);                
+  49:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_ON);     
+  50:Core/Src/led.c ****         }
+  51:Core/Src/led.c ****     }
+  52:Core/Src/led.c ****     else
+  53:Core/Src/led.c ****     {
+  54:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_OFF);                 
+  55:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_OFF);      
+  56:Core/Src/led.c ****     }
+  57:Core/Src/led.c **** 
+  58:Core/Src/led.c ****     if(LED_TimeCounter < LED_BLANKING_TIME_1S)
+ 146              		.loc 1 58 5 is_stmt 1 view .LVU42
+ 147              		.loc 1 58 24 is_stmt 0 view .LVU43
+ 148 007e 564B     		ldr	r3, .L32
+ 149 0080 1B88     		ldrh	r3, [r3]
+ 150              		.loc 1 58 7 view .LVU44
+ 151 0082 092B     		cmp	r3, #9
+ 152 0084 07D8     		bhi	.L11
+  59:Core/Src/led.c ****     {
+  60:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_COOLING)&&(Target_Run_Time != 0))
+ 153              		.loc 1 60 9 is_stmt 1 view .LVU45
+ 154              		.loc 1 60 26 is_stmt 0 view .LVU46
+ 155 0086 574B     		ldr	r3, .L32+12
+ 156 0088 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 157              		.loc 1 60 11 view .LVU47
+ 158 008a 012B     		cmp	r3, #1
+ 159 008c 6CD0     		beq	.L26
+ 160              	.L12:
+  61:Core/Src/led.c ****         {
+  62:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_ON);
+  63:Core/Src/led.c ****         }        
+  64:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_HEATING)&&(Target_Run_Time != 0))
+ 161              		.loc 1 64 9 is_stmt 1 view .LVU48
+ 162              		.loc 1 64 26 is_stmt 0 view .LVU49
+ 163 008e 554B     		ldr	r3, .L32+12
+ 164 0090 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 165              		.loc 1 64 11 view .LVU50
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 5
+
+
+ 166 0092 022B     		cmp	r3, #2
+ 167 0094 73D0     		beq	.L27
+ 168              	.L11:
+  65:Core/Src/led.c ****         {
+  66:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_ON);
+  67:Core/Src/led.c ****         }
+  68:Core/Src/led.c ****     }
+  69:Core/Src/led.c ****     if(LED_TimeCounter >= LED_BLANKING_TIME_1S)
+ 169              		.loc 1 69 5 is_stmt 1 view .LVU51
+ 170              		.loc 1 69 24 is_stmt 0 view .LVU52
+ 171 0096 504B     		ldr	r3, .L32
+ 172 0098 1B88     		ldrh	r3, [r3]
+ 173              		.loc 1 69 7 view .LVU53
+ 174 009a 092B     		cmp	r3, #9
+ 175 009c 07D9     		bls	.L13
+  70:Core/Src/led.c ****     {
+  71:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_COOLING)&&(Target_Run_Time != 0))
+ 176              		.loc 1 71 9 is_stmt 1 view .LVU54
+ 177              		.loc 1 71 26 is_stmt 0 view .LVU55
+ 178 009e 514B     		ldr	r3, .L32+12
+ 179 00a0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 180              		.loc 1 71 11 view .LVU56
+ 181 00a2 012B     		cmp	r3, #1
+ 182 00a4 75D0     		beq	.L28
+ 183              	.L14:
+  72:Core/Src/led.c ****         {
+  73:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_OFF);
+  74:Core/Src/led.c ****         }
+  75:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_HEATING)&&(Target_Run_Time != 0))
+ 184              		.loc 1 75 9 is_stmt 1 view .LVU57
+ 185              		.loc 1 75 26 is_stmt 0 view .LVU58
+ 186 00a6 4F4B     		ldr	r3, .L32+12
+ 187 00a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 188              		.loc 1 75 11 view .LVU59
+ 189 00aa 022B     		cmp	r3, #2
+ 190 00ac 7CD0     		beq	.L29
+ 191              	.L13:
+  76:Core/Src/led.c ****         {
+  77:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_OFF);
+  78:Core/Src/led.c ****         }
+  79:Core/Src/led.c ****     }
+  80:Core/Src/led.c **** 
+  81:Core/Src/led.c ****     if((switch_submode == SWITCH_SUB_MODE_18)||(switch_submode == SWITCH_SUB_MODE_19))
+ 192              		.loc 1 81 5 is_stmt 1 view .LVU60
+ 193              		.loc 1 81 46 is_stmt 0 view .LVU61
+ 194 00ae 4F4B     		ldr	r3, .L32+20
+ 195 00b0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 196 00b2 123B     		subs	r3, r3, #18
+ 197 00b4 DBB2     		uxtb	r3, r3
+ 198              		.loc 1 81 7 view .LVU62
+ 199 00b6 012B     		cmp	r3, #1
+ 200 00b8 40F28180 		bls	.L30
+  82:Core/Src/led.c ****     {
+  83:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_2_GROUP,LED_2_2_PIN,LED_ON);           
+  84:Core/Src/led.c ****     }
+  85:Core/Src/led.c ****     else
+  86:Core/Src/led.c ****     {
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 6
+
+
+  87:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_2_GROUP,LED_2_2_PIN,LED_OFF);                
+ 201              		.loc 1 87 9 is_stmt 1 view .LVU63
+ 202 00bc 0022     		movs	r2, #0
+ 203 00be 2021     		movs	r1, #32
+ 204 00c0 4B48     		ldr	r0, .L32+24
+ 205 00c2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 206              	.LVL0:
+ 207              	.L16:
+  88:Core/Src/led.c ****     }
+  89:Core/Src/led.c **** 
+  90:Core/Src/led.c ****     /* Emergency output */
+  91:Core/Src/led.c ****     if((switch_overtemp == 0)&&(Pwm_Led_Mode == PWM_LED_MODE_HEATING))
+ 208              		.loc 1 91 5 view .LVU64
+ 209              		.loc 1 91 25 is_stmt 0 view .LVU65
+ 210 00c6 4B4B     		ldr	r3, .L32+28
+ 211 00c8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 212              		.loc 1 91 7 view .LVU66
+ 213 00ca 1BB9     		cbnz	r3, .L17
+ 214              		.loc 1 91 46 discriminator 1 view .LVU67
+ 215 00cc 454B     		ldr	r3, .L32+12
+ 216 00ce 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 217              		.loc 1 91 30 discriminator 1 view .LVU68
+ 218 00d0 022B     		cmp	r3, #2
+ 219 00d2 7AD0     		beq	.L31
+ 220              	.L17:
+  92:Core/Src/led.c ****     { 
+  93:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_1_GROUP,LED_2_1_PIN,LED_ON);                
+  94:Core/Src/led.c ****     }
+  95:Core/Src/led.c ****     else
+  96:Core/Src/led.c ****     {
+  97:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_1_GROUP,LED_2_1_PIN,LED_OFF);          
+ 221              		.loc 1 97 9 is_stmt 1 view .LVU69
+ 222 00d4 0022     		movs	r2, #0
+ 223 00d6 1021     		movs	r1, #16
+ 224 00d8 4548     		ldr	r0, .L32+24
+ 225 00da FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 226              	.LVL1:
+  98:Core/Src/led.c ****     }
+  99:Core/Src/led.c ****               
+ 100:Core/Src/led.c ****     return;
+ 227              		.loc 1 100 5 view .LVU70
+ 228              	.L1:
+ 101:Core/Src/led.c **** }...
+ 229              		.loc 1 101 1 is_stmt 0 view .LVU71
+ 230 00de 10BD     		pop	{r4, pc}
+ 231              	.L20:
+  24:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_ON);
+ 232              		.loc 1 24 9 is_stmt 1 view .LVU72
+ 233 00e0 0122     		movs	r2, #1
+ 234 00e2 4FF48071 		mov	r1, #256
+ 235 00e6 4248     		ldr	r0, .L32+24
+ 236 00e8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 237              	.LVL2:
+ 238 00ec A4E7     		b	.L4
+ 239              	.L21:
+  28:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_OFF);
+ 240              		.loc 1 28 9 view .LVU73
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 7
+
+
+ 241 00ee 0022     		movs	r2, #0
+ 242 00f0 4FF48071 		mov	r1, #256
+ 243 00f4 3E48     		ldr	r0, .L32+24
+ 244 00f6 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 245              	.LVL3:
+ 246 00fa A4E7     		b	.L5
+ 247              	.L22:
+  32:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_ON);
+ 248              		.loc 1 32 9 view .LVU74
+ 249 00fc 0122     		movs	r2, #1
+ 250 00fe 0221     		movs	r1, #2
+ 251 0100 3D48     		ldr	r0, .L32+32
+ 252 0102 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 253              	.LVL4:
+ 254 0106 A5E7     		b	.L6
+ 255              	.L23:
+  36:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_OFF);
+ 256              		.loc 1 36 9 view .LVU75
+ 257 0108 0022     		movs	r2, #0
+ 258 010a 0221     		movs	r1, #2
+ 259 010c 3A48     		ldr	r0, .L32+32
+ 260 010e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 261              	.LVL5:
+ 262 0112 A6E7     		b	.L7
+ 263              	.L24:
+  43:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_ON);                
+ 264              		.loc 1 43 13 view .LVU76
+ 265 0114 364C     		ldr	r4, .L32+24
+ 266 0116 0122     		movs	r2, #1
+ 267 0118 4FF48051 		mov	r1, #4096
+ 268 011c 2046     		mov	r0, r4
+ 269 011e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 270              	.LVL6:
+  44:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_OFF);        
+ 271              		.loc 1 44 13 view .LVU77
+ 272 0122 0022     		movs	r2, #0
+ 273 0124 4FF40071 		mov	r1, #512
+ 274 0128 2046     		mov	r0, r4
+ 275 012a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 276              	.LVL7:
+ 277 012e A2E7     		b	.L9
+ 278              	.L25:
+  48:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_OFF);                
+ 279              		.loc 1 48 13 view .LVU78
+ 280 0130 2F4C     		ldr	r4, .L32+24
+ 281 0132 0022     		movs	r2, #0
+ 282 0134 4FF48051 		mov	r1, #4096
+ 283 0138 2046     		mov	r0, r4
+ 284 013a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 285              	.LVL8:
+  49:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_ON);     
+ 286              		.loc 1 49 13 view .LVU79
+ 287 013e 0122     		movs	r2, #1
+ 288 0140 4FF40071 		mov	r1, #512
+ 289 0144 2046     		mov	r0, r4
+ 290 0146 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 291              	.LVL9:
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 8
+
+
+ 292 014a 98E7     		b	.L10
+ 293              	.L8:
+  54:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_OFF);                 
+ 294              		.loc 1 54 9 view .LVU80
+ 295 014c 284C     		ldr	r4, .L32+24
+ 296 014e 0022     		movs	r2, #0
+ 297 0150 4FF48051 		mov	r1, #4096
+ 298 0154 2046     		mov	r0, r4
+ 299 0156 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 300              	.LVL10:
+  55:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_OFF);      
+ 301              		.loc 1 55 9 view .LVU81
+ 302 015a 0022     		movs	r2, #0
+ 303 015c 4FF40071 		mov	r1, #512
+ 304 0160 2046     		mov	r0, r4
+ 305 0162 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 306              	.LVL11:
+ 307 0166 8AE7     		b	.L10
+ 308              	.L26:
+  60:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_COOLING)&&(Target_Run_Time != 0))
+ 309              		.loc 1 60 69 is_stmt 0 discriminator 1 view .LVU82
+ 310 0168 1D4B     		ldr	r3, .L32+8
+ 311 016a 1B68     		ldr	r3, [r3]
+  60:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_COOLING)&&(Target_Run_Time != 0))
+ 312              		.loc 1 60 50 discriminator 1 view .LVU83
+ 313 016c 002B     		cmp	r3, #0
+ 314 016e 8ED0     		beq	.L12
+  62:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_ON);
+ 315              		.loc 1 62 13 is_stmt 1 view .LVU84
+ 316 0170 0122     		movs	r2, #1
+ 317 0172 4FF48071 		mov	r1, #256
+ 318 0176 1E48     		ldr	r0, .L32+24
+ 319 0178 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 320              	.LVL12:
+ 321 017c 87E7     		b	.L12
+ 322              	.L27:
+  64:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_HEATING)&&(Target_Run_Time != 0))
+ 323              		.loc 1 64 69 is_stmt 0 discriminator 1 view .LVU85
+ 324 017e 184B     		ldr	r3, .L32+8
+ 325 0180 1B68     		ldr	r3, [r3]
+  64:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_HEATING)&&(Target_Run_Time != 0))
+ 326              		.loc 1 64 50 discriminator 1 view .LVU86
+ 327 0182 002B     		cmp	r3, #0
+ 328 0184 87D0     		beq	.L11
+  66:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_ON);
+ 329              		.loc 1 66 13 is_stmt 1 view .LVU87
+ 330 0186 0122     		movs	r2, #1
+ 331 0188 0221     		movs	r1, #2
+ 332 018a 1B48     		ldr	r0, .L32+32
+ 333 018c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 334              	.LVL13:
+ 335 0190 81E7     		b	.L11
+ 336              	.L28:
+  71:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_COOLING)&&(Target_Run_Time != 0))
+ 337              		.loc 1 71 69 is_stmt 0 discriminator 1 view .LVU88
+ 338 0192 134B     		ldr	r3, .L32+8
+ 339 0194 1B68     		ldr	r3, [r3]
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 9
+
+
+  71:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_COOLING)&&(Target_Run_Time != 0))
+ 340              		.loc 1 71 50 discriminator 1 view .LVU89
+ 341 0196 002B     		cmp	r3, #0
+ 342 0198 85D0     		beq	.L14
+  73:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_2_GROUP,LED_1_2_PIN,LED_OFF);
+ 343              		.loc 1 73 13 is_stmt 1 view .LVU90
+ 344 019a 0022     		movs	r2, #0
+ 345 019c 4FF48071 		mov	r1, #256
+ 346 01a0 1348     		ldr	r0, .L32+24
+ 347 01a2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 348              	.LVL14:
+ 349 01a6 7EE7     		b	.L14
+ 350              	.L29:
+  75:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_HEATING)&&(Target_Run_Time != 0))
+ 351              		.loc 1 75 69 is_stmt 0 discriminator 1 view .LVU91
+ 352 01a8 0D4B     		ldr	r3, .L32+8
+ 353 01aa 1B68     		ldr	r3, [r3]
+  75:Core/Src/led.c ****         if((Pwm_Led_Mode == PWM_LED_MODE_HEATING)&&(Target_Run_Time != 0))
+ 354              		.loc 1 75 50 discriminator 1 view .LVU92
+ 355 01ac 002B     		cmp	r3, #0
+ 356 01ae 3FF47EAF 		beq	.L13
+  77:Core/Src/led.c ****             HAL_GPIO_WritePin(LED_1_1_GROUP,LED_1_1_PIN,LED_OFF);
+ 357              		.loc 1 77 13 is_stmt 1 view .LVU93
+ 358 01b2 0022     		movs	r2, #0
+ 359 01b4 0221     		movs	r1, #2
+ 360 01b6 1048     		ldr	r0, .L32+32
+ 361 01b8 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 362              	.LVL15:
+ 363 01bc 77E7     		b	.L13
+ 364              	.L30:
+  83:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_2_GROUP,LED_2_2_PIN,LED_ON);           
+ 365              		.loc 1 83 9 view .LVU94
+ 366 01be 0122     		movs	r2, #1
+ 367 01c0 2021     		movs	r1, #32
+ 368 01c2 0B48     		ldr	r0, .L32+24
+ 369 01c4 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 370              	.LVL16:
+ 371 01c8 7DE7     		b	.L16
+ 372              	.L31:
+  93:Core/Src/led.c ****         HAL_GPIO_WritePin(LED_2_1_GROUP,LED_2_1_PIN,LED_ON);                
+ 373              		.loc 1 93 9 view .LVU95
+ 374 01ca 0122     		movs	r2, #1
+ 375 01cc 1021     		movs	r1, #16
+ 376 01ce 0848     		ldr	r0, .L32+24
+ 377 01d0 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 378              	.LVL17:
+ 379 01d4 83E7     		b	.L1
+ 380              	.L33:
+ 381 01d6 00BF     		.align	2
+ 382              	.L32:
+ 383 01d8 00000000 		.word	.LANCHOR0
+ 384 01dc 00000000 		.word	.LANCHOR1
+ 385 01e0 00000000 		.word	Target_Run_Time
+ 386 01e4 00000000 		.word	Pwm_Led_Mode
+ 387 01e8 00000000 		.word	CO2_Data16
+ 388 01ec 00000000 		.word	switch_submode
+ 389 01f0 000C0140 		.word	1073810432
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 10
+
+
+ 390 01f4 00000000 		.word	switch_overtemp
+ 391 01f8 00080140 		.word	1073809408
+ 392              		.cfi_endproc
+ 393              	.LFE65:
+ 395              		.global	LED_TimeCounter_Co2
+ 396              		.global	LED_TimeCounter
+ 397              		.section	.bss.LED_TimeCounter,"aw",%nobits
+ 398              		.align	1
+ 399              		.set	.LANCHOR0,. + 0
+ 402              	LED_TimeCounter:
+ 403 0000 0000     		.space	2
+ 404              		.section	.bss.LED_TimeCounter_Co2,"aw",%nobits
+ 405              		.align	1
+ 406              		.set	.LANCHOR1,. + 0
+ 409              	LED_TimeCounter_Co2:
+ 410 0000 0000     		.space	2
+ 411              		.text
+ 412              	.Letext0:
+ 413              		.file 2 "d:\\project\\tools\\gcc_arm\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 414              		.file 3 "d:\\project\\tools\\gcc_arm\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 415              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 416              		.file 5 "Core/Inc/vardef.h"
+ 417              		.file 6 "Core/Inc/switch.h"
+ 418              		.file 7 "Core/Inc/pwm.h"
+ 419              		.file 8 "Core/Inc/co2.h"
+ 420              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\wf\AppData\Local\Temp\cczYcs6E.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 led.c
-C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s:18     .text.LED_Control:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s:24     .text.LED_Control:00000000 LED_Control
-C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s:154    .text.LED_Control:000000c4 $d
-C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s:166    .bss.LED_TimeCounter:00000000 LED_TimeCounter
-C:\Users\jisu8\AppData\Local\Temp\cc8wP0tp.s:162    .bss.LED_TimeCounter:00000000 $d
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:16     .text.LED_Control:00000000 $t
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:24     .text.LED_Control:00000000 LED_Control
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:383    .text.LED_Control:000001d8 $d
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:409    .bss.LED_TimeCounter_Co2:00000000 LED_TimeCounter_Co2
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:402    .bss.LED_TimeCounter:00000000 LED_TimeCounter
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:398    .bss.LED_TimeCounter:00000000 $d
+C:\Users\wf\AppData\Local\Temp\cczYcs6E.s:405    .bss.LED_TimeCounter_Co2:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
+Target_Run_Time
+Pwm_Led_Mode
+CO2_Data16
+switch_submode
+switch_overtemp

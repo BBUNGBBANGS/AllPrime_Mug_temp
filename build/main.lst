@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
   31:Core/Src/main.c **** /* USER CODE END PTD */
   32:Core/Src/main.c **** 
   33:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 2
 
 
   34:Core/Src/main.c **** /* USER CODE BEGIN PD */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
   88:Core/Src/main.c **** 
   89:Core/Src/main.c ****     /* MCU Configuration--------------------------------------------------------*/
   90:Core/Src/main.c **** 
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 3
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 3
 
 
   91:Core/Src/main.c ****     /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  145:Core/Src/main.c **** {
  146:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
  147:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 4
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 4
 
 
  148:Core/Src/main.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  202:Core/Src/main.c ****   */
  203:Core/Src/main.c ****   hadc1.Instance = ADC1;
  204:Core/Src/main.c ****   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 5
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 5
 
 
  205:Core/Src/main.c ****   hadc1.Init.ContinuousConvMode = DISABLE;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  259:Core/Src/main.c ****   /* USER CODE END I2C1_Init 2 */
  260:Core/Src/main.c **** 
  261:Core/Src/main.c **** }
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 6
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 6
 
 
  262:Core/Src/main.c **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  316:Core/Src/main.c ****   /* USER CODE END TIM1_Init 1 */
  317:Core/Src/main.c ****   htim1.Instance = TIM1;
  318:Core/Src/main.c ****   htim1.Init.Prescaler = 959;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 7
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 7
 
 
  319:Core/Src/main.c ****   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  373:Core/Src/main.c **** 
  374:Core/Src/main.c **** }
  375:Core/Src/main.c **** 
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 8
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 8
 
 
  376:Core/Src/main.c **** /**
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  430:Core/Src/main.c **** 
  431:Core/Src/main.c ****   /* USER CODE END TIM3_Init 0 */
  432:Core/Src/main.c **** 
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 9
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 9
 
 
  433:Core/Src/main.c ****   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  487:Core/Src/main.c ****   * @retval None
  488:Core/Src/main.c ****   */
  489:Core/Src/main.c **** static void MX_TIM4_Init(void)
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 10
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 10
 
 
  490:Core/Src/main.c **** {
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  544:Core/Src/main.c ****   huart2.Instance = USART2;
  545:Core/Src/main.c ****   huart2.Init.BaudRate = 9600;
  546:Core/Src/main.c ****   huart2.Init.WordLength = UART_WORDLENGTH_8B;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 11
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 11
 
 
  547:Core/Src/main.c ****   huart2.Init.StopBits = UART_STOPBITS_1;
@@ -655,10 +655,10 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
   51              	.LBB4:
   52              		.loc 1 572 3 view .LVU4
   53              		.loc 1 572 3 view .LVU5
-  54 0010 314B     		ldr	r3, .L3
+  54 0010 324B     		ldr	r3, .L3
   55 0012 9A69     		ldr	r2, [r3, #24]
   56 0014 42F01002 		orr	r2, r2, #16
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 12
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 12
 
 
   57 0018 9A61     		str	r2, [r3, #24]
@@ -706,7 +706,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  576:Core/Src/main.c ****   /*Configure GPIO pin Output Level */
  577:Core/Src/main.c ****   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
   96              		.loc 1 577 3 view .LVU21
-  97 0048 DFF89090 		ldr	r9, .L3+4
+  97 0048 DFF89490 		ldr	r9, .L3+4
   98 004c 2246     		mov	r2, r4
   99 004e 4FF40051 		mov	r1, #8192
  100 0052 4846     		mov	r0, r9
@@ -716,9 +716,9 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  579:Core/Src/main.c ****   /*Configure GPIO pin Output Level */
  580:Core/Src/main.c ****   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
  103              		.loc 1 580 3 view .LVU22
- 104 0058 DFF88480 		ldr	r8, .L3+8
+ 104 0058 DFF88880 		ldr	r8, .L3+8
  105 005c 2246     		mov	r2, r4
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 13
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 13
 
 
  106 005e 0221     		movs	r1, #2
@@ -729,13 +729,13 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  582:Core/Src/main.c ****   /*Configure GPIO pin Output Level */
  583:Core/Src/main.c ****   HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_12|GPIO_PIN_13
  110              		.loc 1 583 3 view .LVU23
- 111 0066 1F4E     		ldr	r6, .L3+12
+ 111 0066 204E     		ldr	r6, .L3+12
  112 0068 2246     		mov	r2, r4
- 113 006a 47F23B01 		movw	r1, #28731
+ 113 006a 43F23B31 		movw	r1, #13115
  114 006e 3046     		mov	r0, r6
  115 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
  116              	.LVL2:
- 584:Core/Src/main.c ****                           |GPIO_PIN_14|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5, GPIO_PIN_RESET);
+ 584:Core/Src/main.c ****                           |GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
  585:Core/Src/main.c **** 
  586:Core/Src/main.c ****   /*Configure GPIO pin : PC13 */
  587:Core/Src/main.c ****   GPIO_InitStruct.Pin = GPIO_PIN_13;
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  144              		.loc 1 596 24 is_stmt 0 view .LVU38
  145 0090 0694     		str	r4, [sp, #24]
  597:Core/Src/main.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 14
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 14
 
 
  146              		.loc 1 597 3 is_stmt 1 view .LVU39
@@ -819,9 +819,9 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  610:Core/Src/main.c ****   GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_12|GPIO_PIN_13
  169              		.loc 1 610 3 view .LVU49
  170              		.loc 1 610 23 is_stmt 0 view .LVU50
- 171 00ae 47F23B03 		movw	r3, #28731
+ 171 00ae 43F23B33 		movw	r3, #13115
  172 00b2 0493     		str	r3, [sp, #16]
- 611:Core/Src/main.c ****                           |GPIO_PIN_14|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5;
+ 611:Core/Src/main.c ****                           |GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_8|GPIO_PIN_9;
  612:Core/Src/main.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  173              		.loc 1 612 3 is_stmt 1 view .LVU51
  174              		.loc 1 612 24 is_stmt 0 view .LVU52
@@ -838,47 +838,47 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  182              		.loc 1 615 3 is_stmt 1 view .LVU57
  183 00ba 04A9     		add	r1, sp, #16
  184 00bc 3046     		mov	r0, r6
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 15
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 15
 
 
  185 00be FFF7FEFF 		bl	HAL_GPIO_Init
  186              	.LVL6:
  616:Core/Src/main.c **** 
  617:Core/Src/main.c ****   /*Configure GPIO pin : PB2 */
- 618:Core/Src/main.c ****   GPIO_InitStruct.Pin = GPIO_PIN_2;
+ 618:Core/Src/main.c ****   GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_14;
  187              		.loc 1 618 3 view .LVU58
  188              		.loc 1 618 23 is_stmt 0 view .LVU59
- 189 00c2 0423     		movs	r3, #4
- 190 00c4 0493     		str	r3, [sp, #16]
+ 189 00c2 44F20403 		movw	r3, #16388
+ 190 00c6 0493     		str	r3, [sp, #16]
  619:Core/Src/main.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
  191              		.loc 1 619 3 is_stmt 1 view .LVU60
  192              		.loc 1 619 24 is_stmt 0 view .LVU61
- 193 00c6 0594     		str	r4, [sp, #20]
+ 193 00c8 0594     		str	r4, [sp, #20]
  620:Core/Src/main.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
  194              		.loc 1 620 3 is_stmt 1 view .LVU62
  195              		.loc 1 620 24 is_stmt 0 view .LVU63
- 196 00c8 0694     		str	r4, [sp, #24]
+ 196 00ca 0694     		str	r4, [sp, #24]
  621:Core/Src/main.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
  197              		.loc 1 621 3 is_stmt 1 view .LVU64
- 198 00ca 04A9     		add	r1, sp, #16
- 199 00cc 3046     		mov	r0, r6
- 200 00ce FFF7FEFF 		bl	HAL_GPIO_Init
+ 198 00cc 04A9     		add	r1, sp, #16
+ 199 00ce 3046     		mov	r0, r6
+ 200 00d0 FFF7FEFF 		bl	HAL_GPIO_Init
  201              	.LVL7:
  622:Core/Src/main.c **** 
  623:Core/Src/main.c **** }
  202              		.loc 1 623 1 is_stmt 0 view .LVU65
- 203 00d2 09B0     		add	sp, sp, #36
+ 203 00d4 09B0     		add	sp, sp, #36
  204              	.LCFI2:
  205              		.cfi_def_cfa_offset 28
  206              		@ sp needed
- 207 00d4 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 207 00d6 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
  208              	.L4:
- 209              		.align	2
+ 209 00da 00BF     		.align	2
  210              	.L3:
- 211 00d8 00100240 		.word	1073876992
- 212 00dc 00100140 		.word	1073811456
- 213 00e0 00080140 		.word	1073809408
- 214 00e4 000C0140 		.word	1073810432
+ 211 00dc 00100240 		.word	1073876992
+ 212 00e0 00100140 		.word	1073811456
+ 213 00e4 00080140 		.word	1073809408
+ 214 00e8 000C0140 		.word	1073810432
  215              		.cfi_endproc
  216              	.LFE75:
  218              		.section	.text.Error_Handler,"ax",%progbits
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  630:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
  631:Core/Src/main.c ****   * @retval None
  632:Core/Src/main.c ****   */
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 16
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 16
 
 
  633:Core/Src/main.c **** void Error_Handler(void)
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
   40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
   41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
   42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 17
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 17
 
 
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
   97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
   98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
   99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 18
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 18
 
 
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  248              	.LBE7:
  638:Core/Src/main.c ****   while (1)
  249              		.loc 1 638 3 discriminator 1 view .LVU70
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 19
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 19
 
 
  639:Core/Src/main.c ****   {
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  206:Core/Src/main.c ****   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
  293              		.loc 1 206 36 is_stmt 0 view .LVU83
  294 0016 0375     		strb	r3, [r0, #20]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 20
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 20
 
 
  207:Core/Src/main.c ****   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  227:Core/Src/main.c **** 
  331              		.loc 1 227 1 view .LVU102
  332 003e 05B0     		add	sp, sp, #20
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 21
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 21
 
 
  333              	.LCFI5:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  246:Core/Src/main.c ****   hi2c1.Init.OwnAddress1 = 0;
  382              		.loc 1 246 3 is_stmt 1 view .LVU110
  246:Core/Src/main.c ****   hi2c1.Init.OwnAddress1 = 0;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 22
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 22
 
 
  383              		.loc 1 246 24 is_stmt 0 view .LVU111
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  420 002c 00000000 		.word	.LANCHOR1
  421 0030 00540040 		.word	1073763328
  422 0034 A0860100 		.word	100000
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 23
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 23
 
 
  423              		.cfi_endproc
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  470 0024 01A8     		add	r0, sp, #4
  471 0026 FFF7FEFF 		bl	memset
  472              	.LVL14:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 24
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 24
 
 
  317:Core/Src/main.c ****   htim1.Init.Prescaler = 959;
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  508 004e 4FF48053 		mov	r3, #4096
  509 0052 1293     		str	r3, [sp, #72]
  329:Core/Src/main.c ****   {
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 25
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 25
 
 
  510              		.loc 1 329 3 is_stmt 1 view .LVU157
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  548              		.loc 1 344 19 is_stmt 0 view .LVU173
  549 0080 0022     		movs	r2, #0
  550 0082 0A92     		str	r2, [sp, #40]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 26
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 26
 
 
  345:Core/Src/main.c ****   sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  359:Core/Src/main.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
  587              		.loc 1 359 3 is_stmt 1 view .LVU192
  359:Core/Src/main.c ****   sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 27
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 27
 
 
  588              		.loc 1 359 41 is_stmt 0 view .LVU193
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  627              		.cfi_restore_state
  326:Core/Src/main.c ****   }
  628              		.loc 1 326 5 is_stmt 1 view .LVU209
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 28
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 28
 
 
  629 00cc FFF7FEFF 		bl	Error_Handler
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  678              		.cfi_offset 14, -4
  679 0002 87B0     		sub	sp, sp, #28
  680              	.LCFI13:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 29
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 29
 
 
  681              		.cfi_def_cfa_offset 32
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  717              		.loc 1 400 7 is_stmt 0 view .LVU234
  718 002e FFF7FEFF 		bl	HAL_TIM_Base_Init
  719              	.LVL30:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 30
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 30
 
 
  400:Core/Src/main.c ****   {
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  759              		.loc 1 402 5 is_stmt 1 view .LVU249
  760 005a FFF7FEFF 		bl	Error_Handler
  761              	.LVL33:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 31
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 31
 
 
  762              	.L45:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  809 0012 0193     		str	r3, [sp, #4]
  810 0014 0293     		str	r3, [sp, #8]
  811 0016 0393     		str	r3, [sp, #12]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 32
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 32
 
 
  812 0018 0493     		str	r3, [sp, #16]
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  451:Core/Src/main.c ****   {
  849              		.loc 1 451 3 is_stmt 1 view .LVU276
  451:Core/Src/main.c ****   {
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 33
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 33
 
 
  850              		.loc 1 451 7 is_stmt 0 view .LVU277
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  467:Core/Src/main.c ****   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
  888              		.loc 1 467 24 is_stmt 0 view .LVU294
  889 0070 0392     		str	r2, [sp, #12]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 34
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 34
 
 
  468:Core/Src/main.c ****   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  457:Core/Src/main.c ****   }
  932              		.loc 1 457 5 view .LVU307
  933 00a0 FFF7FEFF 		bl	Error_Handler
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 35
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 35
 
 
  934              	.LVL45:
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  982              		.loc 1 497 27 is_stmt 0 view .LVU315
  983 000e 0093     		str	r3, [sp]
  984 0010 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 36
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 36
 
 
  502:Core/Src/main.c ****   htim4.Init.Prescaler = 47;
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1020 0034 02A9     		add	r1, sp, #8
  1021 0036 0A48     		ldr	r0, .L73
  1022 0038 FFF7FEFF 		bl	HAL_TIM_ConfigClockSource
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 37
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 37
 
 
  1023              	.LVL50:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1065 0060 00000000 		.word	.LANCHOR5
  1066 0064 00080040 		.word	1073743872
  1067              		.cfi_endproc
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 38
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 38
 
 
  1068              	.LFE73:
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1110              		.loc 1 284 3 is_stmt 1 view .LVU360
  284:Core/Src/main.c ****   hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
  1111              		.loc 1 284 26 is_stmt 0 view .LVU361
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 39
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 39
 
 
  1112 001a 8361     		str	r3, [r0, #24]
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1157              		.loc 1 544 3 view .LVU372
  544:Core/Src/main.c ****   huart2.Init.BaudRate = 9600;
  1158              		.loc 1 544 19 is_stmt 0 view .LVU373
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 40
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 40
 
 
  1159 0002 0A48     		ldr	r0, .L85
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  554:Core/Src/main.c ****   }
  1195              		.loc 1 554 5 is_stmt 1 view .LVU392
  1196 0026 FFF7FEFF 		bl	Error_Handler
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 41
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 41
 
 
  1197              	.LVL58:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1246 0022 0493     		str	r3, [sp, #16]
  153:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
  1247              		.loc 1 153 3 is_stmt 1 view .LVU400
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 42
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 42
 
 
  153:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1283              		.loc 1 168 35 is_stmt 0 view .LVU419
  1284 0048 0023     		movs	r3, #0
  1285 004a 0793     		str	r3, [sp, #28]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 43
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 43
 
 
  169:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1325              		.cfi_restore_state
  161:Core/Src/main.c ****   }
  1326              		.loc 1 161 5 is_stmt 1 view .LVU435
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 44
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 44
 
 
  1327 0076 FFF7FEFF 		bl	Error_Handler
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1374              		.loc 1 109 5 view .LVU444
  1375 0016 FFF7FEFF 		bl	MX_TIM1_Init
  1376              	.LVL71:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 45
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 45
 
 
  110:Core/Src/main.c ****     MX_TIM3_Init();
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1419 0056 0421     		movs	r1, #4
  1420 0058 2846     		mov	r0, r5
  1421 005a FFF7FEFF 		bl	HAL_TIM_PWM_Start
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 46
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 46
 
 
  1422              	.LVL83:
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1471      00000000 
  1471      00000000 
  1471      00000000 
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 47
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 47
 
 
  1471      00000000 
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1513      00000000 
  1514              		.text
  1515              	.Letext0:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 48
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 48
 
 
  1516              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
@@ -2839,67 +2839,67 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 1
  1531              		.file 18 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
  1532              		.file 19 "Core/Inc/os.h"
  1533              		.file 20 "<built-in>"
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 49
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 49
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:18     .text.MX_GPIO_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:23     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:211    .text.MX_GPIO_Init:000000d8 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:219    .text.Error_Handler:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:225    .text.Error_Handler:00000000 Error_Handler
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:257    .text.MX_ADC1_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:262    .text.MX_ADC1_Init:00000000 MX_ADC1_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:351    .text.MX_ADC1_Init:0000004c $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:357    .text.MX_I2C1_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:362    .text.MX_I2C1_Init:00000000 MX_I2C1_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:420    .text.MX_I2C1_Init:0000002c $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:427    .text.MX_TIM1_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:432    .text.MX_TIM1_Init:00000000 MX_TIM1_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:658    .text.MX_TIM1_Init:000000e8 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:664    .text.MX_TIM2_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:669    .text.MX_TIM2_Init:00000000 MX_TIM2_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:773    .text.MX_TIM2_Init:00000068 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:778    .text.MX_TIM3_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:783    .text.MX_TIM3_Init:00000000 MX_TIM3_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:950    .text.MX_TIM3_Init:000000b0 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:956    .text.MX_TIM4_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:961    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1065   .text.MX_TIM4_Init:00000060 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1071   .text.MX_I2C2_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1076   .text.MX_I2C2_Init:00000000 MX_I2C2_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1134   .text.MX_I2C2_Init:0000002c $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1141   .text.MX_USART2_UART_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1146   .text.MX_USART2_UART_Init:00000000 MX_USART2_UART_Init
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1201   .text.MX_USART2_UART_Init:0000002c $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1207   .text.SystemClock_Config:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1213   .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1341   .text.main:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1347   .text.main:00000000 main
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1443   .text.main:00000074 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1512   .bss.huart2:00000000 huart2
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1505   .bss.htim4:00000000 htim4
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1498   .bss.htim3:00000000 htim3
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1491   .bss.htim2:00000000 htim2
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1484   .bss.htim1:00000000 htim1
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1477   .bss.hi2c2:00000000 hi2c2
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1470   .bss.hi2c1:00000000 hi2c1
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1463   .bss.hadc1:00000000 hadc1
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1459   .bss.hadc1:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1466   .bss.hi2c1:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1473   .bss.hi2c2:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1480   .bss.htim1:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1487   .bss.htim2:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1494   .bss.htim3:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1501   .bss.htim4:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s:1508   .bss.huart2:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:18     .text.MX_GPIO_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:23     .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:211    .text.MX_GPIO_Init:000000dc $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:219    .text.Error_Handler:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:225    .text.Error_Handler:00000000 Error_Handler
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:257    .text.MX_ADC1_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:262    .text.MX_ADC1_Init:00000000 MX_ADC1_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:351    .text.MX_ADC1_Init:0000004c $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:357    .text.MX_I2C1_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:362    .text.MX_I2C1_Init:00000000 MX_I2C1_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:420    .text.MX_I2C1_Init:0000002c $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:427    .text.MX_TIM1_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:432    .text.MX_TIM1_Init:00000000 MX_TIM1_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:658    .text.MX_TIM1_Init:000000e8 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:664    .text.MX_TIM2_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:669    .text.MX_TIM2_Init:00000000 MX_TIM2_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:773    .text.MX_TIM2_Init:00000068 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:778    .text.MX_TIM3_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:783    .text.MX_TIM3_Init:00000000 MX_TIM3_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:950    .text.MX_TIM3_Init:000000b0 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:956    .text.MX_TIM4_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:961    .text.MX_TIM4_Init:00000000 MX_TIM4_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1065   .text.MX_TIM4_Init:00000060 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1071   .text.MX_I2C2_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1076   .text.MX_I2C2_Init:00000000 MX_I2C2_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1134   .text.MX_I2C2_Init:0000002c $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1141   .text.MX_USART2_UART_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1146   .text.MX_USART2_UART_Init:00000000 MX_USART2_UART_Init
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1201   .text.MX_USART2_UART_Init:0000002c $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1207   .text.SystemClock_Config:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1213   .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1341   .text.main:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1347   .text.main:00000000 main
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1443   .text.main:00000074 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1512   .bss.huart2:00000000 huart2
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1505   .bss.htim4:00000000 htim4
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1498   .bss.htim3:00000000 htim3
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1491   .bss.htim2:00000000 htim2
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1484   .bss.htim1:00000000 htim1
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1477   .bss.hi2c2:00000000 hi2c2
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1470   .bss.hi2c1:00000000 hi2c1
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1463   .bss.hadc1:00000000 hadc1
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1459   .bss.hadc1:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1466   .bss.hi2c1:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1473   .bss.hi2c2:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1480   .bss.htim1:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1487   .bss.htim2:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1494   .bss.htim3:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1501   .bss.htim4:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s:1508   .bss.huart2:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin
 HAL_GPIO_Init
 HAL_ADC_Init
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxHgzNF.s 			page 50
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccxW1oAe.s 			page 50
 
 
 HAL_ADC_ConfigChannel

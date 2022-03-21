@@ -18,5 +18,7 @@
 #define CO2_ADDRESS_ERROR_ID            (0xE0)
 #define CO2_ADDRESS_SW_RESET            (0xFF)
 
+extern uint16 CO2_Data16;
+
 extern void CO2_Init(void);
 extern void CO2_Communication(void);

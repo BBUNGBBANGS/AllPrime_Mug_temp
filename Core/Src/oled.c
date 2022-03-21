@@ -6,6 +6,8 @@ char OLED_WRITE[] = "HELO";
 uint8 Tx_data[100]; 
 /* OLED data buffer */
 static uint8 OLED_Buffer[OLED_WIDTH * OLED_HEIGHT / 8];
+static void Clear_TxBuffer(void);
+static void Print_TxBuffer(void);
 static void OLED_Write_Command(uint8 command);
 static void OLED_Fill_Screen(OLED_COLOR_t color);
 static void OLED_Update_Screen(void);
@@ -65,88 +67,185 @@ void OLED_Init(void)
 
     OLED_Fill_Screen(OLED_COLOR_BLACK);
     OLED_Update_Screen();
-    uint8 dummy;
-    #if 0
+
+    Clear_TxBuffer();
     sprintf(Tx_data,"https://www.allprime.co.kr");
     length = strlen(Tx_data);
+    Tx_data[length] = ' ';
+    Print_TxBuffer();
     
-    for(uint8 idx=0;idx<length;idx++)
-    {
-        if(7*idx>112)
-        {
-            OLED_Set_X_Y(7*idx-112,10);
-        }
-        else
-        {
-            OLED_Set_X_Y(7*idx,0);            
-        }
-        dummy = OLED_Set_Char(Tx_data[idx]-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    }
-    #endif
-    #if 0
-    OLED_Set_X_Y(0,0);    
-    dummy = OLED_Set_Char('h'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-
-    OLED_Set_X_Y(7,0);
-    dummy = OLED_Set_Char('t'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(14,0);
-    dummy = OLED_Set_Char('t'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(21,0);
-    dummy = OLED_Set_Char('p'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(28,0);
-    dummy = OLED_Set_Char('s'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(35,0);
-    dummy = OLED_Set_Char(':'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(42,0);
-    dummy = OLED_Set_Char('/'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(49,0);
-    dummy = OLED_Set_Char('/'-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    //OLED_Set_X_Y(56,0);
-    dummy = OLED_Set_Char('a'-33,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(99,0);
-    dummy = OLED_Set_Char('l'-33,&OLED_Font_7x10,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(110,0);
-    dummy = OLED_Set_Char('l'-33,&OLED_Font_7x10,OLED_COLOR_WHITE);
-
-    OLED_Set_X_Y(96,0);
-    dummy = OLED_Set_Char(8,&OLED_Font_12x16,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(108,0);
-    dummy = OLED_Set_Char(9,&OLED_Font_12x16,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(0,15);
-    dummy = OLED_Set_Char(10,&OLED_Font_12x16,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(12,15);
-    dummy = OLED_Set_Char(11,&OLED_Font_12x16,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(24,15);
-    dummy = OLED_Set_Char(12,&OLED_Font_12x16,OLED_COLOR_WHITE);
-    OLED_Set_X_Y(36,15);
-    dummy = OLED_Set_Char(13,&OLED_Font_12x16,OLED_COLOR_WHITE);
-    #endif
     OLED_Update_Screen();
-
 }
 extern uint16 Temp_Adc_TP_Volt;
+extern sint16 Temp_Adc_TP;
+extern uint16 Target_Run_Time;
+extern uint16 CO2_Data16;
 void OLED_Display(void)
 {
     uint8 dummy;
-    uint16 n1,n10,n100,n1000;
+    uint8 n1,n10,n100,n1000;
+    uint8 t1,t10,t100,t1000;
+    uint16 n0=0;
+    uint16 length;
+    sint16 Temp;
+    if(switch_mode == SWITCH_MODE_RUN)
+    {
+        Clear_TxBuffer();
+        sprintf(Tx_data,"Run Time : ");
+        length = strlen(Tx_data);
+        t1 = ((Target_Run_Time/100)%60)%10;
+        t10 = (((Target_Run_Time/100)%60)/10)%10;
+        t100 = (Target_Run_Time/100/60)%10;
+        t1000 = ((Target_Run_Time/100/60)/10)%10;
+        Tx_data[length] = t1000 + 16 + 32;
+        Tx_data[length+1] = t100 + 16 + 32;
+        Tx_data[length+2] = ':';        
+        Tx_data[length+3] = t10 + 16 + 32;
+        Tx_data[length+4] = t1 + 16 + 32;
+        length = length + 7;
+        sprintf(&Tx_data[length],"Temp     :");
+        length = length+8; 
+        Temp = Temp_Adc_TP;
+        if(Temp<0)
+        {
+            Temp = -Temp;
+            n0 = '-';
+        }
+        else
+        {
+            n0 = ' ';
+        }
+        n1 = (Temp%10);
+        n10 = ((Temp%100)/10);
+        n100 = ((Temp%1000)/100);
+        Tx_data[length+2] = n0;
+        if(n100 == 0)
+        {
+            Tx_data[length+3] = ' ';
+            Tx_data[length+4] = n10 + 16 + 32;
+            Tx_data[length+5] = n1 + 16 + 32;            
+        }
+        else
+        {
+            Tx_data[length+3] = n100 + 16 + 32;
+            Tx_data[length+4] = n10 + 16 + 32;
+            Tx_data[length+5] = n1 + 16 + 32;
+        }
+        sprintf(&Tx_data[length+6],"`C");
+        length = strlen(Tx_data);
+        Tx_data[length] = ' ';
+        length = length+2;
+        sprintf(&Tx_data[length],"Menu:");
+        length = length + 5;
+        Tx_data[length] = ' ';
 
-    n1 = Temp_Adc_TP_Volt%10;
-    n10 = (Temp_Adc_TP_Volt%100)/10;
-    n100 = (Temp_Adc_TP_Volt%1000)/100;
-    n1000 = (Temp_Adc_TP_Volt%10000)/1000;
-    
-    OLED_Set_X_Y(7*0,0);   
-    Tx_data[0] = n1;
-    dummy = OLED_Set_Char(Tx_data[0]-32,&OLED_Font_7x10,OLED_COLOR_WHITE);    
-    OLED_Set_X_Y(7*1,0);   
-    Tx_data[1] = n10;
-    dummy = OLED_Set_Char(Tx_data[1]-32,&OLED_Font_7x10,OLED_COLOR_WHITE);    
-    OLED_Set_X_Y(7*2,0);   
-    Tx_data[2] = n100;
-    dummy = OLED_Set_Char(Tx_data[2]-32,&OLED_Font_7x10,OLED_COLOR_WHITE);    
-    OLED_Set_X_Y(7*3,0);   
-    Tx_data[3] = n1000;
-    dummy = OLED_Set_Char(Tx_data[3]-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
+        n1 = switch_submode%10;
+        n10 = (switch_submode%100)/10;
+        if(n10>0)
+        {
+            Tx_data[length] = n10 + 16 + 32;
+            Tx_data[length+1] = n1 + 16 + 32;
+        }
+        else
+        {
+            length = length + 1;
+            Tx_data[length] = n1 + 16 + 32;
+        }
+        length = length + 2;
+        Tx_data[length] = ' ';
+        length = length + 1;
+        sprintf(&Tx_data[length],"CO2:");
+        length = strlen(Tx_data);
+        Tx_data[length] = ' ';
+        n1 = (CO2_Data16%10);
+        n10 = ((CO2_Data16%100)/10);
+        n100 = ((CO2_Data16%1000)/100);
+        n1000 = ((CO2_Data16%10000)/1000);
+        if(n1000>0)
+        {
+            Tx_data[length+0] = n1000 + 16 + 32;
+            Tx_data[length+1] = n100 + 16 + 32;
+            Tx_data[length+2] = n10 + 16 + 32;
+            Tx_data[length+3] = n1 + 16 + 32;
+        }
+        else
+        {
+            Tx_data[length+1] = n100 + 16 + 32;
+            Tx_data[length+2] = n10 + 16 + 32;
+            Tx_data[length+3] = n1 + 16 + 32;
+        }
+
+
+        Print_TxBuffer();
+    }
+    else if(switch_mode == SWITCH_MODE_MENUSELECT)
+    {
+        Clear_TxBuffer();
+        sprintf(Tx_data,"Select Menu : ");
+        length = strlen(Tx_data);
+        
+        n1 = switch_submode % 10;
+        n10 = (switch_submode % 100) / 10;
+        Tx_data[length] = n10 + 16 + 32;
+        Tx_data[length+1] = n1 + 16 + 32;
+        Print_TxBuffer();
+    }
+    else
+    {
+        Clear_TxBuffer();
+        sprintf(Tx_data,"   < IDLE Mode >  ");
+        length = strlen(Tx_data);    
+        Tx_data[length] = ' ';  
+        length = length +5;
+        sprintf(&Tx_data[length],"Menu :");
+        length = strlen(Tx_data);    
+        Tx_data[length] = ' ';  
+        n1 = switch_submode%10;
+        n10 = (switch_submode%100)/10;
+        if(n10>0)
+        {
+            Tx_data[length] = n10 + 16 + 32;
+            Tx_data[length+1] = n1 + 16 + 32;
+        }
+        else
+        {
+            length = length + 1;
+            Tx_data[length] = n1 + 16 + 32;
+        }
+        Print_TxBuffer();  
+    }
+ 
+
+    OLED_Update_Screen();
+}
+
+static void Clear_TxBuffer(void)
+{
+    for(int i=0;i<100;i++)
+    {
+        Tx_data[i] = ' ';
+    }
+}
+
+static void Print_TxBuffer(void)
+{
+    uint8 dummy;
+    for(uint8 idx=0;idx<69;idx++)
+    {
+        if(7*(idx+1)<128)
+        {
+            OLED_Set_X_Y(7*idx,0); 
+        }
+        else if(7*(idx+1)<256)
+        {
+            OLED_Set_X_Y(7*(idx-18),10);  
+        }
+        else
+        {
+            OLED_Set_X_Y(7*(idx-36),20);                 
+        }
+        dummy = OLED_Set_Char(Tx_data[idx]-32,&OLED_Font_7x10,OLED_COLOR_WHITE);
+    }
 }
 
 static void OLED_Write_Command(uint8 command)
