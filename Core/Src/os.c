@@ -5,6 +5,7 @@
 #include "oled.h"
 #include "temp.h"
 #include "co2.h"
+#include "eeprom.h"
 
 Os_Var_t Os_Var;
 
@@ -20,6 +21,9 @@ void Os_Init_Task(void)
 {
 	OLED_Init();
 	CO2_Init();
+	Switch_Val_Init();
+	//flashInit();
+	//eepromInit();
 	//Blutooth_Init();
 }
 static void Os_1ms_Task(void)
@@ -36,11 +40,18 @@ static void Os_10ms_Task(void)
 	CO2_Communication();
 	//Blutooth_Communication();
 }
-
+uint8 switch_mode_old;
 static void Os_100ms_Task(void)
 {
+
 	LED_Control();
 	OLED_Display();
+	if((switch_mode_old == SWITCH_MODE_MENUSELECT)&&(switch_mode == SWITCH_MODE_RUN))
+	{
+		EEPROM_Erase();
+		EEPROM_Write();
+	}
+	switch_mode_old = switch_mode;
 }
 
 static void Os_Background_Task(void)

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -10,21 +10,46 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 1
    7              		.eabi_attribute 24, 1
    8              		.eabi_attribute 25, 1
    9              		.eabi_attribute 26, 1
-  10              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 30, 6
   11              		.eabi_attribute 34, 1
   12              		.eabi_attribute 18, 4
   13              		.file	"co2.c"
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.section	.text.CO2_ReadData,"ax",%progbits
-  18              		.align	1
-  19              		.syntax unified
-  20              		.thumb
-  21              		.thumb_func
-  23              	CO2_ReadData:
-  24              	.LFB67:
-  25              		.file 1 "Core/Src/co2.c"
+  17              		.global	CO2_Address
+  18              		.section	.bss.CO2_Address,"aw",%nobits
+  21              	CO2_Address:
+  22 0000 00       		.space	1
+  23              		.global	CO2_Data_w
+  24              		.section	.bss.CO2_Data_w,"aw",%nobits
+  27              	CO2_Data_w:
+  28 0000 00       		.space	1
+  29              		.global	CO2_Data
+  30              		.section	.bss.CO2_Data,"aw",%nobits
+  31              		.align	2
+  34              	CO2_Data:
+  35 0000 00000000 		.space	8
+  35      00000000 
+  36              		.global	CO2_Data16
+  37              		.section	.bss.CO2_Data16,"aw",%nobits
+  38              		.align	1
+  41              	CO2_Data16:
+  42 0000 0000     		.space	2
+  43              		.global	TVOC_Data16
+  44              		.section	.bss.TVOC_Data16,"aw",%nobits
+  45              		.align	1
+  48              	TVOC_Data16:
+  49 0000 0000     		.space	2
+  50              		.section	.text.CO2_Init,"ax",%progbits
+  51              		.align	1
+  52              		.global	CO2_Init
+  53              		.syntax unified
+  54              		.thumb
+  55              		.thumb_func
+  57              	CO2_Init:
+  58              	.LFB65:
+  59              		.file 1 "Core/Src/co2.c"
    1:Core/Src/co2.c **** #include "co2.h"
    2:Core/Src/co2.c **** 
    3:Core/Src/co2.c **** uint8 CO2_Address;
@@ -33,270 +58,319 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 1
    6:Core/Src/co2.c **** 
    7:Core/Src/co2.c **** uint16 CO2_Data16;
    8:Core/Src/co2.c **** uint16 TVOC_Data16;
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 2
+
+
    9:Core/Src/co2.c **** static void CO2_FindAddress(void);
   10:Core/Src/co2.c **** static void CO2_ReadData(void);
   11:Core/Src/co2.c **** 
   12:Core/Src/co2.c **** void CO2_Init(void)
   13:Core/Src/co2.c **** {
+  60              		.loc 1 13 1
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 1, uses_anonymous_args = 0
+  64 0000 80B5     		push	{r7, lr}
+  65              	.LCFI0:
+  66              		.cfi_def_cfa_offset 8
+  67              		.cfi_offset 7, -8
+  68              		.cfi_offset 14, -4
+  69 0002 84B0     		sub	sp, sp, #16
+  70              	.LCFI1:
+  71              		.cfi_def_cfa_offset 24
+  72 0004 04AF     		add	r7, sp, #16
+  73              	.LCFI2:
+  74              		.cfi_def_cfa 7, 8
   14:Core/Src/co2.c ****     CO2_Data_w = 0xF4;
+  75              		.loc 1 14 16
+  76 0006 0F4B     		ldr	r3, .L3
+  77 0008 F422     		movs	r2, #244
+  78 000a 1A70     		strb	r2, [r3]
   15:Core/Src/co2.c ****     HAL_I2C_Master_Transmit(&CO2_HW_MODULE,(CO2_ADDRESS<<1),&CO2_Data_w,1,1000);
+  79              		.loc 1 15 5
+  80 000c 4FF47A73 		mov	r3, #1000
+  81 0010 0093     		str	r3, [sp]
+  82 0012 0123     		movs	r3, #1
+  83 0014 0B4A     		ldr	r2, .L3
+  84 0016 B421     		movs	r1, #180
+  85 0018 0B48     		ldr	r0, .L3+4
+  86 001a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
   16:Core/Src/co2.c ****     CO2_Data_w = 0x10;
+  87              		.loc 1 16 16
+  88 001e 094B     		ldr	r3, .L3
+  89 0020 1022     		movs	r2, #16
+  90 0022 1A70     		strb	r2, [r3]
   17:Core/Src/co2.c ****     HAL_I2C_Mem_Write(&CO2_HW_MODULE,(CO2_ADDRESS<<1),CO2_ADDRESS_MEAS_MODE,1,&CO2_Data_w,1,1000);
+  91              		.loc 1 17 5
+  92 0024 4FF47A73 		mov	r3, #1000
+  93 0028 0293     		str	r3, [sp, #8]
+  94 002a 0123     		movs	r3, #1
+  95 002c 0193     		str	r3, [sp, #4]
+  96 002e 054B     		ldr	r3, .L3
+  97 0030 0093     		str	r3, [sp]
+  98 0032 0123     		movs	r3, #1
+  99 0034 0122     		movs	r2, #1
+ 100 0036 B421     		movs	r1, #180
+ 101 0038 0348     		ldr	r0, .L3+4
+ 102 003a FFF7FEFF 		bl	HAL_I2C_Mem_Write
   18:Core/Src/co2.c ****     return;
+ 103              		.loc 1 18 5
+ 104 003e 00BF     		nop
   19:Core/Src/co2.c **** }
+ 105              		.loc 1 19 1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 3
+
+
+ 106 0040 BD46     		mov	sp, r7
+ 107              	.LCFI3:
+ 108              		.cfi_def_cfa_register 13
+ 109              		@ sp needed
+ 110 0042 80BD     		pop	{r7, pc}
+ 111              	.L4:
+ 112              		.align	2
+ 113              	.L3:
+ 114 0044 00000000 		.word	CO2_Data_w
+ 115 0048 00000000 		.word	hi2c2
+ 116              		.cfi_endproc
+ 117              	.LFE65:
+ 119              		.section	.text.CO2_Communication,"ax",%progbits
+ 120              		.align	1
+ 121              		.global	CO2_Communication
+ 122              		.syntax unified
+ 123              		.thumb
+ 124              		.thumb_func
+ 126              	CO2_Communication:
+ 127              	.LFB66:
   20:Core/Src/co2.c **** 
   21:Core/Src/co2.c **** void CO2_Communication(void)
   22:Core/Src/co2.c **** {
+ 128              		.loc 1 22 1
+ 129              		.cfi_startproc
+ 130              		@ args = 0, pretend = 0, frame = 0
+ 131              		@ frame_needed = 1, uses_anonymous_args = 0
+ 132 0000 80B5     		push	{r7, lr}
+ 133              	.LCFI4:
+ 134              		.cfi_def_cfa_offset 8
+ 135              		.cfi_offset 7, -8
+ 136              		.cfi_offset 14, -4
+ 137 0002 00AF     		add	r7, sp, #0
+ 138              	.LCFI5:
+ 139              		.cfi_def_cfa_register 7
   23:Core/Src/co2.c ****     CO2_ReadData();
+ 140              		.loc 1 23 5
+ 141 0004 FFF7FEFF 		bl	CO2_ReadData
   24:Core/Src/co2.c ****     return;
+ 142              		.loc 1 24 5
+ 143 0008 00BF     		nop
   25:Core/Src/co2.c **** }
+ 144              		.loc 1 25 1
+ 145 000a 80BD     		pop	{r7, pc}
+ 146              		.cfi_endproc
+ 147              	.LFE66:
+ 149              		.section	.text.CO2_ReadData,"ax",%progbits
+ 150              		.align	1
+ 151              		.syntax unified
+ 152              		.thumb
+ 153              		.thumb_func
+ 155              	CO2_ReadData:
+ 156              	.LFB67:
   26:Core/Src/co2.c **** 
   27:Core/Src/co2.c **** static void CO2_ReadData(void)
   28:Core/Src/co2.c **** {
-  26              		.loc 1 28 1 view -0
-  27              		.cfi_startproc
-  28              		@ args = 0, pretend = 0, frame = 0
-  29              		@ frame_needed = 0, uses_anonymous_args = 0
-  30 0000 10B5     		push	{r4, lr}
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 2
+ 157              		.loc 1 28 1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 4
 
 
-  31              	.LCFI0:
-  32              		.cfi_def_cfa_offset 8
-  33              		.cfi_offset 4, -8
-  34              		.cfi_offset 14, -4
-  35 0002 84B0     		sub	sp, sp, #16
-  36              	.LCFI1:
-  37              		.cfi_def_cfa_offset 24
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 1, uses_anonymous_args = 0
+ 161 0000 80B5     		push	{r7, lr}
+ 162              	.LCFI6:
+ 163              		.cfi_def_cfa_offset 8
+ 164              		.cfi_offset 7, -8
+ 165              		.cfi_offset 14, -4
+ 166 0002 84B0     		sub	sp, sp, #16
+ 167              	.LCFI7:
+ 168              		.cfi_def_cfa_offset 24
+ 169 0004 04AF     		add	r7, sp, #16
+ 170              	.LCFI8:
+ 171              		.cfi_def_cfa 7, 8
   29:Core/Src/co2.c ****     HAL_I2C_Mem_Read(&CO2_HW_MODULE,(CO2_ADDRESS<<1),CO2_ADDRESS_ALG_RESULT_DATA,1,CO2_Data,8,100);
-  38              		.loc 1 29 5 view .LVU1
-  39 0004 6423     		movs	r3, #100
-  40 0006 0293     		str	r3, [sp, #8]
-  41 0008 0823     		movs	r3, #8
-  42 000a 0193     		str	r3, [sp, #4]
-  43 000c 0A4C     		ldr	r4, .L3
-  44 000e 0094     		str	r4, [sp]
-  45 0010 0123     		movs	r3, #1
-  46 0012 0222     		movs	r2, #2
-  47 0014 B421     		movs	r1, #180
-  48 0016 0948     		ldr	r0, .L3+4
-  49 0018 FFF7FEFF 		bl	HAL_I2C_Mem_Read
-  50              	.LVL0:
+ 172              		.loc 1 29 5
+ 173 0006 6423     		movs	r3, #100
+ 174 0008 0293     		str	r3, [sp, #8]
+ 175 000a 0823     		movs	r3, #8
+ 176 000c 0193     		str	r3, [sp, #4]
+ 177 000e 114B     		ldr	r3, .L8
+ 178 0010 0093     		str	r3, [sp]
+ 179 0012 0123     		movs	r3, #1
+ 180 0014 0222     		movs	r2, #2
+ 181 0016 B421     		movs	r1, #180
+ 182 0018 0F48     		ldr	r0, .L8+4
+ 183 001a FFF7FEFF 		bl	HAL_I2C_Mem_Read
   30:Core/Src/co2.c ****     CO2_Data16 = (CO2_Data[0]<<8) | (CO2_Data[1]);
-  51              		.loc 1 30 5 view .LVU2
-  52              		.loc 1 30 27 is_stmt 0 view .LVU3
-  53 001c 2278     		ldrb	r2, [r4]	@ zero_extendqisi2
-  54              		.loc 1 30 46 view .LVU4
-  55 001e 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
-  56              		.loc 1 30 35 view .LVU5
-  57 0020 43EA0223 		orr	r3, r3, r2, lsl #8
-  58              		.loc 1 30 16 view .LVU6
-  59 0024 064A     		ldr	r2, .L3+8
-  60 0026 1380     		strh	r3, [r2]	@ movhi
+ 184              		.loc 1 30 27
+ 185 001e 0D4B     		ldr	r3, .L8
+ 186 0020 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 187              		.loc 1 30 30
+ 188 0022 1B02     		lsls	r3, r3, #8
+ 189              		.loc 1 30 35
+ 190 0024 1AB2     		sxth	r2, r3
+ 191              		.loc 1 30 46
+ 192 0026 0B4B     		ldr	r3, .L8
+ 193 0028 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 194 002a 1BB2     		sxth	r3, r3
+ 195              		.loc 1 30 35
+ 196 002c 1343     		orrs	r3, r3, r2
+ 197 002e 1BB2     		sxth	r3, r3
+ 198 0030 9AB2     		uxth	r2, r3
+ 199              		.loc 1 30 16
+ 200 0032 0A4B     		ldr	r3, .L8+8
+ 201 0034 1A80     		strh	r2, [r3]	@ movhi
   31:Core/Src/co2.c ****     TVOC_Data16 = (CO2_Data[2]<<8) | (CO2_Data[3]); 
-  61              		.loc 1 31 5 is_stmt 1 view .LVU7
-  62              		.loc 1 31 28 is_stmt 0 view .LVU8
-  63 0028 A278     		ldrb	r2, [r4, #2]	@ zero_extendqisi2
-  64              		.loc 1 31 47 view .LVU9
-  65 002a E378     		ldrb	r3, [r4, #3]	@ zero_extendqisi2
-  66              		.loc 1 31 36 view .LVU10
-  67 002c 43EA0223 		orr	r3, r3, r2, lsl #8
-  68              		.loc 1 31 17 view .LVU11
-  69 0030 044A     		ldr	r2, .L3+12
-  70 0032 1380     		strh	r3, [r2]	@ movhi
+ 202              		.loc 1 31 28
+ 203 0036 074B     		ldr	r3, .L8
+ 204 0038 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 205              		.loc 1 31 31
+ 206 003a 1B02     		lsls	r3, r3, #8
+ 207              		.loc 1 31 36
+ 208 003c 1AB2     		sxth	r2, r3
+ 209              		.loc 1 31 47
+ 210 003e 054B     		ldr	r3, .L8
+ 211 0040 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 5
+
+
+ 212 0042 1BB2     		sxth	r3, r3
+ 213              		.loc 1 31 36
+ 214 0044 1343     		orrs	r3, r3, r2
+ 215 0046 1BB2     		sxth	r3, r3
+ 216 0048 9AB2     		uxth	r2, r3
+ 217              		.loc 1 31 17
+ 218 004a 054B     		ldr	r3, .L8+12
+ 219 004c 1A80     		strh	r2, [r3]	@ movhi
   32:Core/Src/co2.c **** }
-  71              		.loc 1 32 1 view .LVU12
-  72 0034 04B0     		add	sp, sp, #16
-  73              	.LCFI2:
-  74              		.cfi_def_cfa_offset 8
-  75              		@ sp needed
-  76 0036 10BD     		pop	{r4, pc}
-  77              	.L4:
-  78              		.align	2
-  79              	.L3:
-  80 0038 00000000 		.word	.LANCHOR0
-  81 003c 00000000 		.word	hi2c2
-  82 0040 00000000 		.word	.LANCHOR1
-  83 0044 00000000 		.word	.LANCHOR2
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 3
+ 220              		.loc 1 32 1
+ 221 004e 00BF     		nop
+ 222 0050 BD46     		mov	sp, r7
+ 223              	.LCFI9:
+ 224              		.cfi_def_cfa_register 13
+ 225              		@ sp needed
+ 226 0052 80BD     		pop	{r7, pc}
+ 227              	.L9:
+ 228              		.align	2
+ 229              	.L8:
+ 230 0054 00000000 		.word	CO2_Data
+ 231 0058 00000000 		.word	hi2c2
+ 232 005c 00000000 		.word	CO2_Data16
+ 233 0060 00000000 		.word	TVOC_Data16
+ 234              		.cfi_endproc
+ 235              	.LFE67:
+ 237              		.section	.text.CO2_FindAddress,"ax",%progbits
+ 238              		.align	1
+ 239              		.syntax unified
+ 240              		.thumb
+ 241              		.thumb_func
+ 243              	CO2_FindAddress:
+ 244              	.LFB68:
+  33:Core/Src/co2.c **** 
+  34:Core/Src/co2.c **** static void CO2_FindAddress(void)
+  35:Core/Src/co2.c **** {
+ 245              		.loc 1 35 1
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 0
+ 248              		@ frame_needed = 1, uses_anonymous_args = 0
+ 249 0000 80B5     		push	{r7, lr}
+ 250              	.LCFI10:
+ 251              		.cfi_def_cfa_offset 8
+ 252              		.cfi_offset 7, -8
+ 253              		.cfi_offset 14, -4
+ 254 0002 00AF     		add	r7, sp, #0
+ 255              	.LCFI11:
+ 256              		.cfi_def_cfa_register 7
+  36:Core/Src/co2.c ****     if(HAL_OK == HAL_I2C_IsDeviceReady(&CO2_HW_MODULE,CO2_Address,3,10))
+ 257              		.loc 1 36 18
+ 258 0004 094B     		ldr	r3, .L13
+ 259 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 260 0008 99B2     		uxth	r1, r3
+ 261 000a 0A23     		movs	r3, #10
+ 262 000c 0322     		movs	r2, #3
+ 263 000e 0848     		ldr	r0, .L13+4
+ 264 0010 FFF7FEFF 		bl	HAL_I2C_IsDeviceReady
+ 265 0014 0346     		mov	r3, r0
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 6
 
 
-  84              		.cfi_endproc
-  85              	.LFE67:
-  87              		.section	.text.CO2_Init,"ax",%progbits
-  88              		.align	1
-  89              		.global	CO2_Init
-  90              		.syntax unified
-  91              		.thumb
-  92              		.thumb_func
-  94              	CO2_Init:
-  95              	.LFB65:
-  13:Core/Src/co2.c ****     CO2_Data_w = 0xF4;
-  96              		.loc 1 13 1 is_stmt 1 view -0
-  97              		.cfi_startproc
-  98              		@ args = 0, pretend = 0, frame = 0
-  99              		@ frame_needed = 0, uses_anonymous_args = 0
- 100 0000 70B5     		push	{r4, r5, r6, lr}
- 101              	.LCFI3:
- 102              		.cfi_def_cfa_offset 16
- 103              		.cfi_offset 4, -16
- 104              		.cfi_offset 5, -12
- 105              		.cfi_offset 6, -8
- 106              		.cfi_offset 14, -4
- 107 0002 84B0     		sub	sp, sp, #16
- 108              	.LCFI4:
- 109              		.cfi_def_cfa_offset 32
-  14:Core/Src/co2.c ****     HAL_I2C_Master_Transmit(&CO2_HW_MODULE,(CO2_ADDRESS<<1),&CO2_Data_w,1,1000);
- 110              		.loc 1 14 5 view .LVU14
-  14:Core/Src/co2.c ****     HAL_I2C_Master_Transmit(&CO2_HW_MODULE,(CO2_ADDRESS<<1),&CO2_Data_w,1,1000);
- 111              		.loc 1 14 16 is_stmt 0 view .LVU15
- 112 0004 0C4C     		ldr	r4, .L7
- 113 0006 F423     		movs	r3, #244
- 114 0008 2370     		strb	r3, [r4]
-  15:Core/Src/co2.c ****     CO2_Data_w = 0x10;
- 115              		.loc 1 15 5 is_stmt 1 view .LVU16
- 116 000a 0C4D     		ldr	r5, .L7+4
- 117 000c 4FF47A76 		mov	r6, #1000
- 118 0010 0096     		str	r6, [sp]
- 119 0012 0123     		movs	r3, #1
- 120 0014 2246     		mov	r2, r4
- 121 0016 B421     		movs	r1, #180
- 122 0018 2846     		mov	r0, r5
- 123 001a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
- 124              	.LVL1:
-  16:Core/Src/co2.c ****     HAL_I2C_Mem_Write(&CO2_HW_MODULE,(CO2_ADDRESS<<1),CO2_ADDRESS_MEAS_MODE,1,&CO2_Data_w,1,1000);
- 125              		.loc 1 16 5 view .LVU17
-  16:Core/Src/co2.c ****     HAL_I2C_Mem_Write(&CO2_HW_MODULE,(CO2_ADDRESS<<1),CO2_ADDRESS_MEAS_MODE,1,&CO2_Data_w,1,1000);
- 126              		.loc 1 16 16 is_stmt 0 view .LVU18
- 127 001e 1023     		movs	r3, #16
- 128 0020 2370     		strb	r3, [r4]
-  17:Core/Src/co2.c ****     return;
- 129              		.loc 1 17 5 is_stmt 1 view .LVU19
- 130 0022 0296     		str	r6, [sp, #8]
- 131 0024 0122     		movs	r2, #1
- 132 0026 0192     		str	r2, [sp, #4]
- 133 0028 0094     		str	r4, [sp]
- 134 002a 1346     		mov	r3, r2
- 135 002c B421     		movs	r1, #180
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 4
-
-
- 136 002e 2846     		mov	r0, r5
- 137 0030 FFF7FEFF 		bl	HAL_I2C_Mem_Write
- 138              	.LVL2:
-  18:Core/Src/co2.c **** }
- 139              		.loc 1 18 5 view .LVU20
-  19:Core/Src/co2.c **** 
- 140              		.loc 1 19 1 is_stmt 0 view .LVU21
- 141 0034 04B0     		add	sp, sp, #16
- 142              	.LCFI5:
- 143              		.cfi_def_cfa_offset 16
- 144              		@ sp needed
- 145 0036 70BD     		pop	{r4, r5, r6, pc}
- 146              	.L8:
- 147              		.align	2
- 148              	.L7:
- 149 0038 00000000 		.word	.LANCHOR3
- 150 003c 00000000 		.word	hi2c2
- 151              		.cfi_endproc
- 152              	.LFE65:
- 154              		.section	.text.CO2_Communication,"ax",%progbits
- 155              		.align	1
- 156              		.global	CO2_Communication
- 157              		.syntax unified
- 158              		.thumb
- 159              		.thumb_func
- 161              	CO2_Communication:
- 162              	.LFB66:
-  22:Core/Src/co2.c ****     CO2_ReadData();
- 163              		.loc 1 22 1 is_stmt 1 view -0
- 164              		.cfi_startproc
- 165              		@ args = 0, pretend = 0, frame = 0
- 166              		@ frame_needed = 0, uses_anonymous_args = 0
- 167 0000 08B5     		push	{r3, lr}
- 168              	.LCFI6:
- 169              		.cfi_def_cfa_offset 8
- 170              		.cfi_offset 3, -8
- 171              		.cfi_offset 14, -4
-  23:Core/Src/co2.c ****     return;
- 172              		.loc 1 23 5 view .LVU23
- 173 0002 FFF7FEFF 		bl	CO2_ReadData
- 174              	.LVL3:
-  24:Core/Src/co2.c **** }
- 175              		.loc 1 24 5 view .LVU24
-  25:Core/Src/co2.c **** 
- 176              		.loc 1 25 1 is_stmt 0 view .LVU25
- 177 0006 08BD     		pop	{r3, pc}
- 178              		.cfi_endproc
- 179              	.LFE66:
- 181              		.global	TVOC_Data16
- 182              		.global	CO2_Data16
- 183              		.global	CO2_Data
- 184              		.global	CO2_Data_w
- 185              		.global	CO2_Address
- 186              		.section	.bss.CO2_Address,"aw",%nobits
- 189              	CO2_Address:
- 190 0000 00       		.space	1
- 191              		.section	.bss.CO2_Data,"aw",%nobits
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 5
-
-
- 192              		.align	2
- 193              		.set	.LANCHOR0,. + 0
- 196              	CO2_Data:
- 197 0000 00000000 		.space	8
- 197      00000000 
- 198              		.section	.bss.CO2_Data16,"aw",%nobits
- 199              		.align	1
- 200              		.set	.LANCHOR1,. + 0
- 203              	CO2_Data16:
- 204 0000 0000     		.space	2
- 205              		.section	.bss.CO2_Data_w,"aw",%nobits
- 206              		.set	.LANCHOR3,. + 0
- 209              	CO2_Data_w:
- 210 0000 00       		.space	1
- 211              		.section	.bss.TVOC_Data16,"aw",%nobits
- 212              		.align	1
- 213              		.set	.LANCHOR2,. + 0
- 216              	TVOC_Data16:
- 217 0000 0000     		.space	2
- 218              		.text
- 219              	.Letext0:
- 220              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
- 221              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
- 222              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 223              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
- 224              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
- 225              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
- 226              		.file 8 "Core/Inc/vardef.h"
- 227              		.file 9 "Core/Inc/main.h"
- 228              		.file 10 "Core/Inc/co2.h"
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s 			page 6
+ 266              		.loc 1 36 7
+ 267 0016 002B     		cmp	r3, #0
+ 268 0018 05D0     		beq	.L12
+  37:Core/Src/co2.c ****     {
+  38:Core/Src/co2.c ****         /*do noThing*/
+  39:Core/Src/co2.c ****     }
+  40:Core/Src/co2.c ****     else
+  41:Core/Src/co2.c ****     {
+  42:Core/Src/co2.c ****         CO2_Address++;
+ 269              		.loc 1 42 20
+ 270 001a 044B     		ldr	r3, .L13
+ 271 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 272 001e 0133     		adds	r3, r3, #1
+ 273 0020 DAB2     		uxtb	r2, r3
+ 274 0022 024B     		ldr	r3, .L13
+ 275 0024 1A70     		strb	r2, [r3]
+ 276              	.L12:
+  43:Core/Src/co2.c ****     }
+  44:Core/Src/co2.c **** }
+ 277              		.loc 1 44 1
+ 278 0026 00BF     		nop
+ 279 0028 80BD     		pop	{r7, pc}
+ 280              	.L14:
+ 281 002a 00BF     		.align	2
+ 282              	.L13:
+ 283 002c 00000000 		.word	CO2_Address
+ 284 0030 00000000 		.word	hi2c2
+ 285              		.cfi_endproc
+ 286              	.LFE68:
+ 288              		.text
+ 289              	.Letext0:
+ 290              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 291              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 292              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 293              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 294              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 295              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
+ 296              		.file 8 "Core/Inc/vardef.h"
+ 297              		.file 9 "Core/Inc/main.h"
+ 298              		.file 10 "Core/Inc/co2.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s 			page 7
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 co2.c
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:18     .text.CO2_ReadData:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:23     .text.CO2_ReadData:00000000 CO2_ReadData
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:80     .text.CO2_ReadData:00000038 $d
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:88     .text.CO2_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:94     .text.CO2_Init:00000000 CO2_Init
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:149    .text.CO2_Init:00000038 $d
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:155    .text.CO2_Communication:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:161    .text.CO2_Communication:00000000 CO2_Communication
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:216    .bss.TVOC_Data16:00000000 TVOC_Data16
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:203    .bss.CO2_Data16:00000000 CO2_Data16
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:196    .bss.CO2_Data:00000000 CO2_Data
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:209    .bss.CO2_Data_w:00000000 CO2_Data_w
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:189    .bss.CO2_Address:00000000 CO2_Address
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:190    .bss.CO2_Address:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:192    .bss.CO2_Data:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:199    .bss.CO2_Data16:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:210    .bss.CO2_Data_w:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cco4tXhc.s:212    .bss.TVOC_Data16:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:21     .bss.CO2_Address:00000000 CO2_Address
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:22     .bss.CO2_Address:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:27     .bss.CO2_Data_w:00000000 CO2_Data_w
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:28     .bss.CO2_Data_w:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:34     .bss.CO2_Data:00000000 CO2_Data
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:31     .bss.CO2_Data:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:41     .bss.CO2_Data16:00000000 CO2_Data16
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:38     .bss.CO2_Data16:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:48     .bss.TVOC_Data16:00000000 TVOC_Data16
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:45     .bss.TVOC_Data16:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:51     .text.CO2_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:57     .text.CO2_Init:00000000 CO2_Init
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:114    .text.CO2_Init:00000044 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:120    .text.CO2_Communication:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:126    .text.CO2_Communication:00000000 CO2_Communication
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:155    .text.CO2_ReadData:00000000 CO2_ReadData
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:150    .text.CO2_ReadData:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:230    .text.CO2_ReadData:00000054 $d
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:238    .text.CO2_FindAddress:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:243    .text.CO2_FindAddress:00000000 CO2_FindAddress
+C:\Users\jisu8\AppData\Local\Temp\ccqiNjfF.s:283    .text.CO2_FindAddress:0000002c $d
 
 UNDEFINED SYMBOLS
-HAL_I2C_Mem_Read
-hi2c2
 HAL_I2C_Master_Transmit
 HAL_I2C_Mem_Write
+hi2c2
+HAL_I2C_Mem_Read
+HAL_I2C_IsDeviceReady

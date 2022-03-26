@@ -22,7 +22,7 @@ TARGET = AllPrime_Mug_temp
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -Og
+OPT = -O0
 
 
 #######################################
@@ -48,6 +48,7 @@ Core/Src/oled.c \
 Core/Src/oled_fonts.c \
 Core/Src/co2.c \
 Core/Src/blutooth.c \
+Core/Src/eeprom.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c \
 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c \

@@ -1,5 +1,5 @@
-build/os.o: Core/Src/os.c Core/Inc/os.h Core/Inc/vardef.h Core/Inc/led.h \
- Core/Inc/main.h Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+build/eeprom.o: Core/Src/eeprom.c Core/Inc/eeprom.h Core/Inc/main.h \
+ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  Core/Inc/stm32f1xx_hal_conf.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
@@ -24,12 +24,9 @@ build/os.o: Core/Src/os.c Core/Inc/os.h Core/Inc/vardef.h Core/Inc/led.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h Core/Inc/pwm.h \
- Core/Inc/switch.h Core/Inc/switch.h Core/Inc/oled.h \
- Core/Inc/oled_fonts.h Core/Inc/temp.h Core/Inc/co2.h Core/Inc/eeprom.h
-Core/Inc/os.h:
-Core/Inc/vardef.h:
-Core/Inc/led.h:
+ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h Core/Inc/vardef.h \
+ Core/Inc/switch.h
+Core/Inc/eeprom.h:
 Core/Inc/main.h:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 Core/Inc/stm32f1xx_hal_conf.h:
@@ -59,11 +56,5 @@ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
-Core/Inc/pwm.h:
+Core/Inc/vardef.h:
 Core/Inc/switch.h:
-Core/Inc/switch.h:
-Core/Inc/oled.h:
-Core/Inc/oled_fonts.h:
-Core/Inc/temp.h:
-Core/Inc/co2.h:
-Core/Inc/eeprom.h:

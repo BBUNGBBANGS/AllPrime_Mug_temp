@@ -57,5 +57,7 @@ extern uint8 switch_submode;
 extern uint8 switch4_mode;
 extern uint8 switch4_mode_old;
 extern uint8 switch_overtemp;
+
+extern void Switch_Val_Init(void);
 extern void Switch_Control(void);
 

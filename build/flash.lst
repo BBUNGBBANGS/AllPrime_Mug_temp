@@ -1,0 +1,594 @@
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"flash.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	flash_tbl
+  18              		.section	.bss.flash_tbl,"aw",%nobits
+  19              		.align	2
+  22              	flash_tbl:
+  23 0000 00000000 		.space	1024
+  23      00000000 
+  23      00000000 
+  23      00000000 
+  23      00000000 
+  24              		.section	.text.flashInit,"ax",%progbits
+  25              		.align	1
+  26              		.global	flashInit
+  27              		.syntax unified
+  28              		.thumb
+  29              		.thumb_func
+  31              	flashInit:
+  32              	.LFB65:
+  33              		.file 1 "Core/Src/flash.c"
+   1:Core/Src/flash.c **** #include "flash.h"
+   2:Core/Src/flash.c **** 
+   3:Core/Src/flash.c **** #define FLASH_MAX_PAGE_COUNT 128
+   4:Core/Src/flash.c **** 
+   5:Core/Src/flash.c **** typedef struct
+   6:Core/Src/flash.c **** {
+   7:Core/Src/flash.c ****     uint32 address;
+   8:Core/Src/flash.c ****     uint32 length;
+   9:Core/Src/flash.c **** }flash_tbl_t;
+  10:Core/Src/flash.c **** 
+  11:Core/Src/flash.c **** flash_tbl_t flash_tbl[FLASH_MAX_PAGE_COUNT];
+  12:Core/Src/flash.c **** 
+  13:Core/Src/flash.c **** static sint32 getPage(uint32 Address);
+  14:Core/Src/flash.c **** 
+  15:Core/Src/flash.c **** void flashInit(void)
+  16:Core/Src/flash.c **** {
+  34              		.loc 1 16 1
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 8
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38              		@ link register save eliminated.
+  39 0000 80B4     		push	{r7}
+  40              	.LCFI0:
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 2
+
+
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 7, -4
+  43 0002 83B0     		sub	sp, sp, #12
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_offset 16
+  46 0004 00AF     		add	r7, sp, #0
+  47              	.LCFI2:
+  48              		.cfi_def_cfa_register 7
+  17:Core/Src/flash.c ****     uint32 i;
+  18:Core/Src/flash.c **** 
+  19:Core/Src/flash.c ****     for (i=0; i<FLASH_MAX_PAGE_COUNT; i++)
+  49              		.loc 1 19 11
+  50 0006 0023     		movs	r3, #0
+  51 0008 7B60     		str	r3, [r7, #4]
+  52              		.loc 1 19 5
+  53 000a 11E0     		b	.L2
+  54              	.L3:
+  20:Core/Src/flash.c ****     {
+  21:Core/Src/flash.c ****         flash_tbl[i].address = 0x08000000 + ( i * FLASH_PAGE_SIZE );
+  55              		.loc 1 21 43 discriminator 3
+  56 000c 7B68     		ldr	r3, [r7, #4]
+  57 000e 03F50033 		add	r3, r3, #131072
+  58 0012 9A02     		lsls	r2, r3, #10
+  59              		.loc 1 21 30 discriminator 3
+  60 0014 0B49     		ldr	r1, .L4
+  61 0016 7B68     		ldr	r3, [r7, #4]
+  62 0018 41F83320 		str	r2, [r1, r3, lsl #3]
+  22:Core/Src/flash.c ****         flash_tbl[i].length = FLASH_PAGE_SIZE;
+  63              		.loc 1 22 29 discriminator 3
+  64 001c 094A     		ldr	r2, .L4
+  65 001e 7B68     		ldr	r3, [r7, #4]
+  66 0020 DB00     		lsls	r3, r3, #3
+  67 0022 1344     		add	r3, r3, r2
+  68 0024 4FF48062 		mov	r2, #1024
+  69 0028 5A60     		str	r2, [r3, #4]
+  19:Core/Src/flash.c ****     {
+  70              		.loc 1 19 40 discriminator 3
+  71 002a 7B68     		ldr	r3, [r7, #4]
+  72 002c 0133     		adds	r3, r3, #1
+  73 002e 7B60     		str	r3, [r7, #4]
+  74              	.L2:
+  19:Core/Src/flash.c ****     {
+  75              		.loc 1 19 5 discriminator 1
+  76 0030 7B68     		ldr	r3, [r7, #4]
+  77 0032 7F2B     		cmp	r3, #127
+  78 0034 EAD9     		bls	.L3
+  23:Core/Src/flash.c ****     }
+  24:Core/Src/flash.c **** }
+  79              		.loc 1 24 1
+  80 0036 00BF     		nop
+  81 0038 00BF     		nop
+  82 003a 0C37     		adds	r7, r7, #12
+  83              	.LCFI3:
+  84              		.cfi_def_cfa_offset 4
+  85 003c BD46     		mov	sp, r7
+  86              	.LCFI4:
+  87              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 3
+
+
+  88              		@ sp needed
+  89 003e 80BC     		pop	{r7}
+  90              	.LCFI5:
+  91              		.cfi_restore 7
+  92              		.cfi_def_cfa_offset 0
+  93 0040 7047     		bx	lr
+  94              	.L5:
+  95 0042 00BF     		.align	2
+  96              	.L4:
+  97 0044 00000000 		.word	flash_tbl
+  98              		.cfi_endproc
+  99              	.LFE65:
+ 101              		.section	.text.flashErase,"ax",%progbits
+ 102              		.align	1
+ 103              		.global	flashErase
+ 104              		.syntax unified
+ 105              		.thumb
+ 106              		.thumb_func
+ 108              	flashErase:
+ 109              	.LFB66:
+  25:Core/Src/flash.c **** 
+  26:Core/Src/flash.c **** bool flashErase(uint32 addr, uint32 length)
+  27:Core/Src/flash.c **** {
+ 110              		.loc 1 27 1
+ 111              		.cfi_startproc
+ 112              		@ args = 0, pretend = 0, frame = 40
+ 113              		@ frame_needed = 1, uses_anonymous_args = 0
+ 114 0000 80B5     		push	{r7, lr}
+ 115              	.LCFI6:
+ 116              		.cfi_def_cfa_offset 8
+ 117              		.cfi_offset 7, -8
+ 118              		.cfi_offset 14, -4
+ 119 0002 8AB0     		sub	sp, sp, #40
+ 120              	.LCFI7:
+ 121              		.cfi_def_cfa_offset 48
+ 122 0004 00AF     		add	r7, sp, #0
+ 123              	.LCFI8:
+ 124              		.cfi_def_cfa_register 7
+ 125 0006 7860     		str	r0, [r7, #4]
+ 126 0008 3960     		str	r1, [r7]
+  28:Core/Src/flash.c ****     bool ret = TRUE;
+ 127              		.loc 1 28 10
+ 128 000a 0123     		movs	r3, #1
+ 129 000c 87F82730 		strb	r3, [r7, #39]
+  29:Core/Src/flash.c ****     sint32 first_page = 0;
+ 130              		.loc 1 29 12
+ 131 0010 0023     		movs	r3, #0
+ 132 0012 3B62     		str	r3, [r7, #32]
+  30:Core/Src/flash.c ****     sint32 num_page = 0;
+ 133              		.loc 1 30 12
+ 134 0014 0023     		movs	r3, #0
+ 135 0016 FB61     		str	r3, [r7, #28]
+  31:Core/Src/flash.c ****     uint32 SECTORError = 0;
+ 136              		.loc 1 31 12
+ 137 0018 0023     		movs	r3, #0
+ 138 001a BB61     		str	r3, [r7, #24]
+  32:Core/Src/flash.c ****     FLASH_EraseInitTypeDef EraseInitStruct;
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 4
+
+
+  33:Core/Src/flash.c **** 
+  34:Core/Src/flash.c ****     HAL_FLASH_Unlock();
+ 139              		.loc 1 34 5
+ 140 001c FFF7FEFF 		bl	HAL_FLASH_Unlock
+  35:Core/Src/flash.c **** 
+  36:Core/Src/flash.c ****     first_page = getPage(addr);
+ 141              		.loc 1 36 18
+ 142 0020 7868     		ldr	r0, [r7, #4]
+ 143 0022 FFF7FEFF 		bl	getPage
+ 144 0026 3862     		str	r0, [r7, #32]
+  37:Core/Src/flash.c ****     num_page = getPage(addr + length - 1) - first_page + 1;
+ 145              		.loc 1 37 29
+ 146 0028 7A68     		ldr	r2, [r7, #4]
+ 147 002a 3B68     		ldr	r3, [r7]
+ 148 002c 1344     		add	r3, r3, r2
+ 149              		.loc 1 37 16
+ 150 002e 013B     		subs	r3, r3, #1
+ 151 0030 1846     		mov	r0, r3
+ 152 0032 FFF7FEFF 		bl	getPage
+ 153 0036 0246     		mov	r2, r0
+ 154              		.loc 1 37 43
+ 155 0038 3B6A     		ldr	r3, [r7, #32]
+ 156 003a D31A     		subs	r3, r2, r3
+ 157              		.loc 1 37 14
+ 158 003c 0133     		adds	r3, r3, #1
+ 159 003e FB61     		str	r3, [r7, #28]
+  38:Core/Src/flash.c **** 
+  39:Core/Src/flash.c ****     if (first_page < 0)
+ 160              		.loc 1 39 8
+ 161 0040 3B6A     		ldr	r3, [r7, #32]
+ 162 0042 002B     		cmp	r3, #0
+ 163 0044 01DA     		bge	.L7
+  40:Core/Src/flash.c ****     {
+  41:Core/Src/flash.c ****         return FALSE;
+ 164              		.loc 1 41 16
+ 165 0046 0023     		movs	r3, #0
+ 166 0048 1AE0     		b	.L10
+ 167              	.L7:
+  42:Core/Src/flash.c ****     }
+  43:Core/Src/flash.c **** 
+  44:Core/Src/flash.c ****     EraseInitStruct.TypeErase = FLASH_TYPEERASE_PAGES;
+ 168              		.loc 1 44 31
+ 169 004a 0023     		movs	r3, #0
+ 170 004c BB60     		str	r3, [r7, #8]
+  45:Core/Src/flash.c ****     EraseInitStruct.PageAddress = flash_tbl[first_page].address;
+ 171              		.loc 1 45 56
+ 172 004e 0E4A     		ldr	r2, .L11
+ 173 0050 3B6A     		ldr	r3, [r7, #32]
+ 174 0052 52F83330 		ldr	r3, [r2, r3, lsl #3]
+ 175              		.loc 1 45 33
+ 176 0056 3B61     		str	r3, [r7, #16]
+  46:Core/Src/flash.c ****     EraseInitStruct.NbPages = num_page;
+ 177              		.loc 1 46 29
+ 178 0058 FB69     		ldr	r3, [r7, #28]
+ 179 005a 7B61     		str	r3, [r7, #20]
+  47:Core/Src/flash.c **** 
+  48:Core/Src/flash.c ****     if (HAL_FLASHEx_Erase(&EraseInitStruct, &SECTORError) != HAL_OK)
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 5
+
+
+ 180              		.loc 1 48 9
+ 181 005c 07F11802 		add	r2, r7, #24
+ 182 0060 07F10803 		add	r3, r7, #8
+ 183 0064 1146     		mov	r1, r2
+ 184 0066 1846     		mov	r0, r3
+ 185 0068 FFF7FEFF 		bl	HAL_FLASHEx_Erase
+ 186 006c 0346     		mov	r3, r0
+ 187              		.loc 1 48 8
+ 188 006e 002B     		cmp	r3, #0
+ 189 0070 02D0     		beq	.L9
+  49:Core/Src/flash.c ****     {
+  50:Core/Src/flash.c ****         ret = FALSE;
+ 190              		.loc 1 50 13
+ 191 0072 0023     		movs	r3, #0
+ 192 0074 87F82730 		strb	r3, [r7, #39]
+ 193              	.L9:
+  51:Core/Src/flash.c ****     }
+  52:Core/Src/flash.c **** 
+  53:Core/Src/flash.c ****     HAL_FLASH_Lock();
+ 194              		.loc 1 53 5
+ 195 0078 FFF7FEFF 		bl	HAL_FLASH_Lock
+  54:Core/Src/flash.c **** 
+  55:Core/Src/flash.c ****     return ret;
+ 196              		.loc 1 55 12
+ 197 007c 97F82730 		ldrb	r3, [r7, #39]	@ zero_extendqisi2
+ 198              	.L10:
+  56:Core/Src/flash.c **** }
+ 199              		.loc 1 56 1 discriminator 1
+ 200 0080 1846     		mov	r0, r3
+ 201 0082 2837     		adds	r7, r7, #40
+ 202              	.LCFI9:
+ 203              		.cfi_def_cfa_offset 8
+ 204 0084 BD46     		mov	sp, r7
+ 205              	.LCFI10:
+ 206              		.cfi_def_cfa_register 13
+ 207              		@ sp needed
+ 208 0086 80BD     		pop	{r7, pc}
+ 209              	.L12:
+ 210              		.align	2
+ 211              	.L11:
+ 212 0088 00000000 		.word	flash_tbl
+ 213              		.cfi_endproc
+ 214              	.LFE66:
+ 216              		.section	.text.flashWrite,"ax",%progbits
+ 217              		.align	1
+ 218              		.global	flashWrite
+ 219              		.syntax unified
+ 220              		.thumb
+ 221              		.thumb_func
+ 223              	flashWrite:
+ 224              	.LFB67:
+  57:Core/Src/flash.c **** 
+  58:Core/Src/flash.c **** bool flashWrite(uint32 addr, uint8 *p_data, uint32 length)
+  59:Core/Src/flash.c **** {
+ 225              		.loc 1 59 1
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 32
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 6
+
+
+ 228              		@ frame_needed = 1, uses_anonymous_args = 0
+ 229 0000 B0B5     		push	{r4, r5, r7, lr}
+ 230              	.LCFI11:
+ 231              		.cfi_def_cfa_offset 16
+ 232              		.cfi_offset 4, -16
+ 233              		.cfi_offset 5, -12
+ 234              		.cfi_offset 7, -8
+ 235              		.cfi_offset 14, -4
+ 236 0002 88B0     		sub	sp, sp, #32
+ 237              	.LCFI12:
+ 238              		.cfi_def_cfa_offset 48
+ 239 0004 00AF     		add	r7, sp, #0
+ 240              	.LCFI13:
+ 241              		.cfi_def_cfa_register 7
+ 242 0006 F860     		str	r0, [r7, #12]
+ 243 0008 B960     		str	r1, [r7, #8]
+ 244 000a 7A60     		str	r2, [r7, #4]
+  60:Core/Src/flash.c ****     bool ret = TRUE;
+ 245              		.loc 1 60 10
+ 246 000c 0123     		movs	r3, #1
+ 247 000e FB77     		strb	r3, [r7, #31]
+  61:Core/Src/flash.c ****     uint64_t data;
+  62:Core/Src/flash.c **** 
+  63:Core/Src/flash.c ****     // 2byte align
+  64:Core/Src/flash.c ****     if (addr%2 != 0)
+ 248              		.loc 1 64 13
+ 249 0010 FB68     		ldr	r3, [r7, #12]
+ 250 0012 03F00103 		and	r3, r3, #1
+ 251              		.loc 1 64 8
+ 252 0016 002B     		cmp	r3, #0
+ 253 0018 01D0     		beq	.L14
+  65:Core/Src/flash.c ****     {
+  66:Core/Src/flash.c ****         return FALSE;
+ 254              		.loc 1 66 16
+ 255 001a 0023     		movs	r3, #0
+ 256 001c 2CE0     		b	.L15
+ 257              	.L14:
+  67:Core/Src/flash.c ****     }
+  68:Core/Src/flash.c **** 
+  69:Core/Src/flash.c ****     HAL_FLASH_Unlock();
+ 258              		.loc 1 69 5
+ 259 001e FFF7FEFF 		bl	HAL_FLASH_Unlock
+ 260              	.LBB2:
+  70:Core/Src/flash.c **** 
+  71:Core/Src/flash.c ****     for (uint32 i=0; i<length; i += 2)
+ 261              		.loc 1 71 17
+ 262 0022 0023     		movs	r3, #0
+ 263 0024 BB61     		str	r3, [r7, #24]
+ 264              		.loc 1 71 5
+ 265 0026 20E0     		b	.L16
+ 266              	.L19:
+  72:Core/Src/flash.c ****     {
+  73:Core/Src/flash.c ****         data = (p_data[i+1] << 8) | (p_data[i+0] << 0);
+ 267              		.loc 1 73 23
+ 268 0028 BB69     		ldr	r3, [r7, #24]
+ 269 002a 0133     		adds	r3, r3, #1
+ 270 002c BA68     		ldr	r2, [r7, #8]
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 7
+
+
+ 271 002e 1344     		add	r3, r3, r2
+ 272 0030 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 273              		.loc 1 73 29
+ 274 0032 1B02     		lsls	r3, r3, #8
+ 275              		.loc 1 73 44
+ 276 0034 B968     		ldr	r1, [r7, #8]
+ 277 0036 BA69     		ldr	r2, [r7, #24]
+ 278 0038 0A44     		add	r2, r2, r1
+ 279 003a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 280              		.loc 1 73 35
+ 281 003c 1343     		orrs	r3, r3, r2
+ 282              		.loc 1 73 14
+ 283 003e DA17     		asrs	r2, r3, #31
+ 284 0040 1C46     		mov	r4, r3
+ 285 0042 1546     		mov	r5, r2
+ 286 0044 C7E90445 		strd	r4, [r7, #16]
+  74:Core/Src/flash.c **** 
+  75:Core/Src/flash.c ****         if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_HALFWORD, addr + i, data) != HAL_OK)
+ 287              		.loc 1 75 64
+ 288 0048 FA68     		ldr	r2, [r7, #12]
+ 289 004a BB69     		ldr	r3, [r7, #24]
+ 290 004c D118     		adds	r1, r2, r3
+ 291              		.loc 1 75 13
+ 292 004e D7E90423 		ldrd	r2, [r7, #16]
+ 293 0052 0120     		movs	r0, #1
+ 294 0054 FFF7FEFF 		bl	HAL_FLASH_Program
+ 295 0058 0346     		mov	r3, r0
+ 296              		.loc 1 75 12
+ 297 005a 002B     		cmp	r3, #0
+ 298 005c 02D0     		beq	.L17
+  76:Core/Src/flash.c ****         {
+  77:Core/Src/flash.c ****             ret = FALSE;
+ 299              		.loc 1 77 17
+ 300 005e 0023     		movs	r3, #0
+ 301 0060 FB77     		strb	r3, [r7, #31]
+  78:Core/Src/flash.c ****             break;
+ 302              		.loc 1 78 13
+ 303 0062 06E0     		b	.L18
+ 304              	.L17:
+  71:Core/Src/flash.c ****     {
+ 305              		.loc 1 71 34 discriminator 2
+ 306 0064 BB69     		ldr	r3, [r7, #24]
+ 307 0066 0233     		adds	r3, r3, #2
+ 308 0068 BB61     		str	r3, [r7, #24]
+ 309              	.L16:
+  71:Core/Src/flash.c ****     {
+ 310              		.loc 1 71 5 discriminator 1
+ 311 006a BA69     		ldr	r2, [r7, #24]
+ 312 006c 7B68     		ldr	r3, [r7, #4]
+ 313 006e 9A42     		cmp	r2, r3
+ 314 0070 DAD3     		bcc	.L19
+ 315              	.L18:
+ 316              	.LBE2:
+  79:Core/Src/flash.c ****         }
+  80:Core/Src/flash.c ****     }
+  81:Core/Src/flash.c **** 
+  82:Core/Src/flash.c ****     HAL_FLASH_Lock();
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 8
+
+
+ 317              		.loc 1 82 5
+ 318 0072 FFF7FEFF 		bl	HAL_FLASH_Lock
+  83:Core/Src/flash.c **** 
+  84:Core/Src/flash.c ****     return ret;
+ 319              		.loc 1 84 12
+ 320 0076 FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
+ 321              	.L15:
+  85:Core/Src/flash.c **** }
+ 322              		.loc 1 85 1
+ 323 0078 1846     		mov	r0, r3
+ 324 007a 2037     		adds	r7, r7, #32
+ 325              	.LCFI14:
+ 326              		.cfi_def_cfa_offset 16
+ 327 007c BD46     		mov	sp, r7
+ 328              	.LCFI15:
+ 329              		.cfi_def_cfa_register 13
+ 330              		@ sp needed
+ 331 007e B0BD     		pop	{r4, r5, r7, pc}
+ 332              		.cfi_endproc
+ 333              	.LFE67:
+ 335              		.section	.text.getPage,"ax",%progbits
+ 336              		.align	1
+ 337              		.syntax unified
+ 338              		.thumb
+ 339              		.thumb_func
+ 341              	getPage:
+ 342              	.LFB68:
+  86:Core/Src/flash.c **** 
+  87:Core/Src/flash.c **** static sint32 getPage(uint32 address)
+  88:Core/Src/flash.c **** {
+ 343              		.loc 1 88 1
+ 344              		.cfi_startproc
+ 345              		@ args = 0, pretend = 0, frame = 16
+ 346              		@ frame_needed = 1, uses_anonymous_args = 0
+ 347              		@ link register save eliminated.
+ 348 0000 80B4     		push	{r7}
+ 349              	.LCFI16:
+ 350              		.cfi_def_cfa_offset 4
+ 351              		.cfi_offset 7, -4
+ 352 0002 85B0     		sub	sp, sp, #20
+ 353              	.LCFI17:
+ 354              		.cfi_def_cfa_offset 24
+ 355 0004 00AF     		add	r7, sp, #0
+ 356              	.LCFI18:
+ 357              		.cfi_def_cfa_register 7
+ 358 0006 7860     		str	r0, [r7, #4]
+  89:Core/Src/flash.c ****     uint32 i;
+  90:Core/Src/flash.c ****     sint32 page = -1;
+ 359              		.loc 1 90 12
+ 360 0008 4FF0FF33 		mov	r3, #-1
+ 361 000c BB60     		str	r3, [r7, #8]
+  91:Core/Src/flash.c **** 
+  92:Core/Src/flash.c **** 
+  93:Core/Src/flash.c ****     for (i=0; i<FLASH_MAX_PAGE_COUNT; i++)
+ 362              		.loc 1 93 11
+ 363 000e 0023     		movs	r3, #0
+ 364 0010 FB60     		str	r3, [r7, #12]
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 9
+
+
+ 365              		.loc 1 93 5
+ 366 0012 19E0     		b	.L21
+ 367              	.L24:
+  94:Core/Src/flash.c ****     {
+  95:Core/Src/flash.c ****         if (address >= flash_tbl[i].address && address < (flash_tbl[i].address + flash_tbl[i].lengt
+ 368              		.loc 1 95 36
+ 369 0014 114A     		ldr	r2, .L26
+ 370 0016 FB68     		ldr	r3, [r7, #12]
+ 371 0018 52F83330 		ldr	r3, [r2, r3, lsl #3]
+ 372              		.loc 1 95 12
+ 373 001c 7A68     		ldr	r2, [r7, #4]
+ 374 001e 9A42     		cmp	r2, r3
+ 375 0020 0FD3     		bcc	.L22
+ 376              		.loc 1 95 71 discriminator 1
+ 377 0022 0E4A     		ldr	r2, .L26
+ 378 0024 FB68     		ldr	r3, [r7, #12]
+ 379 0026 52F83320 		ldr	r2, [r2, r3, lsl #3]
+ 380              		.loc 1 95 94 discriminator 1
+ 381 002a 0C49     		ldr	r1, .L26
+ 382 002c FB68     		ldr	r3, [r7, #12]
+ 383 002e DB00     		lsls	r3, r3, #3
+ 384 0030 0B44     		add	r3, r3, r1
+ 385 0032 5B68     		ldr	r3, [r3, #4]
+ 386              		.loc 1 95 80 discriminator 1
+ 387 0034 1344     		add	r3, r3, r2
+ 388              		.loc 1 95 45 discriminator 1
+ 389 0036 7A68     		ldr	r2, [r7, #4]
+ 390 0038 9A42     		cmp	r2, r3
+ 391 003a 02D2     		bcs	.L22
+  96:Core/Src/flash.c ****         {
+  97:Core/Src/flash.c ****             page = i;
+ 392              		.loc 1 97 18
+ 393 003c FB68     		ldr	r3, [r7, #12]
+ 394 003e BB60     		str	r3, [r7, #8]
+  98:Core/Src/flash.c ****             break;
+ 395              		.loc 1 98 13
+ 396 0040 05E0     		b	.L23
+ 397              	.L22:
+  93:Core/Src/flash.c ****     {
+ 398              		.loc 1 93 40 discriminator 2
+ 399 0042 FB68     		ldr	r3, [r7, #12]
+ 400 0044 0133     		adds	r3, r3, #1
+ 401 0046 FB60     		str	r3, [r7, #12]
+ 402              	.L21:
+  93:Core/Src/flash.c ****     {
+ 403              		.loc 1 93 5 discriminator 1
+ 404 0048 FB68     		ldr	r3, [r7, #12]
+ 405 004a 7F2B     		cmp	r3, #127
+ 406 004c E2D9     		bls	.L24
+ 407              	.L23:
+  99:Core/Src/flash.c ****         }
+ 100:Core/Src/flash.c ****     }
+ 101:Core/Src/flash.c **** 
+ 102:Core/Src/flash.c ****     return page;
+ 408              		.loc 1 102 12
+ 409 004e BB68     		ldr	r3, [r7, #8]
+ 103:Core/Src/flash.c **** }...
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 10
+
+
+ 410              		.loc 1 103 1
+ 411 0050 1846     		mov	r0, r3
+ 412 0052 1437     		adds	r7, r7, #20
+ 413              	.LCFI19:
+ 414              		.cfi_def_cfa_offset 4
+ 415 0054 BD46     		mov	sp, r7
+ 416              	.LCFI20:
+ 417              		.cfi_def_cfa_register 13
+ 418              		@ sp needed
+ 419 0056 80BC     		pop	{r7}
+ 420              	.LCFI21:
+ 421              		.cfi_restore 7
+ 422              		.cfi_def_cfa_offset 0
+ 423 0058 7047     		bx	lr
+ 424              	.L27:
+ 425 005a 00BF     		.align	2
+ 426              	.L26:
+ 427 005c 00000000 		.word	flash_tbl
+ 428              		.cfi_endproc
+ 429              	.LFE68:
+ 431              		.text
+ 432              	.Letext0:
+ 433              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 434              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 435              		.file 4 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h"
+ 436              		.file 5 "Core/Inc/vardef.h"
+ 437              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 flash.c
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:22     .bss.flash_tbl:00000000 flash_tbl
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:19     .bss.flash_tbl:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:25     .text.flashInit:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:31     .text.flashInit:00000000 flashInit
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:97     .text.flashInit:00000044 $d
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:102    .text.flashErase:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:108    .text.flashErase:00000000 flashErase
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:341    .text.getPage:00000000 getPage
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:212    .text.flashErase:00000088 $d
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:217    .text.flashWrite:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:223    .text.flashWrite:00000000 flashWrite
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:336    .text.getPage:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccGzkyhs.s:427    .text.getPage:0000005c $d
+
+UNDEFINED SYMBOLS
+HAL_FLASH_Unlock
+HAL_FLASHEx_Erase
+HAL_FLASH_Lock
+HAL_FLASH_Program
