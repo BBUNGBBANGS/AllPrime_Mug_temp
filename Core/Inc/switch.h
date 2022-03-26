@@ -23,7 +23,12 @@
 
 #define SWITCH_MODE_NONE            (0u)
 #define SWITCH_MODE_MENUSELECT      (1u)
-#define SWITCH_MODE_RUN             (2u)
+#define SWITCH_MODE_CUSTOM          (2u)
+#define SWITCH_MODE_RUN             (3u)
+
+#define SWITCH_CUSTOM_TARGET_TEMP_SET   (0u)
+#define SWITCH_CUSTOM_TARGET_TIME_SET   (1u)
+#define SWITCH_CUSTOM_IDLE_SET          (2u)
 
 #define SWITCH_SERVO_ON             (1)
 #define SWITCH_SERVO_OFF            (0)
@@ -57,7 +62,10 @@ extern uint8 switch_submode;
 extern uint8 switch4_mode;
 extern uint8 switch4_mode_old;
 extern uint8 switch_overtemp;
-
+extern sint16 switch_trg_temp;
+extern sint16 switch_trg_time;
+extern sint16 switch_idle_temp;
+extern uint8 switch_custom_mode;
 extern void Switch_Val_Init(void);
 extern void Switch_Control(void);
 

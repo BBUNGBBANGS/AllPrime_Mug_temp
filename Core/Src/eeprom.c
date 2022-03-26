@@ -2,13 +2,19 @@
 #include "switch.h"
 
 uint8 switch_submodeEEP = 0;
+sint16 switch_trg_tempEEP = 0;
+sint16 switch_trg_timeEEP = 0;
+sint16 switch_idle_tempEEP = 0;
 static uint8 EEPROM_Write_Counter = 0;
 static uint32 EEPROM_Write_Address = EEPROM_PAGE127_START;
 
 void EEPROM_Write(void)
 {
     uint16 data[8] = {0};
-    data[EEPROM_Write_Counter] = switch_submode;
+    data[0] = (uint16)switch_submode;
+    data[1] = (uint16)switch_trg_temp;
+    data[2] = (uint16)switch_trg_time;
+    data[3] = (uint16)switch_idle_temp;
     /* Unlock to control */
     HAL_FLASH_Unlock();
 
@@ -35,7 +41,10 @@ void EEPROM_Read(void)
        data[i] = *(uint32*)(EEPROM_PAGE127_START+(i*2));
     }
     
-    switch_submodeEEP = data[0];
+    switch_submodeEEP = (uint8)data[0];
+    switch_trg_tempEEP = (sint16)data[1]; 
+    switch_trg_timeEEP = (sint16)data[2];
+    switch_idle_tempEEP = (sint16)data[3]; 
 }
 
 void EEPROM_Erase(void)

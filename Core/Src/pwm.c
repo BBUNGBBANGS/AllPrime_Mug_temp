@@ -42,6 +42,7 @@ void Pwm_Output(void)
         Target_Idle_Temp = 0;
         Pwm_Duty_Peltier = 0;
         Pwm_Duty_Heater = 0;
+        Pwm_Duty_Fan = 0;
         Pwm_Peltier_Set_Duty(0);
         Pwm_Heater_Set_Duty(0);
         Pwm_Fan_Set_Duty(0);        
@@ -159,9 +160,9 @@ static void Pwm_SubMode_Target_Set(void)
             Target_Idle_Temp = PWM_IDLE_TEMP_16; 
         break;
         case SWITCH_SUB_MODE_17 :
-            Target_Run_Temp = PWM_RUN_TEMP_17;
-            Target_Run_Time = PWM_RUN_TIME_17;
-            Target_Idle_Temp = PWM_IDLE_TEMP_17; 
+            Target_Run_Temp = switch_trg_temp;
+            Target_Run_Time = (sint32)(switch_trg_time * 60 * 100);
+            Target_Idle_Temp = switch_idle_temp; 
         break;
         case SWITCH_SUB_MODE_18 :
             Target_Run_Temp = PWM_RUN_TEMP_18;
@@ -185,7 +186,7 @@ static void Pwm_Control(void)
     sint16 tempLoc;
     sint16 TrgTempLoc;
     static uint8 first_status;
-    if(first_target_flag == 1)
+    if(first_target_flag == PWM_SUBMODE_TARGET_ON)
     {
         first_status = 0;
         first_target_flag = PWM_SUBMODE_TARGET_OFF;

@@ -22,9 +22,6 @@ void Os_Init_Task(void)
 	OLED_Init();
 	CO2_Init();
 	Switch_Val_Init();
-	//flashInit();
-	//eepromInit();
-	//Blutooth_Init();
 }
 static void Os_1ms_Task(void)
 {
@@ -33,25 +30,37 @@ static void Os_1ms_Task(void)
 
 static void Os_10ms_Task(void)
 {
-	//OLED_FindAddress();
 	Pwm_Output();
 	Switch_Control();
 	Temp_Read();
 	CO2_Communication();
-	//Blutooth_Communication();
 }
 uint8 switch_mode_old;
+uint8 EEPROM_Write_Req;
+uint8 EEPROM_Write_cntReq;
 static void Os_100ms_Task(void)
 {
 
 	LED_Control();
 	OLED_Display();
-	if((switch_mode_old == SWITCH_MODE_MENUSELECT)&&(switch_mode == SWITCH_MODE_RUN))
+	if(((switch_mode_old == SWITCH_MODE_MENUSELECT)&&(switch_mode == SWITCH_MODE_RUN))||
+	    ((switch_mode_old == SWITCH_MODE_CUSTOM)&&(switch_mode == SWITCH_MODE_RUN)))
 	{
 		EEPROM_Erase();
-		EEPROM_Write();
+		EEPROM_Write_Req = 1;
 	}
 	switch_mode_old = switch_mode;
+
+	if(EEPROM_Write_Req == 1)
+	{
+		EEPROM_Write();
+		EEPROM_Write_cntReq++;
+		if(EEPROM_Write_cntReq>=8)
+		{
+			EEPROM_Write_Req = 0;
+			EEPROM_Write_cntReq = 0;
+		}
+	}
 }
 
 static void Os_Background_Task(void)

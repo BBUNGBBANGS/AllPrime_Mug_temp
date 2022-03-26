@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 1
   75              	switch_mode:
   76 0000 00       		.space	1
   77              		.global	switch_submode
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 2
 
 
   78              		.section	.bss.switch_submode,"aw",%nobits
@@ -80,30 +80,52 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 1
  102              		.section	.bss.switch4_mode_old,"aw",%nobits
  105              	switch4_mode_old:
  106 0000 00       		.space	1
- 107              		.global	switch_timer1
- 108              		.section	.bss.switch_timer1,"aw",%nobits
- 109              		.align	1
- 112              	switch_timer1:
- 113 0000 0000     		.space	2
- 114              		.global	switch_timer2
- 115              		.section	.bss.switch_timer2,"aw",%nobits
- 116              		.align	1
- 119              	switch_timer2:
- 120 0000 0000     		.space	2
- 121              		.global	switch_timer3
- 122              		.section	.bss.switch_timer3,"aw",%nobits
- 123              		.align	1
- 126              	switch_timer3:
- 127 0000 0000     		.space	2
- 128              		.section	.text.Switch_Val_Init,"ax",%progbits
+ 107              		.global	switch_custom_mode
+ 108              		.section	.bss.switch_custom_mode,"aw",%nobits
+ 111              	switch_custom_mode:
+ 112 0000 00       		.space	1
+ 113              		.global	switch_trg_temp
+ 114              		.section	.bss.switch_trg_temp,"aw",%nobits
+ 115              		.align	1
+ 118              	switch_trg_temp:
+ 119 0000 0000     		.space	2
+ 120              		.global	switch_trg_time
+ 121              		.section	.bss.switch_trg_time,"aw",%nobits
+ 122              		.align	1
+ 125              	switch_trg_time:
+ 126 0000 0000     		.space	2
+ 127              		.global	switch_idle_temp
+ 128              		.section	.bss.switch_idle_temp,"aw",%nobits
  129              		.align	1
- 130              		.global	Switch_Val_Init
- 131              		.syntax unified
- 132              		.thumb
- 133              		.thumb_func
- 135              	Switch_Val_Init:
- 136              	.LFB65:
- 137              		.file 1 "Core/Src/switch.c"
+ 132              	switch_idle_temp:
+ 133 0000 0000     		.space	2
+ 134              		.global	switch_timer1
+ 135              		.section	.bss.switch_timer1,"aw",%nobits
+ 136              		.align	1
+ 139              	switch_timer1:
+ 140 0000 0000     		.space	2
+ 141              		.global	switch_timer2
+ 142              		.section	.bss.switch_timer2,"aw",%nobits
+ 143              		.align	1
+ 146              	switch_timer2:
+ 147 0000 0000     		.space	2
+ 148              		.global	switch_timer3
+ 149              		.section	.bss.switch_timer3,"aw",%nobits
+ 150              		.align	1
+ 153              	switch_timer3:
+ 154 0000 0000     		.space	2
+ 155              		.section	.text.Switch_Val_Init,"ax",%progbits
+ 156              		.align	1
+ 157              		.global	Switch_Val_Init
+ 158              		.syntax unified
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 3
+
+
+ 159              		.thumb
+ 160              		.thumb_func
+ 162              	Switch_Val_Init:
+ 163              	.LFB65:
+ 164              		.file 1 "Core/Src/switch.c"
    1:Core/Src/switch.c **** #include "switch.h"
    2:Core/Src/switch.c **** #include "pwm.h"
    3:Core/Src/switch.c **** #include "eeprom.h"
@@ -115,771 +137,1274 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 1
    9:Core/Src/switch.c **** uint8 switch_submode;
   10:Core/Src/switch.c **** uint8 cup_in,cup_in_old;
   11:Core/Src/switch.c **** uint8 switch4_mode,switch4_mode_old;
-  12:Core/Src/switch.c **** 
-  13:Core/Src/switch.c **** uint16 switch_timer1,switch_timer2,switch_timer3;
-  14:Core/Src/switch.c **** extern uint16 Servo_timer;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 3
+  12:Core/Src/switch.c **** uint8 switch_custom_mode;
+  13:Core/Src/switch.c **** 
+  14:Core/Src/switch.c **** sint16 switch_trg_temp;
+  15:Core/Src/switch.c **** sint16 switch_trg_time;
+  16:Core/Src/switch.c **** sint16 switch_idle_temp;
+  17:Core/Src/switch.c **** 
+  18:Core/Src/switch.c **** uint16 switch_timer1,switch_timer2,switch_timer3;
+  19:Core/Src/switch.c **** extern uint16 Servo_timer;
+  20:Core/Src/switch.c **** void Switch_Val_Init(void)
+  21:Core/Src/switch.c **** {
+ 165              		.loc 1 21 1
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 1, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170 0000 80B4     		push	{r7}
+ 171              	.LCFI0:
+ 172              		.cfi_def_cfa_offset 4
+ 173              		.cfi_offset 7, -4
+ 174 0002 00AF     		add	r7, sp, #0
+ 175              	.LCFI1:
+ 176              		.cfi_def_cfa_register 7
+  22:Core/Src/switch.c ****     if((*(uint16*)(EEPROM_PAGE127_START+(0*2))) != 0xFFFF)
+ 177              		.loc 1 22 9
+ 178 0004 1F4B     		ldr	r3, .L11
+ 179 0006 1B88     		ldrh	r3, [r3]
+ 180              		.loc 1 22 7
+ 181 0008 4FF6FF72 		movw	r2, #65535
+ 182 000c 9342     		cmp	r3, r2
+ 183 000e 04D0     		beq	.L2
+  23:Core/Src/switch.c ****     {
+  24:Core/Src/switch.c ****         switch_submode = switch_submodeEEP;
+ 184              		.loc 1 24 24
+ 185 0010 1D4B     		ldr	r3, .L11+4
+ 186 0012 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 187 0014 1D4B     		ldr	r3, .L11+8
+ 188 0016 1A70     		strb	r2, [r3]
+ 189 0018 02E0     		b	.L3
+ 190              	.L2:
+  25:Core/Src/switch.c ****     }
+  26:Core/Src/switch.c ****     else
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 4
 
 
-  15:Core/Src/switch.c **** void Switch_Val_Init(void)
-  16:Core/Src/switch.c **** {
- 138              		.loc 1 16 1
- 139              		.cfi_startproc
- 140              		@ args = 0, pretend = 0, frame = 0
- 141              		@ frame_needed = 1, uses_anonymous_args = 0
- 142              		@ link register save eliminated.
- 143 0000 80B4     		push	{r7}
- 144              	.LCFI0:
- 145              		.cfi_def_cfa_offset 4
- 146              		.cfi_offset 7, -4
- 147 0002 00AF     		add	r7, sp, #0
- 148              	.LCFI1:
- 149              		.cfi_def_cfa_register 7
-  17:Core/Src/switch.c ****     if(((*(uint16*)(EEPROM_PAGE127_START+(0*2))) != 0xFFFF)&&
- 150              		.loc 1 17 10
- 151 0004 1D4B     		ldr	r3, .L5
- 152 0006 1B88     		ldrh	r3, [r3]
- 153              		.loc 1 17 7
- 154 0008 4FF6FF72 		movw	r2, #65535
- 155 000c 9342     		cmp	r3, r2
- 156 000e 2ED0     		beq	.L2
-  18:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(1*2))) == 0xFFFF)&&
- 157              		.loc 1 18 10 discriminator 1
- 158 0010 1B4B     		ldr	r3, .L5+4
- 159 0012 1B88     		ldrh	r3, [r3]
-  17:Core/Src/switch.c ****     if(((*(uint16*)(EEPROM_PAGE127_START+(0*2))) != 0xFFFF)&&
- 160              		.loc 1 17 60 discriminator 1
- 161 0014 4FF6FF72 		movw	r2, #65535
- 162 0018 9342     		cmp	r3, r2
- 163 001a 28D1     		bne	.L2
-  19:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(2*2))) == 0xFFFF)&&
- 164              		.loc 1 19 10
- 165 001c 194B     		ldr	r3, .L5+8
- 166 001e 1B88     		ldrh	r3, [r3]
-  18:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(1*2))) == 0xFFFF)&&
- 167              		.loc 1 18 60
- 168 0020 4FF6FF72 		movw	r2, #65535
- 169 0024 9342     		cmp	r3, r2
- 170 0026 22D1     		bne	.L2
-  20:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(3*2))) == 0xFFFF)&&
- 171              		.loc 1 20 10
- 172 0028 174B     		ldr	r3, .L5+12
- 173 002a 1B88     		ldrh	r3, [r3]
-  19:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(2*2))) == 0xFFFF)&&
- 174              		.loc 1 19 60
- 175 002c 4FF6FF72 		movw	r2, #65535
- 176 0030 9342     		cmp	r3, r2
- 177 0032 1CD1     		bne	.L2
-  21:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(4*2))) == 0xFFFF)&&
- 178              		.loc 1 21 10
- 179 0034 154B     		ldr	r3, .L5+16
- 180 0036 1B88     		ldrh	r3, [r3]
-  20:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(3*2))) == 0xFFFF)&&
- 181              		.loc 1 20 60
- 182 0038 4FF6FF72 		movw	r2, #65535
- 183 003c 9342     		cmp	r3, r2
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 4
+  27:Core/Src/switch.c ****     {
+  28:Core/Src/switch.c ****         switch_submode = SWITCH_SUB_MODE_1;
+ 191              		.loc 1 28 24
+ 192 001a 1C4B     		ldr	r3, .L11+8
+ 193 001c 0122     		movs	r2, #1
+ 194 001e 1A70     		strb	r2, [r3]
+ 195              	.L3:
+  29:Core/Src/switch.c ****     }
+  30:Core/Src/switch.c ****     if((*(uint16*)(EEPROM_PAGE127_START+(1*2))) != 0xFFFF)
+ 196              		.loc 1 30 9
+ 197 0020 1B4B     		ldr	r3, .L11+12
+ 198 0022 1B88     		ldrh	r3, [r3]
+ 199              		.loc 1 30 7
+ 200 0024 4FF6FF72 		movw	r2, #65535
+ 201 0028 9342     		cmp	r3, r2
+ 202 002a 05D0     		beq	.L4
+  31:Core/Src/switch.c ****     {
+  32:Core/Src/switch.c ****         switch_trg_temp = (sint16)switch_trg_tempEEP;
+ 203              		.loc 1 32 25
+ 204 002c 194B     		ldr	r3, .L11+16
+ 205 002e B3F90020 		ldrsh	r2, [r3]
+ 206 0032 194B     		ldr	r3, .L11+20
+ 207 0034 1A80     		strh	r2, [r3]	@ movhi
+ 208 0036 02E0     		b	.L5
+ 209              	.L4:
+  33:Core/Src/switch.c ****     }
+  34:Core/Src/switch.c ****     else
+  35:Core/Src/switch.c ****     {
+  36:Core/Src/switch.c ****         switch_trg_temp = 0;
+ 210              		.loc 1 36 25
+ 211 0038 174B     		ldr	r3, .L11+20
+ 212 003a 0022     		movs	r2, #0
+ 213 003c 1A80     		strh	r2, [r3]	@ movhi
+ 214              	.L5:
+  37:Core/Src/switch.c ****     }    
+  38:Core/Src/switch.c ****     if((*(uint16*)(EEPROM_PAGE127_START+(2*2))) != 0xFFFF)
+ 215              		.loc 1 38 9
+ 216 003e 174B     		ldr	r3, .L11+24
+ 217 0040 1B88     		ldrh	r3, [r3]
+ 218              		.loc 1 38 7
+ 219 0042 4FF6FF72 		movw	r2, #65535
+ 220 0046 9342     		cmp	r3, r2
+ 221 0048 05D0     		beq	.L6
+  39:Core/Src/switch.c ****     {
+  40:Core/Src/switch.c ****         switch_trg_time = (sint16)switch_trg_timeEEP;
+ 222              		.loc 1 40 25
+ 223 004a 154B     		ldr	r3, .L11+28
+ 224 004c B3F90020 		ldrsh	r2, [r3]
+ 225 0050 144B     		ldr	r3, .L11+32
+ 226 0052 1A80     		strh	r2, [r3]	@ movhi
+ 227 0054 02E0     		b	.L7
+ 228              	.L6:
+  41:Core/Src/switch.c ****     }
+  42:Core/Src/switch.c ****     else
+  43:Core/Src/switch.c ****     {
+  44:Core/Src/switch.c ****         switch_trg_time = 0;
+ 229              		.loc 1 44 25
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 5
 
 
- 184 003e 16D1     		bne	.L2
-  22:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(5*2))) == 0xFFFF)&&
- 185              		.loc 1 22 10
- 186 0040 134B     		ldr	r3, .L5+20
- 187 0042 1B88     		ldrh	r3, [r3]
-  21:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(4*2))) == 0xFFFF)&&
- 188              		.loc 1 21 60
- 189 0044 4FF6FF72 		movw	r2, #65535
- 190 0048 9342     		cmp	r3, r2
- 191 004a 10D1     		bne	.L2
-  23:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(6*2))) == 0xFFFF)&&
- 192              		.loc 1 23 10
- 193 004c 114B     		ldr	r3, .L5+24
- 194 004e 1B88     		ldrh	r3, [r3]
-  22:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(5*2))) == 0xFFFF)&&
- 195              		.loc 1 22 60
- 196 0050 4FF6FF72 		movw	r2, #65535
- 197 0054 9342     		cmp	r3, r2
- 198 0056 0AD1     		bne	.L2
-  24:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(7*2))) == 0xFFFF))
- 199              		.loc 1 24 10
- 200 0058 0F4B     		ldr	r3, .L5+28
- 201 005a 1B88     		ldrh	r3, [r3]
-  23:Core/Src/switch.c ****        ((*(uint16*)(EEPROM_PAGE127_START+(6*2))) == 0xFFFF)&&
- 202              		.loc 1 23 60
- 203 005c 4FF6FF72 		movw	r2, #65535
- 204 0060 9342     		cmp	r3, r2
- 205 0062 04D1     		bne	.L2
-  25:Core/Src/switch.c ****     {
-  26:Core/Src/switch.c ****         switch_submode = switch_submodeEEP;
- 206              		.loc 1 26 24
- 207 0064 0D4B     		ldr	r3, .L5+32
- 208 0066 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 209 0068 0D4B     		ldr	r3, .L5+36
- 210 006a 1A70     		strb	r2, [r3]
- 211 006c 02E0     		b	.L3
- 212              	.L2:
-  27:Core/Src/switch.c ****     }
-  28:Core/Src/switch.c ****     else
-  29:Core/Src/switch.c ****     {
-  30:Core/Src/switch.c ****         switch_submode = SWITCH_SUB_MODE_1;
- 213              		.loc 1 30 24
- 214 006e 0C4B     		ldr	r3, .L5+36
- 215 0070 0122     		movs	r2, #1
- 216 0072 1A70     		strb	r2, [r3]
- 217              	.L3:
-  31:Core/Src/switch.c ****     }
-  32:Core/Src/switch.c **** 
-  33:Core/Src/switch.c ****     return;
- 218              		.loc 1 33 5
- 219 0074 00BF     		nop
-  34:Core/Src/switch.c **** }
- 220              		.loc 1 34 1
- 221 0076 BD46     		mov	sp, r7
- 222              	.LCFI2:
- 223              		.cfi_def_cfa_register 13
- 224              		@ sp needed
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 5
-
-
- 225 0078 80BC     		pop	{r7}
- 226              	.LCFI3:
- 227              		.cfi_restore 7
- 228              		.cfi_def_cfa_offset 0
- 229 007a 7047     		bx	lr
- 230              	.L6:
- 231              		.align	2
- 232              	.L5:
- 233 007c 00FC0108 		.word	134347776
- 234 0080 02FC0108 		.word	134347778
- 235 0084 04FC0108 		.word	134347780
- 236 0088 06FC0108 		.word	134347782
- 237 008c 08FC0108 		.word	134347784
- 238 0090 0AFC0108 		.word	134347786
- 239 0094 0CFC0108 		.word	134347788
- 240 0098 0EFC0108 		.word	134347790
- 241 009c 00000000 		.word	switch_submodeEEP
- 242 00a0 00000000 		.word	switch_submode
- 243              		.cfi_endproc
- 244              	.LFE65:
- 246              		.section	.text.Switch_Control,"ax",%progbits
- 247              		.align	1
- 248              		.global	Switch_Control
- 249              		.syntax unified
- 250              		.thumb
- 251              		.thumb_func
- 253              	Switch_Control:
- 254              	.LFB66:
-  35:Core/Src/switch.c **** void Switch_Control(void)
-  36:Core/Src/switch.c **** {
- 255              		.loc 1 36 1
- 256              		.cfi_startproc
- 257              		@ args = 0, pretend = 0, frame = 0
- 258              		@ frame_needed = 1, uses_anonymous_args = 0
- 259 0000 80B5     		push	{r7, lr}
- 260              	.LCFI4:
- 261              		.cfi_def_cfa_offset 8
- 262              		.cfi_offset 7, -8
- 263              		.cfi_offset 14, -4
- 264 0002 00AF     		add	r7, sp, #0
- 265              	.LCFI5:
- 266              		.cfi_def_cfa_register 7
-  37:Core/Src/switch.c ****     switch_timer2 = 0;
- 267              		.loc 1 37 19
- 268 0004 8B4B     		ldr	r3, .L28
- 269 0006 0022     		movs	r2, #0
- 270 0008 1A80     		strh	r2, [r3]	@ movhi
-  38:Core/Src/switch.c **** 
-  39:Core/Src/switch.c ****     switch1_status = HAL_GPIO_ReadPin(SWITCH_GROUP_1,SWITCH_PIN_1);
- 271              		.loc 1 39 22
- 272 000a 4FF48061 		mov	r1, #1024
- 273 000e 8A48     		ldr	r0, .L28+4
- 274 0010 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 275 0014 0346     		mov	r3, r0
- 276 0016 1A46     		mov	r2, r3
- 277              		.loc 1 39 20
- 278 0018 884B     		ldr	r3, .L28+8
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 6
-
-
- 279 001a 1A70     		strb	r2, [r3]
-  40:Core/Src/switch.c ****     switch2_status = HAL_GPIO_ReadPin(SWITCH_GROUP_2,SWITCH_PIN_2);
- 280              		.loc 1 40 22
- 281 001c 4FF40061 		mov	r1, #2048
- 282 0020 8548     		ldr	r0, .L28+4
- 283 0022 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 284 0026 0346     		mov	r3, r0
- 285 0028 1A46     		mov	r2, r3
- 286              		.loc 1 40 20
- 287 002a 854B     		ldr	r3, .L28+12
- 288 002c 1A70     		strb	r2, [r3]
-  41:Core/Src/switch.c ****     switch3_status = HAL_GPIO_ReadPin(SWITCH_GROUP_3,SWITCH_PIN_3);
- 289              		.loc 1 41 22
- 290 002e 4FF48051 		mov	r1, #4096
- 291 0032 8148     		ldr	r0, .L28+4
- 292 0034 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 293 0038 0346     		mov	r3, r0
- 294 003a 1A46     		mov	r2, r3
- 295              		.loc 1 41 20
- 296 003c 814B     		ldr	r3, .L28+16
- 297 003e 1A70     		strb	r2, [r3]
-  42:Core/Src/switch.c ****     switch4_status = HAL_GPIO_ReadPin(SWITCH_GROUP_4,SWITCH_PIN_4);
- 298              		.loc 1 42 22
- 299 0040 1021     		movs	r1, #16
- 300 0042 7D48     		ldr	r0, .L28+4
- 301 0044 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 302 0048 0346     		mov	r3, r0
- 303 004a 1A46     		mov	r2, r3
- 304              		.loc 1 42 20
- 305 004c 7E4B     		ldr	r3, .L28+20
- 306 004e 1A70     		strb	r2, [r3]
-  43:Core/Src/switch.c ****     switch_overtemp = HAL_GPIO_ReadPin(OVERTEMP_GROUP,OVERTEMP_PIN);
- 307              		.loc 1 43 23
- 308 0050 4FF48041 		mov	r1, #16384
- 309 0054 7D48     		ldr	r0, .L28+24
- 310 0056 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 311 005a 0346     		mov	r3, r0
- 312 005c 1A46     		mov	r2, r3
- 313              		.loc 1 43 21
- 314 005e 7C4B     		ldr	r3, .L28+28
- 315 0060 1A70     		strb	r2, [r3]
-  44:Core/Src/switch.c ****     cup_in = HAL_GPIO_ReadPin(CUP_GROUP,CUP_PIN); 
- 316              		.loc 1 44 14
- 317 0062 4FF40071 		mov	r1, #512
- 318 0066 7448     		ldr	r0, .L28+4
- 319 0068 FFF7FEFF 		bl	HAL_GPIO_ReadPin
- 320 006c 0346     		mov	r3, r0
- 321 006e 1A46     		mov	r2, r3
- 322              		.loc 1 44 12
- 323 0070 784B     		ldr	r3, .L28+32
- 324 0072 1A70     		strb	r2, [r3]
-  45:Core/Src/switch.c **** 
-  46:Core/Src/switch.c ****     if((1 == switch1_status)||(1 == switch2_status)||(1 == switch3_status))
- 325              		.loc 1 46 11
- 326 0074 714B     		ldr	r3, .L28+8
- 327 0076 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 328              		.loc 1 46 7
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 7
-
-
- 329 0078 012B     		cmp	r3, #1
- 330 007a 07D0     		beq	.L8
- 331              		.loc 1 46 34 discriminator 1
- 332 007c 704B     		ldr	r3, .L28+12
- 333 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 334              		.loc 1 46 29 discriminator 1
- 335 0080 012B     		cmp	r3, #1
- 336 0082 03D0     		beq	.L8
- 337              		.loc 1 46 57 discriminator 2
- 338 0084 6F4B     		ldr	r3, .L28+16
- 339 0086 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 340              		.loc 1 46 52 discriminator 2
- 341 0088 012B     		cmp	r3, #1
- 342 008a 06D1     		bne	.L9
- 343              	.L8:
-  47:Core/Src/switch.c ****     {   
-  48:Core/Src/switch.c ****         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_SET);
- 344              		.loc 1 48 9
- 345 008c 0122     		movs	r2, #1
- 346 008e 4FF40051 		mov	r1, #8192
- 347 0092 6E48     		ldr	r0, .L28+24
- 348 0094 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 349 0098 05E0     		b	.L10
- 350              	.L9:
+ 230 0056 134B     		ldr	r3, .L11+32
+ 231 0058 0022     		movs	r2, #0
+ 232 005a 1A80     		strh	r2, [r3]	@ movhi
+ 233              	.L7:
+  45:Core/Src/switch.c ****     }    
+  46:Core/Src/switch.c ****     if((*(uint16*)(EEPROM_PAGE127_START+(3*2))) != 0xFFFF)
+ 234              		.loc 1 46 9
+ 235 005c 124B     		ldr	r3, .L11+36
+ 236 005e 1B88     		ldrh	r3, [r3]
+ 237              		.loc 1 46 7
+ 238 0060 4FF6FF72 		movw	r2, #65535
+ 239 0064 9342     		cmp	r3, r2
+ 240 0066 05D0     		beq	.L8
+  47:Core/Src/switch.c ****     {
+  48:Core/Src/switch.c ****         switch_idle_temp = (sint16)switch_idle_tempEEP;
+ 241              		.loc 1 48 26
+ 242 0068 104B     		ldr	r3, .L11+40
+ 243 006a B3F90020 		ldrsh	r2, [r3]
+ 244 006e 104B     		ldr	r3, .L11+44
+ 245 0070 1A80     		strh	r2, [r3]	@ movhi
   49:Core/Src/switch.c ****     }
   50:Core/Src/switch.c ****     else
   51:Core/Src/switch.c ****     {
-  52:Core/Src/switch.c ****         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_RESET);       
- 351              		.loc 1 52 9
- 352 009a 0022     		movs	r2, #0
- 353 009c 4FF40051 		mov	r1, #8192
- 354 00a0 6A48     		ldr	r0, .L28+24
- 355 00a2 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 356              	.L10:
+  52:Core/Src/switch.c ****         switch_idle_temp = 0;
   53:Core/Src/switch.c ****     }
-  54:Core/Src/switch.c **** 
-  55:Core/Src/switch.c ****     if(switch1_status == 1)
- 357              		.loc 1 55 23
- 358 00a6 654B     		ldr	r3, .L28+8
- 359 00a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 360              		.loc 1 55 7
- 361 00aa 012B     		cmp	r3, #1
- 362 00ac 10D1     		bne	.L11
-  56:Core/Src/switch.c ****     {
-  57:Core/Src/switch.c ****         switch_timer1++;
- 363              		.loc 1 57 22
- 364 00ae 6A4B     		ldr	r3, .L28+36
- 365 00b0 1B88     		ldrh	r3, [r3]
- 366 00b2 0133     		adds	r3, r3, #1
- 367 00b4 9AB2     		uxth	r2, r3
- 368 00b6 684B     		ldr	r3, .L28+36
- 369 00b8 1A80     		strh	r2, [r3]	@ movhi
-  58:Core/Src/switch.c ****         if(switch_timer1>=SWITCH1_DEBOUNCE_TIME)
- 370              		.loc 1 58 25
- 371 00ba 674B     		ldr	r3, .L28+36
- 372 00bc 1B88     		ldrh	r3, [r3]
- 373              		.loc 1 58 11
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 8
+  54:Core/Src/switch.c ****     return;
+ 246              		.loc 1 54 5
+ 247 0072 03E0     		b	.L1
+ 248              	.L8:
+  52:Core/Src/switch.c ****     }
+ 249              		.loc 1 52 26
+ 250 0074 0E4B     		ldr	r3, .L11+44
+ 251 0076 0022     		movs	r2, #0
+ 252 0078 1A80     		strh	r2, [r3]	@ movhi
+ 253              		.loc 1 54 5
+ 254 007a 00BF     		nop
+ 255              	.L1:
+  55:Core/Src/switch.c **** }
+ 256              		.loc 1 55 1
+ 257 007c BD46     		mov	sp, r7
+ 258              	.LCFI2:
+ 259              		.cfi_def_cfa_register 13
+ 260              		@ sp needed
+ 261 007e 80BC     		pop	{r7}
+ 262              	.LCFI3:
+ 263              		.cfi_restore 7
+ 264              		.cfi_def_cfa_offset 0
+ 265 0080 7047     		bx	lr
+ 266              	.L12:
+ 267 0082 00BF     		.align	2
+ 268              	.L11:
+ 269 0084 00FC0108 		.word	134347776
+ 270 0088 00000000 		.word	switch_submodeEEP
+ 271 008c 00000000 		.word	switch_submode
+ 272 0090 02FC0108 		.word	134347778
+ 273 0094 00000000 		.word	switch_trg_tempEEP
+ 274 0098 00000000 		.word	switch_trg_temp
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 6
 
 
- 374 00be 632B     		cmp	r3, #99
- 375 00c0 09D9     		bls	.L12
-  59:Core/Src/switch.c ****         {
-  60:Core/Src/switch.c ****             switch_timer1 = 0;
- 376              		.loc 1 60 27
- 377 00c2 654B     		ldr	r3, .L28+36
- 378 00c4 0022     		movs	r2, #0
- 379 00c6 1A80     		strh	r2, [r3]	@ movhi
-  61:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_MENUSELECT;
- 380              		.loc 1 61 25
- 381 00c8 644B     		ldr	r3, .L28+40
- 382 00ca 0122     		movs	r2, #1
- 383 00cc 1A70     		strb	r2, [r3]
- 384 00ce 02E0     		b	.L12
- 385              	.L11:
-  62:Core/Src/switch.c ****         }
-  63:Core/Src/switch.c ****     }
-  64:Core/Src/switch.c ****     else
-  65:Core/Src/switch.c ****     {
-  66:Core/Src/switch.c ****         switch_timer1 = 0;
- 386              		.loc 1 66 23
- 387 00d0 614B     		ldr	r3, .L28+36
- 388 00d2 0022     		movs	r2, #0
- 389 00d4 1A80     		strh	r2, [r3]	@ movhi
- 390              	.L12:
-  67:Core/Src/switch.c ****     }
-  68:Core/Src/switch.c **** 
-  69:Core/Src/switch.c ****     if(switch3_status == 1)
- 391              		.loc 1 69 23
- 392 00d6 5B4B     		ldr	r3, .L28+16
- 393 00d8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 394              		.loc 1 69 7
- 395 00da 012B     		cmp	r3, #1
- 396 00dc 10D1     		bne	.L13
-  70:Core/Src/switch.c ****     {
-  71:Core/Src/switch.c ****         switch_timer3++;
- 397              		.loc 1 71 22
- 398 00de 604B     		ldr	r3, .L28+44
- 399 00e0 1B88     		ldrh	r3, [r3]
- 400 00e2 0133     		adds	r3, r3, #1
- 401 00e4 9AB2     		uxth	r2, r3
- 402 00e6 5E4B     		ldr	r3, .L28+44
- 403 00e8 1A80     		strh	r2, [r3]	@ movhi
-  72:Core/Src/switch.c ****         if(switch_timer3>=SWITCH3_DEBOUNCE_TIME)
- 404              		.loc 1 72 25
- 405 00ea 5D4B     		ldr	r3, .L28+44
- 406 00ec 1B88     		ldrh	r3, [r3]
- 407              		.loc 1 72 11
- 408 00ee 632B     		cmp	r3, #99
- 409 00f0 09D9     		bls	.L14
-  73:Core/Src/switch.c ****         {
-  74:Core/Src/switch.c ****             switch_timer3 = 0;
- 410              		.loc 1 74 27
- 411 00f2 5B4B     		ldr	r3, .L28+44
- 412 00f4 0022     		movs	r2, #0
- 413 00f6 1A80     		strh	r2, [r3]	@ movhi
-  75:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_NONE;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 9
+ 275 009c 04FC0108 		.word	134347780
+ 276 00a0 00000000 		.word	switch_trg_timeEEP
+ 277 00a4 00000000 		.word	switch_trg_time
+ 278 00a8 06FC0108 		.word	134347782
+ 279 00ac 00000000 		.word	switch_idle_tempEEP
+ 280 00b0 00000000 		.word	switch_idle_temp
+ 281              		.cfi_endproc
+ 282              	.LFE65:
+ 284              		.section	.text.Switch_Control,"ax",%progbits
+ 285              		.align	1
+ 286              		.global	Switch_Control
+ 287              		.syntax unified
+ 288              		.thumb
+ 289              		.thumb_func
+ 291              	Switch_Control:
+ 292              	.LFB66:
+  56:Core/Src/switch.c **** void Switch_Control(void)
+  57:Core/Src/switch.c **** {
+ 293              		.loc 1 57 1
+ 294              		.cfi_startproc
+ 295              		@ args = 0, pretend = 0, frame = 0
+ 296              		@ frame_needed = 1, uses_anonymous_args = 0
+ 297 0000 80B5     		push	{r7, lr}
+ 298              	.LCFI4:
+ 299              		.cfi_def_cfa_offset 8
+ 300              		.cfi_offset 7, -8
+ 301              		.cfi_offset 14, -4
+ 302 0002 00AF     		add	r7, sp, #0
+ 303              	.LCFI5:
+ 304              		.cfi_def_cfa_register 7
+  58:Core/Src/switch.c ****     switch_timer2 = 0;
+ 305              		.loc 1 58 19
+ 306 0004 934B     		ldr	r3, .L54
+ 307 0006 0022     		movs	r2, #0
+ 308 0008 1A80     		strh	r2, [r3]	@ movhi
+  59:Core/Src/switch.c **** 
+  60:Core/Src/switch.c ****     switch1_status = HAL_GPIO_ReadPin(SWITCH_GROUP_1,SWITCH_PIN_1);
+ 309              		.loc 1 60 22
+ 310 000a 4FF48061 		mov	r1, #1024
+ 311 000e 9248     		ldr	r0, .L54+4
+ 312 0010 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 313 0014 0346     		mov	r3, r0
+ 314 0016 1A46     		mov	r2, r3
+ 315              		.loc 1 60 20
+ 316 0018 904B     		ldr	r3, .L54+8
+ 317 001a 1A70     		strb	r2, [r3]
+  61:Core/Src/switch.c ****     switch2_status = HAL_GPIO_ReadPin(SWITCH_GROUP_2,SWITCH_PIN_2);
+ 318              		.loc 1 61 22
+ 319 001c 4FF40061 		mov	r1, #2048
+ 320 0020 8D48     		ldr	r0, .L54+4
+ 321 0022 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 322 0026 0346     		mov	r3, r0
+ 323 0028 1A46     		mov	r2, r3
+ 324              		.loc 1 61 20
+ 325 002a 8D4B     		ldr	r3, .L54+12
+ 326 002c 1A70     		strb	r2, [r3]
+  62:Core/Src/switch.c ****     switch3_status = HAL_GPIO_ReadPin(SWITCH_GROUP_3,SWITCH_PIN_3);
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 7
 
 
- 414              		.loc 1 75 25
- 415 00f8 584B     		ldr	r3, .L28+40
- 416 00fa 0022     		movs	r2, #0
- 417 00fc 1A70     		strb	r2, [r3]
- 418 00fe 02E0     		b	.L14
- 419              	.L13:
-  76:Core/Src/switch.c ****         }
-  77:Core/Src/switch.c ****     }
-  78:Core/Src/switch.c ****     else
-  79:Core/Src/switch.c ****     {
-  80:Core/Src/switch.c ****         switch_timer3 = 0;
- 420              		.loc 1 80 23
- 421 0100 574B     		ldr	r3, .L28+44
- 422 0102 0022     		movs	r2, #0
- 423 0104 1A80     		strh	r2, [r3]	@ movhi
- 424              	.L14:
-  81:Core/Src/switch.c ****     }
-  82:Core/Src/switch.c ****     if((switch_submode != SWITCH_SUB_MODE_18)&&(switch_submode != SWITCH_SUB_MODE_19))
- 425              		.loc 1 82 24
- 426 0106 574B     		ldr	r3, .L28+48
- 427 0108 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 428              		.loc 1 82 7
- 429 010a 122B     		cmp	r3, #18
- 430 010c 49D0     		beq	.L15
- 431              		.loc 1 82 64 discriminator 1
- 432 010e 554B     		ldr	r3, .L28+48
- 433 0110 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 434              		.loc 1 82 46 discriminator 1
- 435 0112 132B     		cmp	r3, #19
- 436 0114 45D0     		beq	.L15
-  83:Core/Src/switch.c ****     {
-  84:Core/Src/switch.c ****         if(((cup_in == 1)&&(cup_in_old == 0))||((cup_in == 1)&&(switch4_status == 0)&&(switch4_stat
- 437              		.loc 1 84 21
- 438 0116 4F4B     		ldr	r3, .L28+32
- 439 0118 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 440              		.loc 1 84 11
- 441 011a 012B     		cmp	r3, #1
- 442 011c 03D1     		bne	.L16
- 443              		.loc 1 84 40 discriminator 1
- 444 011e 524B     		ldr	r3, .L28+52
- 445 0120 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 446              		.loc 1 84 26 discriminator 1
- 447 0122 002B     		cmp	r3, #0
- 448 0124 0BD0     		beq	.L17
- 449              	.L16:
- 450              		.loc 1 84 57 discriminator 3
- 451 0126 4B4B     		ldr	r3, .L28+32
- 452 0128 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 453              		.loc 1 84 46 discriminator 3
- 454 012a 012B     		cmp	r3, #1
- 455 012c 10D1     		bne	.L18
- 456              		.loc 1 84 80 discriminator 4
- 457 012e 464B     		ldr	r3, .L28+20
- 458 0130 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 459              		.loc 1 84 62 discriminator 4
- 460 0132 002B     		cmp	r3, #0
- 461 0134 0CD1     		bne	.L18
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 10
+ 327              		.loc 1 62 22
+ 328 002e 4FF48051 		mov	r1, #4096
+ 329 0032 8948     		ldr	r0, .L54+4
+ 330 0034 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 331 0038 0346     		mov	r3, r0
+ 332 003a 1A46     		mov	r2, r3
+ 333              		.loc 1 62 20
+ 334 003c 894B     		ldr	r3, .L54+16
+ 335 003e 1A70     		strb	r2, [r3]
+  63:Core/Src/switch.c ****     switch4_status = HAL_GPIO_ReadPin(SWITCH_GROUP_4,SWITCH_PIN_4);
+ 336              		.loc 1 63 22
+ 337 0040 1021     		movs	r1, #16
+ 338 0042 8548     		ldr	r0, .L54+4
+ 339 0044 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 340 0048 0346     		mov	r3, r0
+ 341 004a 1A46     		mov	r2, r3
+ 342              		.loc 1 63 20
+ 343 004c 864B     		ldr	r3, .L54+20
+ 344 004e 1A70     		strb	r2, [r3]
+  64:Core/Src/switch.c ****     switch_overtemp = HAL_GPIO_ReadPin(OVERTEMP_GROUP,OVERTEMP_PIN);
+ 345              		.loc 1 64 23
+ 346 0050 4FF48041 		mov	r1, #16384
+ 347 0054 8548     		ldr	r0, .L54+24
+ 348 0056 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 349 005a 0346     		mov	r3, r0
+ 350 005c 1A46     		mov	r2, r3
+ 351              		.loc 1 64 21
+ 352 005e 844B     		ldr	r3, .L54+28
+ 353 0060 1A70     		strb	r2, [r3]
+  65:Core/Src/switch.c ****     cup_in = HAL_GPIO_ReadPin(CUP_GROUP,CUP_PIN); 
+ 354              		.loc 1 65 14
+ 355 0062 4FF40071 		mov	r1, #512
+ 356 0066 7C48     		ldr	r0, .L54+4
+ 357 0068 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 358 006c 0346     		mov	r3, r0
+ 359 006e 1A46     		mov	r2, r3
+ 360              		.loc 1 65 12
+ 361 0070 804B     		ldr	r3, .L54+32
+ 362 0072 1A70     		strb	r2, [r3]
+  66:Core/Src/switch.c **** 
+  67:Core/Src/switch.c ****     if((1 == switch1_status)||(1 == switch2_status)||(1 == switch3_status))
+ 363              		.loc 1 67 11
+ 364 0074 794B     		ldr	r3, .L54+8
+ 365 0076 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 366              		.loc 1 67 7
+ 367 0078 012B     		cmp	r3, #1
+ 368 007a 07D0     		beq	.L14
+ 369              		.loc 1 67 34 discriminator 1
+ 370 007c 784B     		ldr	r3, .L54+12
+ 371 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 372              		.loc 1 67 29 discriminator 1
+ 373 0080 012B     		cmp	r3, #1
+ 374 0082 03D0     		beq	.L14
+ 375              		.loc 1 67 57 discriminator 2
+ 376 0084 774B     		ldr	r3, .L54+16
+ 377 0086 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 378              		.loc 1 67 52 discriminator 2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 8
 
 
- 462              		.loc 1 84 107 discriminator 5
- 463 0136 4D4B     		ldr	r3, .L28+56
- 464 0138 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 465              		.loc 1 84 85 discriminator 5
- 466 013a 012B     		cmp	r3, #1
- 467 013c 08D1     		bne	.L18
- 468              	.L17:
-  85:Core/Src/switch.c ****         {
-  86:Core/Src/switch.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_RUN;
- 469              		.loc 1 86 30
- 470 013e 4C4B     		ldr	r3, .L28+60
- 471 0140 0122     		movs	r2, #1
- 472 0142 1A70     		strb	r2, [r3]
-  87:Core/Src/switch.c ****             Servo_timer = 0;
- 473              		.loc 1 87 25
- 474 0144 4B4B     		ldr	r3, .L28+64
- 475 0146 0022     		movs	r2, #0
- 476 0148 1A80     		strh	r2, [r3]	@ movhi
-  88:Core/Src/switch.c ****             switch4_mode = 1;
- 477              		.loc 1 88 26
- 478 014a 4B4B     		ldr	r3, .L28+68
- 479 014c 0122     		movs	r2, #1
- 480 014e 1A70     		strb	r2, [r3]
- 481              	.L18:
-  89:Core/Src/switch.c ****         }
-  90:Core/Src/switch.c ****         if(((cup_in == 0)&&(cup_in_old == 1))||((cup_in == 1)&&(switch4_status == 1)&&(switch4_stat
- 482              		.loc 1 90 21
- 483 0150 404B     		ldr	r3, .L28+32
- 484 0152 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 485              		.loc 1 90 11
- 486 0154 002B     		cmp	r3, #0
- 487 0156 03D1     		bne	.L19
- 488              		.loc 1 90 40 discriminator 1
- 489 0158 434B     		ldr	r3, .L28+52
- 490 015a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 491              		.loc 1 90 26 discriminator 1
- 492 015c 012B     		cmp	r3, #1
- 493 015e 0BD0     		beq	.L20
- 494              	.L19:
- 495              		.loc 1 90 57 discriminator 3
- 496 0160 3C4B     		ldr	r3, .L28+32
- 497 0162 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 498              		.loc 1 90 46 discriminator 3
- 499 0164 012B     		cmp	r3, #1
- 500 0166 10D1     		bne	.L21
- 501              		.loc 1 90 80 discriminator 4
- 502 0168 374B     		ldr	r3, .L28+20
- 503 016a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 504              		.loc 1 90 62 discriminator 4
- 505 016c 012B     		cmp	r3, #1
- 506 016e 0CD1     		bne	.L21
- 507              		.loc 1 90 107 discriminator 5
- 508 0170 3E4B     		ldr	r3, .L28+56
- 509 0172 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 510              		.loc 1 90 85 discriminator 5
- 511 0174 002B     		cmp	r3, #0
- 512 0176 08D1     		bne	.L21
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 11
+ 379 0088 012B     		cmp	r3, #1
+ 380 008a 06D1     		bne	.L15
+ 381              	.L14:
+  68:Core/Src/switch.c ****     {   
+  69:Core/Src/switch.c ****         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_SET);
+ 382              		.loc 1 69 9
+ 383 008c 0122     		movs	r2, #1
+ 384 008e 4FF40051 		mov	r1, #8192
+ 385 0092 7648     		ldr	r0, .L54+24
+ 386 0094 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 387 0098 05E0     		b	.L16
+ 388              	.L15:
+  70:Core/Src/switch.c ****     }
+  71:Core/Src/switch.c ****     else
+  72:Core/Src/switch.c ****     {
+  73:Core/Src/switch.c ****         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_RESET);       
+ 389              		.loc 1 73 9
+ 390 009a 0022     		movs	r2, #0
+ 391 009c 4FF40051 		mov	r1, #8192
+ 392 00a0 7248     		ldr	r0, .L54+24
+ 393 00a2 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 394              	.L16:
+  74:Core/Src/switch.c ****     }
+  75:Core/Src/switch.c **** 
+  76:Core/Src/switch.c ****     if((switch1_status == 1)&&(switch_mode == SWITCH_MODE_NONE))
+ 395              		.loc 1 76 24
+ 396 00a6 6D4B     		ldr	r3, .L54+8
+ 397 00a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 398              		.loc 1 76 7
+ 399 00aa 012B     		cmp	r3, #1
+ 400 00ac 14D1     		bne	.L17
+ 401              		.loc 1 76 44 discriminator 1
+ 402 00ae 724B     		ldr	r3, .L54+36
+ 403 00b0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 404              		.loc 1 76 29 discriminator 1
+ 405 00b2 002B     		cmp	r3, #0
+ 406 00b4 10D1     		bne	.L17
+  77:Core/Src/switch.c ****     {
+  78:Core/Src/switch.c ****         switch_timer1++;
+ 407              		.loc 1 78 22
+ 408 00b6 714B     		ldr	r3, .L54+40
+ 409 00b8 1B88     		ldrh	r3, [r3]
+ 410 00ba 0133     		adds	r3, r3, #1
+ 411 00bc 9AB2     		uxth	r2, r3
+ 412 00be 6F4B     		ldr	r3, .L54+40
+ 413 00c0 1A80     		strh	r2, [r3]	@ movhi
+  79:Core/Src/switch.c ****         if(switch_timer1>=SWITCH1_DEBOUNCE_TIME)
+ 414              		.loc 1 79 25
+ 415 00c2 6E4B     		ldr	r3, .L54+40
+ 416 00c4 1B88     		ldrh	r3, [r3]
+ 417              		.loc 1 79 11
+ 418 00c6 632B     		cmp	r3, #99
+ 419 00c8 09D9     		bls	.L19
+  80:Core/Src/switch.c ****         {
+  81:Core/Src/switch.c ****             switch_timer1 = 0;
+ 420              		.loc 1 81 27
+ 421 00ca 6C4B     		ldr	r3, .L54+40
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 9
 
 
- 513              	.L20:
-  91:Core/Src/switch.c ****         {
-  92:Core/Src/switch.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_RUN;
- 514              		.loc 1 92 30
- 515 0178 3D4B     		ldr	r3, .L28+60
- 516 017a 0122     		movs	r2, #1
- 517 017c 1A70     		strb	r2, [r3]
-  93:Core/Src/switch.c ****             Servo_timer = 0;
- 518              		.loc 1 93 25
- 519 017e 3D4B     		ldr	r3, .L28+64
- 520 0180 0022     		movs	r2, #0
- 521 0182 1A80     		strh	r2, [r3]	@ movhi
-  94:Core/Src/switch.c ****             switch4_mode = 0;
- 522              		.loc 1 94 26
- 523 0184 3C4B     		ldr	r3, .L28+68
- 524 0186 0022     		movs	r2, #0
- 525 0188 1A70     		strb	r2, [r3]
- 526              	.L21:
-  95:Core/Src/switch.c ****         }        
-  96:Core/Src/switch.c ****         cup_in_old = cup_in;
- 527              		.loc 1 96 20
- 528 018a 324B     		ldr	r3, .L28+32
- 529 018c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 530 018e 364B     		ldr	r3, .L28+52
- 531 0190 1A70     		strb	r2, [r3]
-  97:Core/Src/switch.c ****         switch4_mode_old=switch4_mode;
- 532              		.loc 1 97 25
- 533 0192 394B     		ldr	r3, .L28+68
- 534 0194 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 535 0196 394B     		ldr	r3, .L28+72
- 536 0198 1A70     		strb	r2, [r3]
-  98:Core/Src/switch.c ****         switch4_status_old = switch4_status;
- 537              		.loc 1 98 28
- 538 019a 2B4B     		ldr	r3, .L28+20
- 539 019c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 540 019e 334B     		ldr	r3, .L28+56
- 541 01a0 1A70     		strb	r2, [r3]
- 542              	.L15:
+ 422 00cc 0022     		movs	r2, #0
+ 423 00ce 1A80     		strh	r2, [r3]	@ movhi
+  82:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_MENUSELECT;
+ 424              		.loc 1 82 25
+ 425 00d0 694B     		ldr	r3, .L54+36
+ 426 00d2 0122     		movs	r2, #1
+ 427 00d4 1A70     		strb	r2, [r3]
+  79:Core/Src/switch.c ****         if(switch_timer1>=SWITCH1_DEBOUNCE_TIME)
+ 428              		.loc 1 79 11
+ 429 00d6 02E0     		b	.L19
+ 430              	.L17:
+  83:Core/Src/switch.c ****         }
+  84:Core/Src/switch.c ****     }
+  85:Core/Src/switch.c ****     else
+  86:Core/Src/switch.c ****     {
+  87:Core/Src/switch.c ****         switch_timer1 = 0;
+ 431              		.loc 1 87 23
+ 432 00d8 684B     		ldr	r3, .L54+40
+ 433 00da 0022     		movs	r2, #0
+ 434 00dc 1A80     		strh	r2, [r3]	@ movhi
+ 435              	.L19:
+  88:Core/Src/switch.c ****     }
+  89:Core/Src/switch.c **** 
+  90:Core/Src/switch.c ****     if((switch3_status == 1)&&(switch_mode == SWITCH_MODE_RUN))
+ 436              		.loc 1 90 24
+ 437 00de 614B     		ldr	r3, .L54+16
+ 438 00e0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 439              		.loc 1 90 7
+ 440 00e2 012B     		cmp	r3, #1
+ 441 00e4 17D1     		bne	.L20
+ 442              		.loc 1 90 44 discriminator 1
+ 443 00e6 644B     		ldr	r3, .L54+36
+ 444 00e8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 445              		.loc 1 90 29 discriminator 1
+ 446 00ea 032B     		cmp	r3, #3
+ 447 00ec 13D1     		bne	.L20
+  91:Core/Src/switch.c ****     {
+  92:Core/Src/switch.c ****         switch_timer3++;
+ 448              		.loc 1 92 22
+ 449 00ee 644B     		ldr	r3, .L54+44
+ 450 00f0 1B88     		ldrh	r3, [r3]
+ 451 00f2 0133     		adds	r3, r3, #1
+ 452 00f4 9AB2     		uxth	r2, r3
+ 453 00f6 624B     		ldr	r3, .L54+44
+ 454 00f8 1A80     		strh	r2, [r3]	@ movhi
+  93:Core/Src/switch.c ****         if(switch_timer3>=SWITCH3_DEBOUNCE_TIME)
+ 455              		.loc 1 93 25
+ 456 00fa 614B     		ldr	r3, .L54+44
+ 457 00fc 1B88     		ldrh	r3, [r3]
+ 458              		.loc 1 93 11
+ 459 00fe 632B     		cmp	r3, #99
+ 460 0100 0CD9     		bls	.L22
+  94:Core/Src/switch.c ****         {
+  95:Core/Src/switch.c ****             switch_timer3 = 0;
+ 461              		.loc 1 95 27
+ 462 0102 5F4B     		ldr	r3, .L54+44
+ 463 0104 0022     		movs	r2, #0
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 10
+
+
+ 464 0106 1A80     		strh	r2, [r3]	@ movhi
+  96:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_NONE;
+ 465              		.loc 1 96 25
+ 466 0108 5B4B     		ldr	r3, .L54+36
+ 467 010a 0022     		movs	r2, #0
+ 468 010c 1A70     		strb	r2, [r3]
+  97:Core/Src/switch.c ****             switch_custom_mode = SWITCH_CUSTOM_TARGET_TEMP_SET;
+ 469              		.loc 1 97 32
+ 470 010e 5D4B     		ldr	r3, .L54+48
+ 471 0110 0022     		movs	r2, #0
+ 472 0112 1A70     		strb	r2, [r3]
+  93:Core/Src/switch.c ****         {
+ 473              		.loc 1 93 11
+ 474 0114 02E0     		b	.L22
+ 475              	.L20:
+  98:Core/Src/switch.c ****         }
   99:Core/Src/switch.c ****     }
- 100:Core/Src/switch.c **** 
- 101:Core/Src/switch.c **** 
- 102:Core/Src/switch.c ****     if(switch_mode == SWITCH_MODE_MENUSELECT)
- 543              		.loc 1 102 20
- 544 01a2 2E4B     		ldr	r3, .L28+40
- 545 01a4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 546              		.loc 1 102 7
- 547 01a6 012B     		cmp	r3, #1
- 548 01a8 36D1     		bne	.L22
- 103:Core/Src/switch.c ****     {
- 104:Core/Src/switch.c ****         if((1u == switch1_status)&&(0==switch1_status_old))
- 549              		.loc 1 104 16
- 550 01aa 244B     		ldr	r3, .L28+8
- 551 01ac 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 552              		.loc 1 104 11
- 553 01ae 012B     		cmp	r3, #1
- 554 01b0 11D1     		bne	.L23
- 555              		.loc 1 104 38 discriminator 1
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 12
+ 100:Core/Src/switch.c ****     else
+ 101:Core/Src/switch.c ****     {
+ 102:Core/Src/switch.c ****         switch_timer3 = 0;
+ 476              		.loc 1 102 23
+ 477 0116 5A4B     		ldr	r3, .L54+44
+ 478 0118 0022     		movs	r2, #0
+ 479 011a 1A80     		strh	r2, [r3]	@ movhi
+ 480              	.L22:
+ 103:Core/Src/switch.c ****     }
+ 104:Core/Src/switch.c **** 
+ 105:Core/Src/switch.c ****     if((switch_submode != SWITCH_SUB_MODE_18)&&(switch_submode != SWITCH_SUB_MODE_19))
+ 481              		.loc 1 105 24
+ 482 011c 5A4B     		ldr	r3, .L54+52
+ 483 011e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 484              		.loc 1 105 7
+ 485 0120 122B     		cmp	r3, #18
+ 486 0122 49D0     		beq	.L23
+ 487              		.loc 1 105 64 discriminator 1
+ 488 0124 584B     		ldr	r3, .L54+52
+ 489 0126 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 490              		.loc 1 105 46 discriminator 1
+ 491 0128 132B     		cmp	r3, #19
+ 492 012a 45D0     		beq	.L23
+ 106:Core/Src/switch.c ****     {
+ 107:Core/Src/switch.c ****         if(((cup_in == 1)&&(cup_in_old == 0))||((cup_in == 1)&&(switch4_status == 0)&&(switch4_stat
+ 493              		.loc 1 107 21
+ 494 012c 514B     		ldr	r3, .L54+32
+ 495 012e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 496              		.loc 1 107 11
+ 497 0130 012B     		cmp	r3, #1
+ 498 0132 03D1     		bne	.L24
+ 499              		.loc 1 107 40 discriminator 1
+ 500 0134 554B     		ldr	r3, .L54+56
+ 501 0136 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 502              		.loc 1 107 26 discriminator 1
+ 503 0138 002B     		cmp	r3, #0
+ 504 013a 0BD0     		beq	.L25
+ 505              	.L24:
+ 506              		.loc 1 107 57 discriminator 3
+ 507 013c 4D4B     		ldr	r3, .L54+32
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 11
 
 
- 556 01b2 334B     		ldr	r3, .L28+76
- 557 01b4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 558              		.loc 1 104 34 discriminator 1
- 559 01b6 002B     		cmp	r3, #0
- 560 01b8 0DD1     		bne	.L23
- 105:Core/Src/switch.c ****         {
- 106:Core/Src/switch.c ****             switch_submode--;
- 561              		.loc 1 106 27
- 562 01ba 2A4B     		ldr	r3, .L28+48
- 563 01bc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 564 01be 013B     		subs	r3, r3, #1
- 565 01c0 DAB2     		uxtb	r2, r3
- 566 01c2 284B     		ldr	r3, .L28+48
- 567 01c4 1A70     		strb	r2, [r3]
- 107:Core/Src/switch.c ****             if(switch_submode < SWITCH_SUB_MODE_1)
- 568              		.loc 1 107 31
- 569 01c6 274B     		ldr	r3, .L28+48
- 570 01c8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 571              		.loc 1 107 15
- 572 01ca 002B     		cmp	r3, #0
- 573 01cc 24D1     		bne	.L22
- 108:Core/Src/switch.c ****             {
- 109:Core/Src/switch.c ****                 switch_submode = SWITCH_SUB_MODE_19;
- 574              		.loc 1 109 32
- 575 01ce 254B     		ldr	r3, .L28+48
- 576 01d0 1322     		movs	r2, #19
- 577 01d2 1A70     		strb	r2, [r3]
- 107:Core/Src/switch.c ****             if(switch_submode < SWITCH_SUB_MODE_1)
- 578              		.loc 1 107 15
- 579 01d4 20E0     		b	.L22
- 580              	.L23:
- 110:Core/Src/switch.c ****             }
- 111:Core/Src/switch.c ****         }
- 112:Core/Src/switch.c ****         else if((1u == switch2_status)&&(0==switch2_status_old))
- 581              		.loc 1 112 21
- 582 01d6 1A4B     		ldr	r3, .L28+12
- 583 01d8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 584              		.loc 1 112 16
- 585 01da 012B     		cmp	r3, #1
- 586 01dc 11D1     		bne	.L25
- 587              		.loc 1 112 43 discriminator 1
- 588 01de 294B     		ldr	r3, .L28+80
- 589 01e0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 590              		.loc 1 112 39 discriminator 1
- 591 01e2 002B     		cmp	r3, #0
- 592 01e4 0DD1     		bne	.L25
- 113:Core/Src/switch.c ****         {
- 114:Core/Src/switch.c ****             switch_submode++;
- 593              		.loc 1 114 27
- 594 01e6 1F4B     		ldr	r3, .L28+48
- 595 01e8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 596 01ea 0133     		adds	r3, r3, #1
- 597 01ec DAB2     		uxtb	r2, r3
- 598 01ee 1D4B     		ldr	r3, .L28+48
- 599 01f0 1A70     		strb	r2, [r3]
- 115:Core/Src/switch.c ****             if(switch_submode > SWITCH_SUB_MODE_19)
- 600              		.loc 1 115 31
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 13
+ 508 013e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 509              		.loc 1 107 46 discriminator 3
+ 510 0140 012B     		cmp	r3, #1
+ 511 0142 10D1     		bne	.L26
+ 512              		.loc 1 107 80 discriminator 4
+ 513 0144 484B     		ldr	r3, .L54+20
+ 514 0146 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 515              		.loc 1 107 62 discriminator 4
+ 516 0148 002B     		cmp	r3, #0
+ 517 014a 0CD1     		bne	.L26
+ 518              		.loc 1 107 107 discriminator 5
+ 519 014c 504B     		ldr	r3, .L54+60
+ 520 014e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 521              		.loc 1 107 85 discriminator 5
+ 522 0150 012B     		cmp	r3, #1
+ 523 0152 08D1     		bne	.L26
+ 524              	.L25:
+ 108:Core/Src/switch.c ****         {
+ 109:Core/Src/switch.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_RUN;
+ 525              		.loc 1 109 30
+ 526 0154 4F4B     		ldr	r3, .L54+64
+ 527 0156 0122     		movs	r2, #1
+ 528 0158 1A70     		strb	r2, [r3]
+ 110:Core/Src/switch.c ****             Servo_timer = 0;
+ 529              		.loc 1 110 25
+ 530 015a 4F4B     		ldr	r3, .L54+68
+ 531 015c 0022     		movs	r2, #0
+ 532 015e 1A80     		strh	r2, [r3]	@ movhi
+ 111:Core/Src/switch.c ****             switch4_mode = 1;
+ 533              		.loc 1 111 26
+ 534 0160 4E4B     		ldr	r3, .L54+72
+ 535 0162 0122     		movs	r2, #1
+ 536 0164 1A70     		strb	r2, [r3]
+ 537              	.L26:
+ 112:Core/Src/switch.c ****         }
+ 113:Core/Src/switch.c ****         if(((cup_in == 0)&&(cup_in_old == 1))||((cup_in == 1)&&(switch4_status == 1)&&(switch4_stat
+ 538              		.loc 1 113 21
+ 539 0166 434B     		ldr	r3, .L54+32
+ 540 0168 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 541              		.loc 1 113 11
+ 542 016a 002B     		cmp	r3, #0
+ 543 016c 03D1     		bne	.L27
+ 544              		.loc 1 113 40 discriminator 1
+ 545 016e 474B     		ldr	r3, .L54+56
+ 546 0170 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 547              		.loc 1 113 26 discriminator 1
+ 548 0172 012B     		cmp	r3, #1
+ 549 0174 0BD0     		beq	.L28
+ 550              	.L27:
+ 551              		.loc 1 113 57 discriminator 3
+ 552 0176 3F4B     		ldr	r3, .L54+32
+ 553 0178 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 554              		.loc 1 113 46 discriminator 3
+ 555 017a 012B     		cmp	r3, #1
+ 556 017c 10D1     		bne	.L29
+ 557              		.loc 1 113 80 discriminator 4
+ 558 017e 3A4B     		ldr	r3, .L54+20
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 12
 
 
- 601 01f2 1C4B     		ldr	r3, .L28+48
- 602 01f4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 603              		.loc 1 115 15
- 604 01f6 132B     		cmp	r3, #19
- 605 01f8 0ED9     		bls	.L22
- 116:Core/Src/switch.c ****             {
- 117:Core/Src/switch.c ****                 switch_submode = SWITCH_SUB_MODE_1;
- 606              		.loc 1 117 32
- 607 01fa 1A4B     		ldr	r3, .L28+48
- 608 01fc 0122     		movs	r2, #1
- 609 01fe 1A70     		strb	r2, [r3]
- 115:Core/Src/switch.c ****             if(switch_submode > SWITCH_SUB_MODE_19)
- 610              		.loc 1 115 15
- 611 0200 0AE0     		b	.L22
- 612              	.L25:
- 118:Core/Src/switch.c ****             }
- 119:Core/Src/switch.c ****         }
- 120:Core/Src/switch.c ****         else if((1u == switch3_status)&&(0==switch3_status_old))
- 613              		.loc 1 120 21
- 614 0202 104B     		ldr	r3, .L28+16
- 615 0204 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 616              		.loc 1 120 16
- 617 0206 012B     		cmp	r3, #1
- 618 0208 06D1     		bne	.L22
- 619              		.loc 1 120 43 discriminator 1
- 620 020a 1F4B     		ldr	r3, .L28+84
- 621 020c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 622              		.loc 1 120 39 discriminator 1
- 623 020e 002B     		cmp	r3, #0
- 624 0210 02D1     		bne	.L22
- 121:Core/Src/switch.c ****         {
- 122:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_RUN;
- 625              		.loc 1 122 25
- 626 0212 124B     		ldr	r3, .L28+40
- 627 0214 0222     		movs	r2, #2
- 628 0216 1A70     		strb	r2, [r3]
- 629              	.L22:
- 123:Core/Src/switch.c ****         }
- 124:Core/Src/switch.c ****         else
- 125:Core/Src/switch.c ****         {
- 126:Core/Src/switch.c **** 
- 127:Core/Src/switch.c ****         }
- 128:Core/Src/switch.c ****     }
- 129:Core/Src/switch.c **** 
- 130:Core/Src/switch.c ****     switch1_status_old = switch1_status;
- 630              		.loc 1 130 24
- 631 0218 084B     		ldr	r3, .L28+8
- 632 021a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 633 021c 184B     		ldr	r3, .L28+76
- 634 021e 1A70     		strb	r2, [r3]
- 131:Core/Src/switch.c ****     switch2_status_old = switch2_status;
- 635              		.loc 1 131 24
- 636 0220 074B     		ldr	r3, .L28+12
- 637 0222 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 638 0224 174B     		ldr	r3, .L28+80
- 639 0226 1A70     		strb	r2, [r3]
- 132:Core/Src/switch.c ****     switch2_status_old = switch2_status;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 14
+ 559 0180 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 560              		.loc 1 113 62 discriminator 4
+ 561 0182 012B     		cmp	r3, #1
+ 562 0184 0CD1     		bne	.L29
+ 563              		.loc 1 113 107 discriminator 5
+ 564 0186 424B     		ldr	r3, .L54+60
+ 565 0188 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 566              		.loc 1 113 85 discriminator 5
+ 567 018a 002B     		cmp	r3, #0
+ 568 018c 08D1     		bne	.L29
+ 569              	.L28:
+ 114:Core/Src/switch.c ****         {
+ 115:Core/Src/switch.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_RUN;
+ 570              		.loc 1 115 30
+ 571 018e 414B     		ldr	r3, .L54+64
+ 572 0190 0122     		movs	r2, #1
+ 573 0192 1A70     		strb	r2, [r3]
+ 116:Core/Src/switch.c ****             Servo_timer = 0;
+ 574              		.loc 1 116 25
+ 575 0194 404B     		ldr	r3, .L54+68
+ 576 0196 0022     		movs	r2, #0
+ 577 0198 1A80     		strh	r2, [r3]	@ movhi
+ 117:Core/Src/switch.c ****             switch4_mode = 0;
+ 578              		.loc 1 117 26
+ 579 019a 404B     		ldr	r3, .L54+72
+ 580 019c 0022     		movs	r2, #0
+ 581 019e 1A70     		strb	r2, [r3]
+ 582              	.L29:
+ 118:Core/Src/switch.c ****         }        
+ 119:Core/Src/switch.c ****         cup_in_old = cup_in;
+ 583              		.loc 1 119 20
+ 584 01a0 344B     		ldr	r3, .L54+32
+ 585 01a2 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 586 01a4 394B     		ldr	r3, .L54+56
+ 587 01a6 1A70     		strb	r2, [r3]
+ 120:Core/Src/switch.c ****         switch4_mode_old=switch4_mode;
+ 588              		.loc 1 120 25
+ 589 01a8 3C4B     		ldr	r3, .L54+72
+ 590 01aa 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 591 01ac 3C4B     		ldr	r3, .L54+76
+ 592 01ae 1A70     		strb	r2, [r3]
+ 121:Core/Src/switch.c ****         switch4_status_old = switch4_status;
+ 593              		.loc 1 121 28
+ 594 01b0 2D4B     		ldr	r3, .L54+20
+ 595 01b2 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 596 01b4 364B     		ldr	r3, .L54+60
+ 597 01b6 1A70     		strb	r2, [r3]
+ 598              	.L23:
+ 122:Core/Src/switch.c ****     }
+ 123:Core/Src/switch.c **** 
+ 124:Core/Src/switch.c ****     if(switch_mode == SWITCH_MODE_CUSTOM)
+ 599              		.loc 1 124 20
+ 600 01b8 2F4B     		ldr	r3, .L54+36
+ 601 01ba 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 602              		.loc 1 124 7
+ 603 01bc 022B     		cmp	r3, #2
+ 604 01be 40F00081 		bne	.L30
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 13
 
 
- 640              		.loc 1 132 24
- 641 0228 054B     		ldr	r3, .L28+12
- 642 022a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
- 643 022c 154B     		ldr	r3, .L28+80
- 644 022e 1A70     		strb	r2, [r3]
- 133:Core/Src/switch.c ****     
- 134:Core/Src/switch.c ****     return;
- 645              		.loc 1 134 5
- 646 0230 00BF     		nop
- 135:Core/Src/switch.c **** }...
- 647              		.loc 1 135 1
- 648 0232 80BD     		pop	{r7, pc}
- 649              	.L29:
- 650              		.align	2
- 651              	.L28:
- 652 0234 00000000 		.word	switch_timer2
- 653 0238 00080140 		.word	1073809408
- 654 023c 00000000 		.word	switch1_status
- 655 0240 00000000 		.word	switch2_status
- 656 0244 00000000 		.word	switch3_status
- 657 0248 00000000 		.word	switch4_status
- 658 024c 000C0140 		.word	1073810432
- 659 0250 00000000 		.word	switch_overtemp
- 660 0254 00000000 		.word	cup_in
- 661 0258 00000000 		.word	switch_timer1
- 662 025c 00000000 		.word	switch_mode
- 663 0260 00000000 		.word	switch_timer3
- 664 0264 00000000 		.word	switch_submode
- 665 0268 00000000 		.word	cup_in_old
- 666 026c 00000000 		.word	switch4_status_old
- 667 0270 00000000 		.word	Pwm_Servo_status
- 668 0274 00000000 		.word	Servo_timer
- 669 0278 00000000 		.word	switch4_mode
- 670 027c 00000000 		.word	switch4_mode_old
- 671 0280 00000000 		.word	switch1_status_old
- 672 0284 00000000 		.word	switch2_status_old
- 673 0288 00000000 		.word	switch3_status_old
- 674              		.cfi_endproc
- 675              	.LFE66:
- 677              		.text
- 678              	.Letext0:
- 679              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
- 680              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
- 681              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 682              		.file 5 "Core/Inc/vardef.h"
- 683              		.file 6 "Core/Inc/switch.h"
- 684              		.file 7 "Core/Inc/pwm.h"
- 685              		.file 8 "Core/Inc/eeprom.h"
- 686              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s 			page 15
+ 125:Core/Src/switch.c ****     {
+ 126:Core/Src/switch.c ****         if(switch_custom_mode == SWITCH_CUSTOM_TARGET_TEMP_SET)
+ 605              		.loc 1 126 31
+ 606 01c2 304B     		ldr	r3, .L54+48
+ 607 01c4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 608              		.loc 1 126 11
+ 609 01c6 002B     		cmp	r3, #0
+ 610 01c8 74D1     		bne	.L31
+ 127:Core/Src/switch.c ****         {
+ 128:Core/Src/switch.c ****             if((1u == switch1_status)&&(0==switch1_status_old))
+ 611              		.loc 1 128 20
+ 612 01ca 244B     		ldr	r3, .L54+8
+ 613 01cc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 614              		.loc 1 128 15
+ 615 01ce 012B     		cmp	r3, #1
+ 616 01d0 16D1     		bne	.L32
+ 617              		.loc 1 128 42 discriminator 1
+ 618 01d2 344B     		ldr	r3, .L54+80
+ 619 01d4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 620              		.loc 1 128 38 discriminator 1
+ 621 01d6 002B     		cmp	r3, #0
+ 622 01d8 12D1     		bne	.L32
+ 129:Core/Src/switch.c ****             {
+ 130:Core/Src/switch.c ****                 switch_trg_temp--;
+ 623              		.loc 1 130 32
+ 624 01da 334B     		ldr	r3, .L54+84
+ 625 01dc B3F90030 		ldrsh	r3, [r3]
+ 626 01e0 9BB2     		uxth	r3, r3
+ 627 01e2 013B     		subs	r3, r3, #1
+ 628 01e4 9BB2     		uxth	r3, r3
+ 629 01e6 1AB2     		sxth	r2, r3
+ 630 01e8 2F4B     		ldr	r3, .L54+84
+ 631 01ea 1A80     		strh	r2, [r3]	@ movhi
+ 131:Core/Src/switch.c ****                 if(switch_trg_temp < 0)
+ 632              		.loc 1 131 36
+ 633 01ec 2E4B     		ldr	r3, .L54+84
+ 634 01ee B3F90030 		ldrsh	r3, [r3]
+ 635              		.loc 1 131 19
+ 636 01f2 002B     		cmp	r3, #0
+ 637 01f4 80F2E580 		bge	.L30
+ 132:Core/Src/switch.c ****                 {
+ 133:Core/Src/switch.c ****                     switch_trg_temp = 100;
+ 638              		.loc 1 133 37
+ 639 01f8 2B4B     		ldr	r3, .L54+84
+ 640 01fa 6422     		movs	r2, #100
+ 641 01fc 1A80     		strh	r2, [r3]	@ movhi
+ 131:Core/Src/switch.c ****                 if(switch_trg_temp < 0)
+ 642              		.loc 1 131 19
+ 643 01fe E0E0     		b	.L30
+ 644              	.L32:
+ 134:Core/Src/switch.c ****                 }
+ 135:Core/Src/switch.c ****             }
+ 136:Core/Src/switch.c ****             else if((1u == switch2_status)&&(0==switch2_status_old))
+ 645              		.loc 1 136 25
+ 646 0200 174B     		ldr	r3, .L54+12
+ 647 0202 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 648              		.loc 1 136 20
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 14
+
+
+ 649 0204 012B     		cmp	r3, #1
+ 650 0206 16D1     		bne	.L35
+ 651              		.loc 1 136 47 discriminator 1
+ 652 0208 284B     		ldr	r3, .L54+88
+ 653 020a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 654              		.loc 1 136 43 discriminator 1
+ 655 020c 002B     		cmp	r3, #0
+ 656 020e 12D1     		bne	.L35
+ 137:Core/Src/switch.c ****             {
+ 138:Core/Src/switch.c ****                 switch_trg_temp++;
+ 657              		.loc 1 138 32
+ 658 0210 254B     		ldr	r3, .L54+84
+ 659 0212 B3F90030 		ldrsh	r3, [r3]
+ 660 0216 9BB2     		uxth	r3, r3
+ 661 0218 0133     		adds	r3, r3, #1
+ 662 021a 9BB2     		uxth	r3, r3
+ 663 021c 1AB2     		sxth	r2, r3
+ 664 021e 224B     		ldr	r3, .L54+84
+ 665 0220 1A80     		strh	r2, [r3]	@ movhi
+ 139:Core/Src/switch.c ****                 if(switch_trg_temp > 100)
+ 666              		.loc 1 139 36
+ 667 0222 214B     		ldr	r3, .L54+84
+ 668 0224 B3F90030 		ldrsh	r3, [r3]
+ 669              		.loc 1 139 19
+ 670 0228 642B     		cmp	r3, #100
+ 671 022a 40F3CA80 		ble	.L30
+ 140:Core/Src/switch.c ****                 {
+ 141:Core/Src/switch.c ****                     switch_trg_temp = 0;
+ 672              		.loc 1 141 37
+ 673 022e 1E4B     		ldr	r3, .L54+84
+ 674 0230 0022     		movs	r2, #0
+ 675 0232 1A80     		strh	r2, [r3]	@ movhi
+ 139:Core/Src/switch.c ****                 if(switch_trg_temp > 100)
+ 676              		.loc 1 139 19
+ 677 0234 C5E0     		b	.L30
+ 678              	.L35:
+ 142:Core/Src/switch.c ****                 }
+ 143:Core/Src/switch.c ****             }        
+ 144:Core/Src/switch.c ****             else if((1u == switch3_status)&&(0==switch3_status_old))
+ 679              		.loc 1 144 25
+ 680 0236 0B4B     		ldr	r3, .L54+16
+ 681 0238 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 682              		.loc 1 144 20
+ 683 023a 012B     		cmp	r3, #1
+ 684 023c 40F0C180 		bne	.L30
+ 685              		.loc 1 144 47 discriminator 1
+ 686 0240 1B4B     		ldr	r3, .L54+92
+ 687 0242 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 688              		.loc 1 144 43 discriminator 1
+ 689 0244 002B     		cmp	r3, #0
+ 690 0246 40F0BC80 		bne	.L30
+ 145:Core/Src/switch.c ****             {
+ 146:Core/Src/switch.c ****                 switch_custom_mode = SWITCH_CUSTOM_TARGET_TIME_SET;
+ 691              		.loc 1 146 36
+ 692 024a 0E4B     		ldr	r3, .L54+48
+ 693 024c 0122     		movs	r2, #1
+ 694 024e 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 15
+
+
+ 695 0250 B7E0     		b	.L30
+ 696              	.L55:
+ 697 0252 00BF     		.align	2
+ 698              	.L54:
+ 699 0254 00000000 		.word	switch_timer2
+ 700 0258 00080140 		.word	1073809408
+ 701 025c 00000000 		.word	switch1_status
+ 702 0260 00000000 		.word	switch2_status
+ 703 0264 00000000 		.word	switch3_status
+ 704 0268 00000000 		.word	switch4_status
+ 705 026c 000C0140 		.word	1073810432
+ 706 0270 00000000 		.word	switch_overtemp
+ 707 0274 00000000 		.word	cup_in
+ 708 0278 00000000 		.word	switch_mode
+ 709 027c 00000000 		.word	switch_timer1
+ 710 0280 00000000 		.word	switch_timer3
+ 711 0284 00000000 		.word	switch_custom_mode
+ 712 0288 00000000 		.word	switch_submode
+ 713 028c 00000000 		.word	cup_in_old
+ 714 0290 00000000 		.word	switch4_status_old
+ 715 0294 00000000 		.word	Pwm_Servo_status
+ 716 0298 00000000 		.word	Servo_timer
+ 717 029c 00000000 		.word	switch4_mode
+ 718 02a0 00000000 		.word	switch4_mode_old
+ 719 02a4 00000000 		.word	switch1_status_old
+ 720 02a8 00000000 		.word	switch_trg_temp
+ 721 02ac 00000000 		.word	switch2_status_old
+ 722 02b0 00000000 		.word	switch3_status_old
+ 723              	.L31:
+ 147:Core/Src/switch.c ****             }
+ 148:Core/Src/switch.c ****             else
+ 149:Core/Src/switch.c ****             {
+ 150:Core/Src/switch.c **** 
+ 151:Core/Src/switch.c ****             }
+ 152:Core/Src/switch.c ****         }
+ 153:Core/Src/switch.c ****         else if(switch_custom_mode == SWITCH_CUSTOM_TARGET_TIME_SET)
+ 724              		.loc 1 153 36
+ 725 02b4 6F4B     		ldr	r3, .L56
+ 726 02b6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 727              		.loc 1 153 16
+ 728 02b8 012B     		cmp	r3, #1
+ 729 02ba 3FD1     		bne	.L37
+ 154:Core/Src/switch.c ****         {
+ 155:Core/Src/switch.c ****             if((1u == switch1_status)&&(0==switch1_status_old))
+ 730              		.loc 1 155 20
+ 731 02bc 6E4B     		ldr	r3, .L56+4
+ 732 02be 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 733              		.loc 1 155 15
+ 734 02c0 012B     		cmp	r3, #1
+ 735 02c2 15D1     		bne	.L38
+ 736              		.loc 1 155 42 discriminator 1
+ 737 02c4 6D4B     		ldr	r3, .L56+8
+ 738 02c6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 739              		.loc 1 155 38 discriminator 1
+ 740 02c8 002B     		cmp	r3, #0
+ 741 02ca 11D1     		bne	.L38
+ 156:Core/Src/switch.c ****             {
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 16
+
+
+ 157:Core/Src/switch.c ****                 switch_trg_time--;
+ 742              		.loc 1 157 32
+ 743 02cc 6C4B     		ldr	r3, .L56+12
+ 744 02ce B3F90030 		ldrsh	r3, [r3]
+ 745 02d2 9BB2     		uxth	r3, r3
+ 746 02d4 013B     		subs	r3, r3, #1
+ 747 02d6 9BB2     		uxth	r3, r3
+ 748 02d8 1AB2     		sxth	r2, r3
+ 749 02da 694B     		ldr	r3, .L56+12
+ 750 02dc 1A80     		strh	r2, [r3]	@ movhi
+ 158:Core/Src/switch.c ****                 if(switch_trg_time < 0)
+ 751              		.loc 1 158 36
+ 752 02de 684B     		ldr	r3, .L56+12
+ 753 02e0 B3F90030 		ldrsh	r3, [r3]
+ 754              		.loc 1 158 19
+ 755 02e4 002B     		cmp	r3, #0
+ 756 02e6 6CDA     		bge	.L30
+ 159:Core/Src/switch.c ****                 {
+ 160:Core/Src/switch.c ****                     switch_trg_time = 60;
+ 757              		.loc 1 160 37
+ 758 02e8 654B     		ldr	r3, .L56+12
+ 759 02ea 3C22     		movs	r2, #60
+ 760 02ec 1A80     		strh	r2, [r3]	@ movhi
+ 158:Core/Src/switch.c ****                 if(switch_trg_time < 0)
+ 761              		.loc 1 158 19
+ 762 02ee 68E0     		b	.L30
+ 763              	.L38:
+ 161:Core/Src/switch.c ****                 }
+ 162:Core/Src/switch.c ****             }
+ 163:Core/Src/switch.c ****             else if((1u == switch2_status)&&(0==switch2_status_old))
+ 764              		.loc 1 163 25
+ 765 02f0 644B     		ldr	r3, .L56+16
+ 766 02f2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 767              		.loc 1 163 20
+ 768 02f4 012B     		cmp	r3, #1
+ 769 02f6 15D1     		bne	.L41
+ 770              		.loc 1 163 47 discriminator 1
+ 771 02f8 634B     		ldr	r3, .L56+20
+ 772 02fa 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 773              		.loc 1 163 43 discriminator 1
+ 774 02fc 002B     		cmp	r3, #0
+ 775 02fe 11D1     		bne	.L41
+ 164:Core/Src/switch.c ****             {
+ 165:Core/Src/switch.c ****                 switch_trg_time++;
+ 776              		.loc 1 165 32
+ 777 0300 5F4B     		ldr	r3, .L56+12
+ 778 0302 B3F90030 		ldrsh	r3, [r3]
+ 779 0306 9BB2     		uxth	r3, r3
+ 780 0308 0133     		adds	r3, r3, #1
+ 781 030a 9BB2     		uxth	r3, r3
+ 782 030c 1AB2     		sxth	r2, r3
+ 783 030e 5C4B     		ldr	r3, .L56+12
+ 784 0310 1A80     		strh	r2, [r3]	@ movhi
+ 166:Core/Src/switch.c ****                 if(switch_trg_time > 60)
+ 785              		.loc 1 166 36
+ 786 0312 5B4B     		ldr	r3, .L56+12
+ 787 0314 B3F90030 		ldrsh	r3, [r3]
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 17
+
+
+ 788              		.loc 1 166 19
+ 789 0318 3C2B     		cmp	r3, #60
+ 790 031a 52DD     		ble	.L30
+ 167:Core/Src/switch.c ****                 {
+ 168:Core/Src/switch.c ****                     switch_trg_time = 0;
+ 791              		.loc 1 168 37
+ 792 031c 584B     		ldr	r3, .L56+12
+ 793 031e 0022     		movs	r2, #0
+ 794 0320 1A80     		strh	r2, [r3]	@ movhi
+ 166:Core/Src/switch.c ****                 if(switch_trg_time > 60)
+ 795              		.loc 1 166 19
+ 796 0322 4EE0     		b	.L30
+ 797              	.L41:
+ 169:Core/Src/switch.c ****                 }
+ 170:Core/Src/switch.c ****             }        
+ 171:Core/Src/switch.c ****             else if((1u == switch3_status)&&(0==switch3_status_old))
+ 798              		.loc 1 171 25
+ 799 0324 594B     		ldr	r3, .L56+24
+ 800 0326 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 801              		.loc 1 171 20
+ 802 0328 012B     		cmp	r3, #1
+ 803 032a 4AD1     		bne	.L30
+ 804              		.loc 1 171 47 discriminator 1
+ 805 032c 584B     		ldr	r3, .L56+28
+ 806 032e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 807              		.loc 1 171 43 discriminator 1
+ 808 0330 002B     		cmp	r3, #0
+ 809 0332 46D1     		bne	.L30
+ 172:Core/Src/switch.c ****             {
+ 173:Core/Src/switch.c ****                 switch_custom_mode = SWITCH_CUSTOM_IDLE_SET;
+ 810              		.loc 1 173 36
+ 811 0334 4F4B     		ldr	r3, .L56
+ 812 0336 0222     		movs	r2, #2
+ 813 0338 1A70     		strb	r2, [r3]
+ 814 033a 42E0     		b	.L30
+ 815              	.L37:
+ 174:Core/Src/switch.c ****             }
+ 175:Core/Src/switch.c ****             else
+ 176:Core/Src/switch.c ****             {
+ 177:Core/Src/switch.c **** 
+ 178:Core/Src/switch.c ****             }            
+ 179:Core/Src/switch.c ****         }
+ 180:Core/Src/switch.c ****         else if(switch_custom_mode == SWITCH_CUSTOM_IDLE_SET)
+ 816              		.loc 1 180 36
+ 817 033c 4D4B     		ldr	r3, .L56
+ 818 033e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 819              		.loc 1 180 16
+ 820 0340 022B     		cmp	r3, #2
+ 821 0342 3ED1     		bne	.L30
+ 181:Core/Src/switch.c ****         {
+ 182:Core/Src/switch.c ****             if((1u == switch1_status)&&(0==switch1_status_old))
+ 822              		.loc 1 182 20
+ 823 0344 4C4B     		ldr	r3, .L56+4
+ 824 0346 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 825              		.loc 1 182 15
+ 826 0348 012B     		cmp	r3, #1
+ 827 034a 15D1     		bne	.L43
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 18
+
+
+ 828              		.loc 1 182 42 discriminator 1
+ 829 034c 4B4B     		ldr	r3, .L56+8
+ 830 034e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 831              		.loc 1 182 38 discriminator 1
+ 832 0350 002B     		cmp	r3, #0
+ 833 0352 11D1     		bne	.L43
+ 183:Core/Src/switch.c ****             {
+ 184:Core/Src/switch.c ****                 switch_idle_temp--;
+ 834              		.loc 1 184 33
+ 835 0354 4F4B     		ldr	r3, .L56+32
+ 836 0356 B3F90030 		ldrsh	r3, [r3]
+ 837 035a 9BB2     		uxth	r3, r3
+ 838 035c 013B     		subs	r3, r3, #1
+ 839 035e 9BB2     		uxth	r3, r3
+ 840 0360 1AB2     		sxth	r2, r3
+ 841 0362 4C4B     		ldr	r3, .L56+32
+ 842 0364 1A80     		strh	r2, [r3]	@ movhi
+ 185:Core/Src/switch.c ****                 if(switch_idle_temp < 0)
+ 843              		.loc 1 185 37
+ 844 0366 4B4B     		ldr	r3, .L56+32
+ 845 0368 B3F90030 		ldrsh	r3, [r3]
+ 846              		.loc 1 185 19
+ 847 036c 002B     		cmp	r3, #0
+ 848 036e 28DA     		bge	.L30
+ 186:Core/Src/switch.c ****                 {
+ 187:Core/Src/switch.c ****                     switch_idle_temp = 60;
+ 849              		.loc 1 187 38
+ 850 0370 484B     		ldr	r3, .L56+32
+ 851 0372 3C22     		movs	r2, #60
+ 852 0374 1A80     		strh	r2, [r3]	@ movhi
+ 185:Core/Src/switch.c ****                 if(switch_idle_temp < 0)
+ 853              		.loc 1 185 19
+ 854 0376 24E0     		b	.L30
+ 855              	.L43:
+ 188:Core/Src/switch.c ****                 }
+ 189:Core/Src/switch.c ****             }
+ 190:Core/Src/switch.c ****             else if((1u == switch2_status)&&(0==switch2_status_old))
+ 856              		.loc 1 190 25
+ 857 0378 424B     		ldr	r3, .L56+16
+ 858 037a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 859              		.loc 1 190 20
+ 860 037c 012B     		cmp	r3, #1
+ 861 037e 15D1     		bne	.L45
+ 862              		.loc 1 190 47 discriminator 1
+ 863 0380 414B     		ldr	r3, .L56+20
+ 864 0382 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 865              		.loc 1 190 43 discriminator 1
+ 866 0384 002B     		cmp	r3, #0
+ 867 0386 11D1     		bne	.L45
+ 191:Core/Src/switch.c ****             {
+ 192:Core/Src/switch.c ****                 switch_idle_temp++;
+ 868              		.loc 1 192 33
+ 869 0388 424B     		ldr	r3, .L56+32
+ 870 038a B3F90030 		ldrsh	r3, [r3]
+ 871 038e 9BB2     		uxth	r3, r3
+ 872 0390 0133     		adds	r3, r3, #1
+ 873 0392 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 19
+
+
+ 874 0394 1AB2     		sxth	r2, r3
+ 875 0396 3F4B     		ldr	r3, .L56+32
+ 876 0398 1A80     		strh	r2, [r3]	@ movhi
+ 193:Core/Src/switch.c ****                 if(switch_idle_temp > 60)
+ 877              		.loc 1 193 37
+ 878 039a 3E4B     		ldr	r3, .L56+32
+ 879 039c B3F90030 		ldrsh	r3, [r3]
+ 880              		.loc 1 193 19
+ 881 03a0 3C2B     		cmp	r3, #60
+ 882 03a2 0EDD     		ble	.L30
+ 194:Core/Src/switch.c ****                 {
+ 195:Core/Src/switch.c ****                     switch_idle_temp = 0;
+ 883              		.loc 1 195 38
+ 884 03a4 3B4B     		ldr	r3, .L56+32
+ 885 03a6 0022     		movs	r2, #0
+ 886 03a8 1A80     		strh	r2, [r3]	@ movhi
+ 193:Core/Src/switch.c ****                 if(switch_idle_temp > 60)
+ 887              		.loc 1 193 19
+ 888 03aa 0AE0     		b	.L30
+ 889              	.L45:
+ 196:Core/Src/switch.c ****                 }
+ 197:Core/Src/switch.c ****             }        
+ 198:Core/Src/switch.c ****             else if((1u == switch3_status)&&(0==switch3_status_old))
+ 890              		.loc 1 198 25
+ 891 03ac 374B     		ldr	r3, .L56+24
+ 892 03ae 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 893              		.loc 1 198 20
+ 894 03b0 012B     		cmp	r3, #1
+ 895 03b2 06D1     		bne	.L30
+ 896              		.loc 1 198 47 discriminator 1
+ 897 03b4 364B     		ldr	r3, .L56+28
+ 898 03b6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 899              		.loc 1 198 43 discriminator 1
+ 900 03b8 002B     		cmp	r3, #0
+ 901 03ba 02D1     		bne	.L30
+ 199:Core/Src/switch.c ****             {
+ 200:Core/Src/switch.c ****                 switch_mode = SWITCH_MODE_RUN;
+ 902              		.loc 1 200 29
+ 903 03bc 364B     		ldr	r3, .L56+36
+ 904 03be 0322     		movs	r2, #3
+ 905 03c0 1A70     		strb	r2, [r3]
+ 906              	.L30:
+ 201:Core/Src/switch.c ****             }
+ 202:Core/Src/switch.c ****             else
+ 203:Core/Src/switch.c ****             {
+ 204:Core/Src/switch.c **** 
+ 205:Core/Src/switch.c ****             }            
+ 206:Core/Src/switch.c ****         }
+ 207:Core/Src/switch.c ****     }
+ 208:Core/Src/switch.c **** 
+ 209:Core/Src/switch.c ****     if(switch_mode == SWITCH_MODE_MENUSELECT)
+ 907              		.loc 1 209 20
+ 908 03c2 354B     		ldr	r3, .L56+36
+ 909 03c4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 910              		.loc 1 209 7
+ 911 03c6 012B     		cmp	r3, #1
+ 912 03c8 46D1     		bne	.L47
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 20
+
+
+ 210:Core/Src/switch.c ****     {
+ 211:Core/Src/switch.c ****         if((1u == switch1_status)&&(0==switch1_status_old))
+ 913              		.loc 1 211 16
+ 914 03ca 2B4B     		ldr	r3, .L56+4
+ 915 03cc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 916              		.loc 1 211 11
+ 917 03ce 012B     		cmp	r3, #1
+ 918 03d0 11D1     		bne	.L48
+ 919              		.loc 1 211 38 discriminator 1
+ 920 03d2 2A4B     		ldr	r3, .L56+8
+ 921 03d4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 922              		.loc 1 211 34 discriminator 1
+ 923 03d6 002B     		cmp	r3, #0
+ 924 03d8 0DD1     		bne	.L48
+ 212:Core/Src/switch.c ****         {
+ 213:Core/Src/switch.c ****             switch_submode--;
+ 925              		.loc 1 213 27
+ 926 03da 304B     		ldr	r3, .L56+40
+ 927 03dc 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 928 03de 013B     		subs	r3, r3, #1
+ 929 03e0 DAB2     		uxtb	r2, r3
+ 930 03e2 2E4B     		ldr	r3, .L56+40
+ 931 03e4 1A70     		strb	r2, [r3]
+ 214:Core/Src/switch.c ****             if(switch_submode < SWITCH_SUB_MODE_1)
+ 932              		.loc 1 214 31
+ 933 03e6 2D4B     		ldr	r3, .L56+40
+ 934 03e8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 935              		.loc 1 214 15
+ 936 03ea 002B     		cmp	r3, #0
+ 937 03ec 34D1     		bne	.L47
+ 215:Core/Src/switch.c ****             {
+ 216:Core/Src/switch.c ****                 switch_submode = SWITCH_SUB_MODE_19;
+ 938              		.loc 1 216 32
+ 939 03ee 2B4B     		ldr	r3, .L56+40
+ 940 03f0 1322     		movs	r2, #19
+ 941 03f2 1A70     		strb	r2, [r3]
+ 214:Core/Src/switch.c ****             if(switch_submode < SWITCH_SUB_MODE_1)
+ 942              		.loc 1 214 15
+ 943 03f4 30E0     		b	.L47
+ 944              	.L48:
+ 217:Core/Src/switch.c ****             }
+ 218:Core/Src/switch.c ****         }
+ 219:Core/Src/switch.c ****         else if((1u == switch2_status)&&(0==switch2_status_old))
+ 945              		.loc 1 219 21
+ 946 03f6 234B     		ldr	r3, .L56+16
+ 947 03f8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 948              		.loc 1 219 16
+ 949 03fa 012B     		cmp	r3, #1
+ 950 03fc 11D1     		bne	.L50
+ 951              		.loc 1 219 43 discriminator 1
+ 952 03fe 224B     		ldr	r3, .L56+20
+ 953 0400 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 954              		.loc 1 219 39 discriminator 1
+ 955 0402 002B     		cmp	r3, #0
+ 956 0404 0DD1     		bne	.L50
+ 220:Core/Src/switch.c ****         {
+ 221:Core/Src/switch.c ****             switch_submode++;
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 21
+
+
+ 957              		.loc 1 221 27
+ 958 0406 254B     		ldr	r3, .L56+40
+ 959 0408 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 960 040a 0133     		adds	r3, r3, #1
+ 961 040c DAB2     		uxtb	r2, r3
+ 962 040e 234B     		ldr	r3, .L56+40
+ 963 0410 1A70     		strb	r2, [r3]
+ 222:Core/Src/switch.c ****             if(switch_submode > SWITCH_SUB_MODE_19)
+ 964              		.loc 1 222 31
+ 965 0412 224B     		ldr	r3, .L56+40
+ 966 0414 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 967              		.loc 1 222 15
+ 968 0416 132B     		cmp	r3, #19
+ 969 0418 1ED9     		bls	.L47
+ 223:Core/Src/switch.c ****             {
+ 224:Core/Src/switch.c ****                 switch_submode = SWITCH_SUB_MODE_1;
+ 970              		.loc 1 224 32
+ 971 041a 204B     		ldr	r3, .L56+40
+ 972 041c 0122     		movs	r2, #1
+ 973 041e 1A70     		strb	r2, [r3]
+ 222:Core/Src/switch.c ****             if(switch_submode > SWITCH_SUB_MODE_19)
+ 974              		.loc 1 222 15
+ 975 0420 1AE0     		b	.L47
+ 976              	.L50:
+ 225:Core/Src/switch.c ****             }
+ 226:Core/Src/switch.c ****         }
+ 227:Core/Src/switch.c ****         else if((1u == switch3_status)&&(0==switch3_status_old)&&(SWITCH_SUB_MODE_17 == switch_subm
+ 977              		.loc 1 227 21
+ 978 0422 1A4B     		ldr	r3, .L56+24
+ 979 0424 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 980              		.loc 1 227 16
+ 981 0426 012B     		cmp	r3, #1
+ 982 0428 0BD1     		bne	.L52
+ 983              		.loc 1 227 43 discriminator 1
+ 984 042a 194B     		ldr	r3, .L56+28
+ 985 042c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 986              		.loc 1 227 39 discriminator 1
+ 987 042e 002B     		cmp	r3, #0
+ 988 0430 07D1     		bne	.L52
+ 989              		.loc 1 227 86 discriminator 2
+ 990 0432 1A4B     		ldr	r3, .L56+40
+ 991 0434 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 992              		.loc 1 227 64 discriminator 2
+ 993 0436 112B     		cmp	r3, #17
+ 994 0438 03D1     		bne	.L52
+ 228:Core/Src/switch.c ****         {
+ 229:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_CUSTOM;
+ 995              		.loc 1 229 25
+ 996 043a 174B     		ldr	r3, .L56+36
+ 997 043c 0222     		movs	r2, #2
+ 998 043e 1A70     		strb	r2, [r3]
+ 999 0440 0AE0     		b	.L47
+ 1000              	.L52:
+ 230:Core/Src/switch.c ****         }
+ 231:Core/Src/switch.c ****         else if((1u == switch3_status)&&(0==switch3_status_old))
+ 1001              		.loc 1 231 21
+ 1002 0442 124B     		ldr	r3, .L56+24
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 22
+
+
+ 1003 0444 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1004              		.loc 1 231 16
+ 1005 0446 012B     		cmp	r3, #1
+ 1006 0448 06D1     		bne	.L47
+ 1007              		.loc 1 231 43 discriminator 1
+ 1008 044a 114B     		ldr	r3, .L56+28
+ 1009 044c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1010              		.loc 1 231 39 discriminator 1
+ 1011 044e 002B     		cmp	r3, #0
+ 1012 0450 02D1     		bne	.L47
+ 232:Core/Src/switch.c ****         {
+ 233:Core/Src/switch.c ****             switch_mode = SWITCH_MODE_RUN;
+ 1013              		.loc 1 233 25
+ 1014 0452 114B     		ldr	r3, .L56+36
+ 1015 0454 0322     		movs	r2, #3
+ 1016 0456 1A70     		strb	r2, [r3]
+ 1017              	.L47:
+ 234:Core/Src/switch.c ****         }
+ 235:Core/Src/switch.c ****         else
+ 236:Core/Src/switch.c ****         {
+ 237:Core/Src/switch.c **** 
+ 238:Core/Src/switch.c ****         }
+ 239:Core/Src/switch.c ****     }
+ 240:Core/Src/switch.c **** 
+ 241:Core/Src/switch.c ****     switch1_status_old = switch1_status;
+ 1018              		.loc 1 241 24
+ 1019 0458 074B     		ldr	r3, .L56+4
+ 1020 045a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1021 045c 074B     		ldr	r3, .L56+8
+ 1022 045e 1A70     		strb	r2, [r3]
+ 242:Core/Src/switch.c ****     switch2_status_old = switch2_status;
+ 1023              		.loc 1 242 24
+ 1024 0460 084B     		ldr	r3, .L56+16
+ 1025 0462 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1026 0464 084B     		ldr	r3, .L56+20
+ 1027 0466 1A70     		strb	r2, [r3]
+ 243:Core/Src/switch.c ****     switch3_status_old = switch3_status;
+ 1028              		.loc 1 243 24
+ 1029 0468 084B     		ldr	r3, .L56+24
+ 1030 046a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1031 046c 084B     		ldr	r3, .L56+28
+ 1032 046e 1A70     		strb	r2, [r3]
+ 244:Core/Src/switch.c ****     
+ 245:Core/Src/switch.c ****     return;
+ 1033              		.loc 1 245 5
+ 1034 0470 00BF     		nop
+ 246:Core/Src/switch.c **** }...
+ 1035              		.loc 1 246 1
+ 1036 0472 80BD     		pop	{r7, pc}
+ 1037              	.L57:
+ 1038              		.align	2
+ 1039              	.L56:
+ 1040 0474 00000000 		.word	switch_custom_mode
+ 1041 0478 00000000 		.word	switch1_status
+ 1042 047c 00000000 		.word	switch1_status_old
+ 1043 0480 00000000 		.word	switch_trg_time
+ 1044 0484 00000000 		.word	switch2_status
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 23
+
+
+ 1045 0488 00000000 		.word	switch2_status_old
+ 1046 048c 00000000 		.word	switch3_status
+ 1047 0490 00000000 		.word	switch3_status_old
+ 1048 0494 00000000 		.word	switch_idle_temp
+ 1049 0498 00000000 		.word	switch_mode
+ 1050 049c 00000000 		.word	switch_submode
+ 1051              		.cfi_endproc
+ 1052              	.LFE66:
+ 1054              		.text
+ 1055              	.Letext0:
+ 1056              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1057              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1058              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 1059              		.file 5 "Core/Inc/vardef.h"
+ 1060              		.file 6 "Core/Inc/switch.h"
+ 1061              		.file 7 "Core/Inc/pwm.h"
+ 1062              		.file 8 "Core/Inc/eeprom.h"
+ 1063              		.file 9 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 24
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 switch.c
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:21     .bss.switch1_status:00000000 switch1_status
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:22     .bss.switch1_status:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:27     .bss.switch2_status:00000000 switch2_status
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:28     .bss.switch2_status:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:33     .bss.switch3_status:00000000 switch3_status
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:34     .bss.switch3_status:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:39     .bss.switch4_status:00000000 switch4_status
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:40     .bss.switch4_status:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:45     .bss.switch1_status_old:00000000 switch1_status_old
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:46     .bss.switch1_status_old:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:51     .bss.switch2_status_old:00000000 switch2_status_old
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:52     .bss.switch2_status_old:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:57     .bss.switch3_status_old:00000000 switch3_status_old
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:58     .bss.switch3_status_old:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:63     .bss.switch4_status_old:00000000 switch4_status_old
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:64     .bss.switch4_status_old:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:69     .bss.switch_overtemp:00000000 switch_overtemp
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:70     .bss.switch_overtemp:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:75     .bss.switch_mode:00000000 switch_mode
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:76     .bss.switch_mode:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:81     .bss.switch_submode:00000000 switch_submode
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:82     .bss.switch_submode:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:87     .bss.cup_in:00000000 cup_in
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:88     .bss.cup_in:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:93     .bss.cup_in_old:00000000 cup_in_old
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:94     .bss.cup_in_old:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:99     .bss.switch4_mode:00000000 switch4_mode
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:100    .bss.switch4_mode:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:105    .bss.switch4_mode_old:00000000 switch4_mode_old
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:106    .bss.switch4_mode_old:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:112    .bss.switch_timer1:00000000 switch_timer1
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:109    .bss.switch_timer1:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:119    .bss.switch_timer2:00000000 switch_timer2
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:116    .bss.switch_timer2:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:126    .bss.switch_timer3:00000000 switch_timer3
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:123    .bss.switch_timer3:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:129    .text.Switch_Val_Init:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:135    .text.Switch_Val_Init:00000000 Switch_Val_Init
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:233    .text.Switch_Val_Init:0000007c $d
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:247    .text.Switch_Control:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:253    .text.Switch_Control:00000000 Switch_Control
-C:\Users\jisu8\AppData\Local\Temp\ccnNgkSf.s:652    .text.Switch_Control:00000234 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:21     .bss.switch1_status:00000000 switch1_status
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:22     .bss.switch1_status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:27     .bss.switch2_status:00000000 switch2_status
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:28     .bss.switch2_status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:33     .bss.switch3_status:00000000 switch3_status
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:34     .bss.switch3_status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:39     .bss.switch4_status:00000000 switch4_status
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:40     .bss.switch4_status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:45     .bss.switch1_status_old:00000000 switch1_status_old
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:46     .bss.switch1_status_old:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:51     .bss.switch2_status_old:00000000 switch2_status_old
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:52     .bss.switch2_status_old:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:57     .bss.switch3_status_old:00000000 switch3_status_old
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:58     .bss.switch3_status_old:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:63     .bss.switch4_status_old:00000000 switch4_status_old
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:64     .bss.switch4_status_old:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:69     .bss.switch_overtemp:00000000 switch_overtemp
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:70     .bss.switch_overtemp:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:75     .bss.switch_mode:00000000 switch_mode
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:76     .bss.switch_mode:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:81     .bss.switch_submode:00000000 switch_submode
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:82     .bss.switch_submode:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:87     .bss.cup_in:00000000 cup_in
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:88     .bss.cup_in:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:93     .bss.cup_in_old:00000000 cup_in_old
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:94     .bss.cup_in_old:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:99     .bss.switch4_mode:00000000 switch4_mode
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:100    .bss.switch4_mode:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:105    .bss.switch4_mode_old:00000000 switch4_mode_old
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:106    .bss.switch4_mode_old:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:111    .bss.switch_custom_mode:00000000 switch_custom_mode
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:112    .bss.switch_custom_mode:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:118    .bss.switch_trg_temp:00000000 switch_trg_temp
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:115    .bss.switch_trg_temp:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:125    .bss.switch_trg_time:00000000 switch_trg_time
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:122    .bss.switch_trg_time:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:132    .bss.switch_idle_temp:00000000 switch_idle_temp
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:129    .bss.switch_idle_temp:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:139    .bss.switch_timer1:00000000 switch_timer1
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:136    .bss.switch_timer1:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:146    .bss.switch_timer2:00000000 switch_timer2
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:143    .bss.switch_timer2:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:153    .bss.switch_timer3:00000000 switch_timer3
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:150    .bss.switch_timer3:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:156    .text.Switch_Val_Init:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:162    .text.Switch_Val_Init:00000000 Switch_Val_Init
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:269    .text.Switch_Val_Init:00000084 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:285    .text.Switch_Control:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:291    .text.Switch_Control:00000000 Switch_Control
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:699    .text.Switch_Control:00000254 $d
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:725    .text.Switch_Control:000002b4 $t
+C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s:1040   .text.Switch_Control:00000474 $d
 
 UNDEFINED SYMBOLS
 switch_submodeEEP
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccJxblgG.s 			page 25
+
+
+switch_trg_tempEEP
+switch_trg_timeEEP
+switch_idle_tempEEP
 HAL_GPIO_ReadPin
 HAL_GPIO_WritePin
 Pwm_Servo_status

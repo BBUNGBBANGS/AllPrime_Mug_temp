@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 1
   71              		.global	Target_Idle_Temp
   72              		.section	.bss.Target_Idle_Temp,"aw",%nobits
   73              		.align	1
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 2
 
 
   76              	Target_Idle_Temp:
@@ -118,20 +118,20 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 1
  108              		.cfi_offset 7, -8
  109              		.cfi_offset 14, -4
  110 0002 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 3
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 3
 
 
  111              	.LCFI1:
  112              		.cfi_def_cfa_register 7
   28:Core/Src/pwm.c ****     if(((switch_mode == SWITCH_MODE_RUN)&&(cup_in == 1))||
  113              		.loc 1 28 22
- 114 0004 3F4B     		ldr	r3, .L10
+ 114 0004 414B     		ldr	r3, .L10
  115 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  116              		.loc 1 28 7
- 117 0008 022B     		cmp	r3, #2
+ 117 0008 032B     		cmp	r3, #3
  118 000a 03D1     		bne	.L2
  119              		.loc 1 28 51 discriminator 1
- 120 000c 3E4B     		ldr	r3, .L10+4
+ 120 000c 404B     		ldr	r3, .L10+4
  121 000e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  122              		.loc 1 28 41 discriminator 1
  123 0010 012B     		cmp	r3, #1
@@ -139,20 +139,20 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 1
  125              	.L2:
   29:Core/Src/pwm.c ****        (switch_mode == SWITCH_MODE_RUN)&&((switch_submode == SWITCH_SUB_MODE_18)||(switch_submode =
  126              		.loc 1 29 21 discriminator 3
- 127 0014 3B4B     		ldr	r3, .L10
+ 127 0014 3D4B     		ldr	r3, .L10
  128 0016 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
   28:Core/Src/pwm.c ****     if(((switch_mode == SWITCH_MODE_RUN)&&(cup_in == 1))||
  129              		.loc 1 28 57 discriminator 3
- 130 0018 022B     		cmp	r3, #2
+ 130 0018 032B     		cmp	r3, #3
  131 001a 10D1     		bne	.L4
  132              		.loc 1 29 59
- 133 001c 3B4B     		ldr	r3, .L10+8
+ 133 001c 3D4B     		ldr	r3, .L10+8
  134 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  135              		.loc 1 29 40
  136 0020 122B     		cmp	r3, #18
  137 0022 03D0     		beq	.L3
  138              		.loc 1 29 99 discriminator 1
- 139 0024 394B     		ldr	r3, .L10+8
+ 139 0024 3B4B     		ldr	r3, .L10+8
  140 0026 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  141              		.loc 1 29 81 discriminator 1
  142 0028 132B     		cmp	r3, #19
@@ -161,7 +161,7 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 1
   30:Core/Src/pwm.c ****     {
   31:Core/Src/pwm.c ****         if(PWM_SUBMODE_TARGET_ON == first_target_flag)
  145              		.loc 1 31 34
- 146 002c 384B     		ldr	r3, .L10+12
+ 146 002c 3A4B     		ldr	r3, .L10+12
  147 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  148              		.loc 1 31 11
  149 0030 012B     		cmp	r3, #1
@@ -175,1430 +175,1455 @@ ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 1
   35:Core/Src/pwm.c ****         Pwm_Control();
  154              		.loc 1 35 9
  155 0038 FFF7FEFF 		bl	Pwm_Control
- 156 003c 1DE0     		b	.L6
+ 156 003c 20E0     		b	.L6
  157              	.L4:
   36:Core/Src/pwm.c ****     }
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 4
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 4
 
 
   37:Core/Src/pwm.c ****     else
   38:Core/Src/pwm.c ****     {
   39:Core/Src/pwm.c ****         first_target_flag = PWM_SUBMODE_TARGET_ON;
  158              		.loc 1 39 27
- 159 003e 344B     		ldr	r3, .L10+12
+ 159 003e 364B     		ldr	r3, .L10+12
  160 0040 0122     		movs	r2, #1
  161 0042 1A70     		strb	r2, [r3]
   40:Core/Src/pwm.c ****         Target_Run_Temp = 0;
  162              		.loc 1 40 25
- 163 0044 334B     		ldr	r3, .L10+16
+ 163 0044 354B     		ldr	r3, .L10+16
  164 0046 0022     		movs	r2, #0
  165 0048 1A80     		strh	r2, [r3]	@ movhi
   41:Core/Src/pwm.c ****         Target_Run_Time = 0;
  166              		.loc 1 41 25
- 167 004a 334B     		ldr	r3, .L10+20
+ 167 004a 354B     		ldr	r3, .L10+20
  168 004c 0022     		movs	r2, #0
  169 004e 1A60     		str	r2, [r3]
   42:Core/Src/pwm.c ****         Target_Idle_Temp = 0;
  170              		.loc 1 42 26
- 171 0050 324B     		ldr	r3, .L10+24
+ 171 0050 344B     		ldr	r3, .L10+24
  172 0052 0022     		movs	r2, #0
  173 0054 1A80     		strh	r2, [r3]	@ movhi
   43:Core/Src/pwm.c ****         Pwm_Duty_Peltier = 0;
  174              		.loc 1 43 26
- 175 0056 324B     		ldr	r3, .L10+28
+ 175 0056 344B     		ldr	r3, .L10+28
  176 0058 0022     		movs	r2, #0
  177 005a 1A80     		strh	r2, [r3]	@ movhi
   44:Core/Src/pwm.c ****         Pwm_Duty_Heater = 0;
  178              		.loc 1 44 25
- 179 005c 314B     		ldr	r3, .L10+32
+ 179 005c 334B     		ldr	r3, .L10+32
  180 005e 0022     		movs	r2, #0
  181 0060 1A80     		strh	r2, [r3]	@ movhi
-  45:Core/Src/pwm.c ****         Pwm_Peltier_Set_Duty(0);
- 182              		.loc 1 45 9
- 183 0062 0020     		movs	r0, #0
- 184 0064 FFF7FEFF 		bl	Pwm_Peltier_Set_Duty
-  46:Core/Src/pwm.c ****         Pwm_Heater_Set_Duty(0);
- 185              		.loc 1 46 9
- 186 0068 0020     		movs	r0, #0
- 187 006a FFF7FEFF 		bl	Pwm_Heater_Set_Duty
-  47:Core/Src/pwm.c ****         Pwm_Fan_Set_Duty(0);        
- 188              		.loc 1 47 9
- 189 006e 0020     		movs	r0, #0
- 190 0070 FFF7FEFF 		bl	Pwm_Fan_Set_Duty
-  48:Core/Src/pwm.c ****         Pwm_Led_Mode = PWM_LED_MODE_NONE;
- 191              		.loc 1 48 22
- 192 0074 2C4B     		ldr	r3, .L10+36
- 193 0076 0022     		movs	r2, #0
- 194 0078 1A70     		strb	r2, [r3]
- 195              	.L6:
-  49:Core/Src/pwm.c ****     }
-  50:Core/Src/pwm.c **** 
-  51:Core/Src/pwm.c ****     if((switch4_mode == 1)&&(Pwm_Servo_status == PWM_SERVO_STATUS_RUN))
- 196              		.loc 1 51 22
- 197 007a 2C4B     		ldr	r3, .L10+40
- 198 007c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 199              		.loc 1 51 7
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 5
+  45:Core/Src/pwm.c ****         Pwm_Duty_Fan = 0;
+ 182              		.loc 1 45 22
+ 183 0062 334B     		ldr	r3, .L10+36
+ 184 0064 0022     		movs	r2, #0
+ 185 0066 1A80     		strh	r2, [r3]	@ movhi
+  46:Core/Src/pwm.c ****         Pwm_Peltier_Set_Duty(0);
+ 186              		.loc 1 46 9
+ 187 0068 0020     		movs	r0, #0
+ 188 006a FFF7FEFF 		bl	Pwm_Peltier_Set_Duty
+  47:Core/Src/pwm.c ****         Pwm_Heater_Set_Duty(0);
+ 189              		.loc 1 47 9
+ 190 006e 0020     		movs	r0, #0
+ 191 0070 FFF7FEFF 		bl	Pwm_Heater_Set_Duty
+  48:Core/Src/pwm.c ****         Pwm_Fan_Set_Duty(0);        
+ 192              		.loc 1 48 9
+ 193 0074 0020     		movs	r0, #0
+ 194 0076 FFF7FEFF 		bl	Pwm_Fan_Set_Duty
+  49:Core/Src/pwm.c ****         Pwm_Led_Mode = PWM_LED_MODE_NONE;
+ 195              		.loc 1 49 22
+ 196 007a 2E4B     		ldr	r3, .L10+40
+ 197 007c 0022     		movs	r2, #0
+ 198 007e 1A70     		strb	r2, [r3]
+ 199              	.L6:
+  50:Core/Src/pwm.c ****     }
+  51:Core/Src/pwm.c **** 
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 5
 
 
- 200 007e 012B     		cmp	r3, #1
- 201 0080 19D1     		bne	.L7
- 202              		.loc 1 51 47 discriminator 1
- 203 0082 2B4B     		ldr	r3, .L10+44
- 204 0084 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 205              		.loc 1 51 27 discriminator 1
- 206 0086 012B     		cmp	r3, #1
- 207 0088 15D1     		bne	.L7
-  52:Core/Src/pwm.c ****     {
-  53:Core/Src/pwm.c ****         Pwm_Duty_Servo = PWM_SERVO_180_DEGREE;
- 208              		.loc 1 53 24
- 209 008a 2A4B     		ldr	r3, .L10+48
- 210 008c 7F22     		movs	r2, #127
- 211 008e 1A80     		strh	r2, [r3]	@ movhi
-  54:Core/Src/pwm.c ****         Servo_timer++;
- 212              		.loc 1 54 20
- 213 0090 294B     		ldr	r3, .L10+52
- 214 0092 1B88     		ldrh	r3, [r3]
- 215 0094 0133     		adds	r3, r3, #1
- 216 0096 9AB2     		uxth	r2, r3
- 217 0098 274B     		ldr	r3, .L10+52
- 218 009a 1A80     		strh	r2, [r3]	@ movhi
-  55:Core/Src/pwm.c ****         if(Servo_timer>=20)
- 219              		.loc 1 55 23
- 220 009c 264B     		ldr	r3, .L10+52
- 221 009e 1B88     		ldrh	r3, [r3]
- 222              		.loc 1 55 11
- 223 00a0 132B     		cmp	r3, #19
- 224 00a2 08D9     		bls	.L7
-  56:Core/Src/pwm.c ****         {
-  57:Core/Src/pwm.c ****             Servo_timer = 20;
- 225              		.loc 1 57 25
- 226 00a4 244B     		ldr	r3, .L10+52
- 227 00a6 1422     		movs	r2, #20
- 228 00a8 1A80     		strh	r2, [r3]	@ movhi
-  58:Core/Src/pwm.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_STOP;
- 229              		.loc 1 58 30
- 230 00aa 214B     		ldr	r3, .L10+44
- 231 00ac 0022     		movs	r2, #0
- 232 00ae 1A70     		strb	r2, [r3]
-  59:Core/Src/pwm.c ****             Pwm_Duty_Servo = PWM_SERVO_OFF;
- 233              		.loc 1 59 28
- 234 00b0 204B     		ldr	r3, .L10+48
+  52:Core/Src/pwm.c ****     if((switch4_mode == 1)&&(Pwm_Servo_status == PWM_SERVO_STATUS_RUN))
+ 200              		.loc 1 52 22
+ 201 0080 2D4B     		ldr	r3, .L10+44
+ 202 0082 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 203              		.loc 1 52 7
+ 204 0084 012B     		cmp	r3, #1
+ 205 0086 19D1     		bne	.L7
+ 206              		.loc 1 52 47 discriminator 1
+ 207 0088 2C4B     		ldr	r3, .L10+48
+ 208 008a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 209              		.loc 1 52 27 discriminator 1
+ 210 008c 012B     		cmp	r3, #1
+ 211 008e 15D1     		bne	.L7
+  53:Core/Src/pwm.c ****     {
+  54:Core/Src/pwm.c ****         Pwm_Duty_Servo = PWM_SERVO_180_DEGREE;
+ 212              		.loc 1 54 24
+ 213 0090 2B4B     		ldr	r3, .L10+52
+ 214 0092 7F22     		movs	r2, #127
+ 215 0094 1A80     		strh	r2, [r3]	@ movhi
+  55:Core/Src/pwm.c ****         Servo_timer++;
+ 216              		.loc 1 55 20
+ 217 0096 2B4B     		ldr	r3, .L10+56
+ 218 0098 1B88     		ldrh	r3, [r3]
+ 219 009a 0133     		adds	r3, r3, #1
+ 220 009c 9AB2     		uxth	r2, r3
+ 221 009e 294B     		ldr	r3, .L10+56
+ 222 00a0 1A80     		strh	r2, [r3]	@ movhi
+  56:Core/Src/pwm.c ****         if(Servo_timer>=20)
+ 223              		.loc 1 56 23
+ 224 00a2 284B     		ldr	r3, .L10+56
+ 225 00a4 1B88     		ldrh	r3, [r3]
+ 226              		.loc 1 56 11
+ 227 00a6 132B     		cmp	r3, #19
+ 228 00a8 08D9     		bls	.L7
+  57:Core/Src/pwm.c ****         {
+  58:Core/Src/pwm.c ****             Servo_timer = 20;
+ 229              		.loc 1 58 25
+ 230 00aa 264B     		ldr	r3, .L10+56
+ 231 00ac 1422     		movs	r2, #20
+ 232 00ae 1A80     		strh	r2, [r3]	@ movhi
+  59:Core/Src/pwm.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_STOP;
+ 233              		.loc 1 59 30
+ 234 00b0 224B     		ldr	r3, .L10+48
  235 00b2 0022     		movs	r2, #0
- 236 00b4 1A80     		strh	r2, [r3]	@ movhi
- 237              	.L7:
-  60:Core/Src/pwm.c ****         }
-  61:Core/Src/pwm.c ****     }
-  62:Core/Src/pwm.c ****     if((switch4_mode == 0)&&(Pwm_Servo_status == PWM_SERVO_STATUS_RUN))
- 238              		.loc 1 62 22
- 239 00b6 1D4B     		ldr	r3, .L10+40
- 240 00b8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 241              		.loc 1 62 7
- 242 00ba 002B     		cmp	r3, #0
- 243 00bc 19D1     		bne	.L8
- 244              		.loc 1 62 47 discriminator 1
- 245 00be 1C4B     		ldr	r3, .L10+44
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 6
+ 236 00b4 1A70     		strb	r2, [r3]
+  60:Core/Src/pwm.c ****             Pwm_Duty_Servo = PWM_SERVO_OFF;
+ 237              		.loc 1 60 28
+ 238 00b6 224B     		ldr	r3, .L10+52
+ 239 00b8 0022     		movs	r2, #0
+ 240 00ba 1A80     		strh	r2, [r3]	@ movhi
+ 241              	.L7:
+  61:Core/Src/pwm.c ****         }
+  62:Core/Src/pwm.c ****     }
+  63:Core/Src/pwm.c ****     if((switch4_mode == 0)&&(Pwm_Servo_status == PWM_SERVO_STATUS_RUN))
+ 242              		.loc 1 63 22
+ 243 00bc 1E4B     		ldr	r3, .L10+44
+ 244 00be 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 6
 
 
- 246 00c0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 247              		.loc 1 62 27 discriminator 1
- 248 00c2 012B     		cmp	r3, #1
- 249 00c4 15D1     		bne	.L8
-  63:Core/Src/pwm.c ****     {
-  64:Core/Src/pwm.c ****         Pwm_Duty_Servo = PWM_SERVO_0_DEGREE;
- 250              		.loc 1 64 24
- 251 00c6 1B4B     		ldr	r3, .L10+48
- 252 00c8 2022     		movs	r2, #32
- 253 00ca 1A80     		strh	r2, [r3]	@ movhi
-  65:Core/Src/pwm.c ****         Servo_timer++;
- 254              		.loc 1 65 20
- 255 00cc 1A4B     		ldr	r3, .L10+52
- 256 00ce 1B88     		ldrh	r3, [r3]
- 257 00d0 0133     		adds	r3, r3, #1
- 258 00d2 9AB2     		uxth	r2, r3
- 259 00d4 184B     		ldr	r3, .L10+52
- 260 00d6 1A80     		strh	r2, [r3]	@ movhi
-  66:Core/Src/pwm.c ****         if(Servo_timer>=20)
- 261              		.loc 1 66 23
- 262 00d8 174B     		ldr	r3, .L10+52
- 263 00da 1B88     		ldrh	r3, [r3]
- 264              		.loc 1 66 11
- 265 00dc 132B     		cmp	r3, #19
- 266 00de 08D9     		bls	.L8
-  67:Core/Src/pwm.c ****         {
-  68:Core/Src/pwm.c ****             Servo_timer = 20;
- 267              		.loc 1 68 25
- 268 00e0 154B     		ldr	r3, .L10+52
- 269 00e2 1422     		movs	r2, #20
- 270 00e4 1A80     		strh	r2, [r3]	@ movhi
-  69:Core/Src/pwm.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_STOP;
- 271              		.loc 1 69 30
- 272 00e6 124B     		ldr	r3, .L10+44
- 273 00e8 0022     		movs	r2, #0
- 274 00ea 1A70     		strb	r2, [r3]
-  70:Core/Src/pwm.c ****             Pwm_Duty_Servo = PWM_SERVO_OFF;
- 275              		.loc 1 70 28
- 276 00ec 114B     		ldr	r3, .L10+48
+ 245              		.loc 1 63 7
+ 246 00c0 002B     		cmp	r3, #0
+ 247 00c2 19D1     		bne	.L8
+ 248              		.loc 1 63 47 discriminator 1
+ 249 00c4 1D4B     		ldr	r3, .L10+48
+ 250 00c6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 251              		.loc 1 63 27 discriminator 1
+ 252 00c8 012B     		cmp	r3, #1
+ 253 00ca 15D1     		bne	.L8
+  64:Core/Src/pwm.c ****     {
+  65:Core/Src/pwm.c ****         Pwm_Duty_Servo = PWM_SERVO_0_DEGREE;
+ 254              		.loc 1 65 24
+ 255 00cc 1C4B     		ldr	r3, .L10+52
+ 256 00ce 2022     		movs	r2, #32
+ 257 00d0 1A80     		strh	r2, [r3]	@ movhi
+  66:Core/Src/pwm.c ****         Servo_timer++;
+ 258              		.loc 1 66 20
+ 259 00d2 1C4B     		ldr	r3, .L10+56
+ 260 00d4 1B88     		ldrh	r3, [r3]
+ 261 00d6 0133     		adds	r3, r3, #1
+ 262 00d8 9AB2     		uxth	r2, r3
+ 263 00da 1A4B     		ldr	r3, .L10+56
+ 264 00dc 1A80     		strh	r2, [r3]	@ movhi
+  67:Core/Src/pwm.c ****         if(Servo_timer>=20)
+ 265              		.loc 1 67 23
+ 266 00de 194B     		ldr	r3, .L10+56
+ 267 00e0 1B88     		ldrh	r3, [r3]
+ 268              		.loc 1 67 11
+ 269 00e2 132B     		cmp	r3, #19
+ 270 00e4 08D9     		bls	.L8
+  68:Core/Src/pwm.c ****         {
+  69:Core/Src/pwm.c ****             Servo_timer = 20;
+ 271              		.loc 1 69 25
+ 272 00e6 174B     		ldr	r3, .L10+56
+ 273 00e8 1422     		movs	r2, #20
+ 274 00ea 1A80     		strh	r2, [r3]	@ movhi
+  70:Core/Src/pwm.c ****             Pwm_Servo_status = PWM_SERVO_STATUS_STOP;
+ 275              		.loc 1 70 30
+ 276 00ec 134B     		ldr	r3, .L10+48
  277 00ee 0022     		movs	r2, #0
- 278 00f0 1A80     		strh	r2, [r3]	@ movhi
- 279              	.L8:
-  71:Core/Src/pwm.c ****         }
-  72:Core/Src/pwm.c ****     }
-  73:Core/Src/pwm.c **** 
-  74:Core/Src/pwm.c ****     Pwm_Servo_Set_Duty(Pwm_Duty_Servo);
- 280              		.loc 1 74 5
- 281 00f2 104B     		ldr	r3, .L10+48
- 282 00f4 B3F90030 		ldrsh	r3, [r3]
- 283 00f8 9BB2     		uxth	r3, r3
- 284 00fa 1846     		mov	r0, r3
- 285 00fc FFF7FEFF 		bl	Pwm_Servo_Set_Duty
-  75:Core/Src/pwm.c ****     return;
- 286              		.loc 1 75 5
- 287 0100 00BF     		nop
-  76:Core/Src/pwm.c **** }
- 288              		.loc 1 76 1
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 7
+ 278 00f0 1A70     		strb	r2, [r3]
+  71:Core/Src/pwm.c ****             Pwm_Duty_Servo = PWM_SERVO_OFF;
+ 279              		.loc 1 71 28
+ 280 00f2 134B     		ldr	r3, .L10+52
+ 281 00f4 0022     		movs	r2, #0
+ 282 00f6 1A80     		strh	r2, [r3]	@ movhi
+ 283              	.L8:
+  72:Core/Src/pwm.c ****         }
+  73:Core/Src/pwm.c ****     }
+  74:Core/Src/pwm.c **** 
+  75:Core/Src/pwm.c ****     Pwm_Servo_Set_Duty(Pwm_Duty_Servo);
+ 284              		.loc 1 75 5
+ 285 00f8 114B     		ldr	r3, .L10+52
+ 286 00fa B3F90030 		ldrsh	r3, [r3]
+ 287 00fe 9BB2     		uxth	r3, r3
+ 288 0100 1846     		mov	r0, r3
+ 289 0102 FFF7FEFF 		bl	Pwm_Servo_Set_Duty
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 7
 
 
- 289 0102 80BD     		pop	{r7, pc}
- 290              	.L11:
- 291              		.align	2
- 292              	.L10:
- 293 0104 00000000 		.word	switch_mode
- 294 0108 00000000 		.word	cup_in
- 295 010c 00000000 		.word	switch_submode
- 296 0110 00000000 		.word	first_target_flag
- 297 0114 00000000 		.word	Target_Run_Temp
- 298 0118 00000000 		.word	Target_Run_Time
- 299 011c 00000000 		.word	Target_Idle_Temp
- 300 0120 00000000 		.word	Pwm_Duty_Peltier
- 301 0124 00000000 		.word	Pwm_Duty_Heater
- 302 0128 00000000 		.word	Pwm_Led_Mode
- 303 012c 00000000 		.word	switch4_mode
- 304 0130 00000000 		.word	Pwm_Servo_status
- 305 0134 00000000 		.word	Pwm_Duty_Servo
- 306 0138 00000000 		.word	Servo_timer
- 307              		.cfi_endproc
- 308              	.LFE65:
- 310              		.section	.text.Pwm_SubMode_Target_Set,"ax",%progbits
- 311              		.align	1
- 312              		.syntax unified
- 313              		.thumb
- 314              		.thumb_func
- 316              	Pwm_SubMode_Target_Set:
- 317              	.LFB66:
-  77:Core/Src/pwm.c **** static void Pwm_SubMode_Target_Set(void)
-  78:Core/Src/pwm.c **** {
- 318              		.loc 1 78 1
- 319              		.cfi_startproc
- 320              		@ args = 0, pretend = 0, frame = 0
- 321              		@ frame_needed = 1, uses_anonymous_args = 0
- 322              		@ link register save eliminated.
- 323 0000 80B4     		push	{r7}
- 324              	.LCFI2:
- 325              		.cfi_def_cfa_offset 4
- 326              		.cfi_offset 7, -4
- 327 0002 00AF     		add	r7, sp, #0
- 328              	.LCFI3:
- 329              		.cfi_def_cfa_register 7
-  79:Core/Src/pwm.c ****     switch(switch_submode)
- 330              		.loc 1 79 5
- 331 0004 864B     		ldr	r3, .L35
- 332 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 333 0008 013B     		subs	r3, r3, #1
- 334 000a 122B     		cmp	r3, #18
- 335 000c 00F2FA80 		bhi	.L13
- 336 0010 01A2     		adr	r2, .L15
- 337 0012 52F823F0 		ldr	pc, [r2, r3, lsl #2]
- 338 0016 00BF     		.p2align 2
- 339              	.L15:
- 340 0018 65000000 		.word	.L33+1
- 341 001c 7B000000 		.word	.L32+1
- 342 0020 91000000 		.word	.L31+1
- 343 0024 A7000000 		.word	.L30+1
- 344 0028 BD000000 		.word	.L29+1
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 8
+  76:Core/Src/pwm.c ****     return;
+ 290              		.loc 1 76 5
+ 291 0106 00BF     		nop
+  77:Core/Src/pwm.c **** }
+ 292              		.loc 1 77 1
+ 293 0108 80BD     		pop	{r7, pc}
+ 294              	.L11:
+ 295 010a 00BF     		.align	2
+ 296              	.L10:
+ 297 010c 00000000 		.word	switch_mode
+ 298 0110 00000000 		.word	cup_in
+ 299 0114 00000000 		.word	switch_submode
+ 300 0118 00000000 		.word	first_target_flag
+ 301 011c 00000000 		.word	Target_Run_Temp
+ 302 0120 00000000 		.word	Target_Run_Time
+ 303 0124 00000000 		.word	Target_Idle_Temp
+ 304 0128 00000000 		.word	Pwm_Duty_Peltier
+ 305 012c 00000000 		.word	Pwm_Duty_Heater
+ 306 0130 00000000 		.word	Pwm_Duty_Fan
+ 307 0134 00000000 		.word	Pwm_Led_Mode
+ 308 0138 00000000 		.word	switch4_mode
+ 309 013c 00000000 		.word	Pwm_Servo_status
+ 310 0140 00000000 		.word	Pwm_Duty_Servo
+ 311 0144 00000000 		.word	Servo_timer
+ 312              		.cfi_endproc
+ 313              	.LFE65:
+ 315              		.section	.text.Pwm_SubMode_Target_Set,"ax",%progbits
+ 316              		.align	1
+ 317              		.syntax unified
+ 318              		.thumb
+ 319              		.thumb_func
+ 321              	Pwm_SubMode_Target_Set:
+ 322              	.LFB66:
+  78:Core/Src/pwm.c **** static void Pwm_SubMode_Target_Set(void)
+  79:Core/Src/pwm.c **** {
+ 323              		.loc 1 79 1
+ 324              		.cfi_startproc
+ 325              		@ args = 0, pretend = 0, frame = 0
+ 326              		@ frame_needed = 1, uses_anonymous_args = 0
+ 327              		@ link register save eliminated.
+ 328 0000 80B4     		push	{r7}
+ 329              	.LCFI2:
+ 330              		.cfi_def_cfa_offset 4
+ 331              		.cfi_offset 7, -4
+ 332 0002 00AF     		add	r7, sp, #0
+ 333              	.LCFI3:
+ 334              		.cfi_def_cfa_register 7
+  80:Core/Src/pwm.c ****     switch(switch_submode)
+ 335              		.loc 1 80 5
+ 336 0004 8B4B     		ldr	r3, .L35
+ 337 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 338 0008 013B     		subs	r3, r3, #1
+ 339 000a 122B     		cmp	r3, #18
+ 340 000c 00F20481 		bhi	.L13
+ 341 0010 01A2     		adr	r2, .L15
+ 342 0012 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 343 0016 00BF     		.p2align 2
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 8
 
 
- 345 002c D3000000 		.word	.L28+1
- 346 0030 E9000000 		.word	.L27+1
- 347 0034 FF000000 		.word	.L26+1
- 348 0038 15010000 		.word	.L25+1
- 349 003c 2B010000 		.word	.L24+1
- 350 0040 41010000 		.word	.L23+1
- 351 0044 57010000 		.word	.L22+1
- 352 0048 6D010000 		.word	.L21+1
- 353 004c 81010000 		.word	.L20+1
- 354 0050 97010000 		.word	.L19+1
- 355 0054 AD010000 		.word	.L18+1
- 356 0058 C3010000 		.word	.L17+1
- 357 005c D9010000 		.word	.L16+1
- 358 0060 EF010000 		.word	.L14+1
- 359              		.p2align 1
- 360              	.L33:
-  80:Core/Src/pwm.c ****     {
-  81:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_1 :
-  82:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_1;
- 361              		.loc 1 82 29
- 362 0064 6F4B     		ldr	r3, .L35+4
- 363 0066 5A22     		movs	r2, #90
- 364 0068 1A80     		strh	r2, [r3]	@ movhi
-  83:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_1;
- 365              		.loc 1 83 29
- 366 006a 6F4B     		ldr	r3, .L35+8
- 367 006c 4EF66022 		movw	r2, #60000
- 368 0070 1A60     		str	r2, [r3]
-  84:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_1;
- 369              		.loc 1 84 30
- 370 0072 6E4B     		ldr	r3, .L35+12
- 371 0074 4122     		movs	r2, #65
- 372 0076 1A80     		strh	r2, [r3]	@ movhi
-  85:Core/Src/pwm.c ****         break;
- 373              		.loc 1 85 9
- 374 0078 CEE0     		b	.L34
- 375              	.L32:
-  86:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_2 :
-  87:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_2;
- 376              		.loc 1 87 29
- 377 007a 6A4B     		ldr	r3, .L35+4
- 378 007c 5A22     		movs	r2, #90
- 379 007e 1A80     		strh	r2, [r3]	@ movhi
-  88:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_2;
- 380              		.loc 1 88 29
- 381 0080 694B     		ldr	r3, .L35+8
- 382 0082 41F27072 		movw	r2, #6000
- 383 0086 1A60     		str	r2, [r3]
-  89:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_2; 
- 384              		.loc 1 89 30
- 385 0088 684B     		ldr	r3, .L35+12
- 386 008a 4122     		movs	r2, #65
- 387 008c 1A80     		strh	r2, [r3]	@ movhi
-  90:Core/Src/pwm.c ****         break;
- 388              		.loc 1 90 9
- 389 008e C3E0     		b	.L34
- 390              	.L31:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 9
+ 344              	.L15:
+ 345 0018 65000000 		.word	.L33+1
+ 346 001c 7B000000 		.word	.L32+1
+ 347 0020 91000000 		.word	.L31+1
+ 348 0024 A7000000 		.word	.L30+1
+ 349 0028 BD000000 		.word	.L29+1
+ 350 002c D3000000 		.word	.L28+1
+ 351 0030 E9000000 		.word	.L27+1
+ 352 0034 FF000000 		.word	.L26+1
+ 353 0038 15010000 		.word	.L25+1
+ 354 003c 2B010000 		.word	.L24+1
+ 355 0040 41010000 		.word	.L23+1
+ 356 0044 57010000 		.word	.L22+1
+ 357 0048 6D010000 		.word	.L21+1
+ 358 004c 81010000 		.word	.L20+1
+ 359 0050 97010000 		.word	.L19+1
+ 360 0054 AD010000 		.word	.L18+1
+ 361 0058 C3010000 		.word	.L17+1
+ 362 005c ED010000 		.word	.L16+1
+ 363 0060 03020000 		.word	.L14+1
+ 364              		.p2align 1
+ 365              	.L33:
+  81:Core/Src/pwm.c ****     {
+  82:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_1 :
+  83:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_1;
+ 366              		.loc 1 83 29
+ 367 0064 744B     		ldr	r3, .L35+4
+ 368 0066 5A22     		movs	r2, #90
+ 369 0068 1A80     		strh	r2, [r3]	@ movhi
+  84:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_1;
+ 370              		.loc 1 84 29
+ 371 006a 744B     		ldr	r3, .L35+8
+ 372 006c 4EF66022 		movw	r2, #60000
+ 373 0070 1A60     		str	r2, [r3]
+  85:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_1;
+ 374              		.loc 1 85 30
+ 375 0072 734B     		ldr	r3, .L35+12
+ 376 0074 4122     		movs	r2, #65
+ 377 0076 1A80     		strh	r2, [r3]	@ movhi
+  86:Core/Src/pwm.c ****         break;
+ 378              		.loc 1 86 9
+ 379 0078 D8E0     		b	.L34
+ 380              	.L32:
+  87:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_2 :
+  88:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_2;
+ 381              		.loc 1 88 29
+ 382 007a 6F4B     		ldr	r3, .L35+4
+ 383 007c 5A22     		movs	r2, #90
+ 384 007e 1A80     		strh	r2, [r3]	@ movhi
+  89:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_2;
+ 385              		.loc 1 89 29
+ 386 0080 6E4B     		ldr	r3, .L35+8
+ 387 0082 41F27072 		movw	r2, #6000
+ 388 0086 1A60     		str	r2, [r3]
+  90:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_2; 
+ 389              		.loc 1 90 30
+ 390 0088 6D4B     		ldr	r3, .L35+12
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 9
 
 
-  91:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_3 :
-  92:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_3;
- 391              		.loc 1 92 29
- 392 0090 644B     		ldr	r3, .L35+4
- 393 0092 5A22     		movs	r2, #90
- 394 0094 1A80     		strh	r2, [r3]	@ movhi
-  93:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_3;
- 395              		.loc 1 93 29
- 396 0096 644B     		ldr	r3, .L35+8
- 397 0098 41F27072 		movw	r2, #6000
- 398 009c 1A60     		str	r2, [r3]
-  94:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_3; 
- 399              		.loc 1 94 30
- 400 009e 634B     		ldr	r3, .L35+12
- 401 00a0 0522     		movs	r2, #5
- 402 00a2 1A80     		strh	r2, [r3]	@ movhi
-  95:Core/Src/pwm.c ****         break;
- 403              		.loc 1 95 9
- 404 00a4 B8E0     		b	.L34
- 405              	.L30:
-  96:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_4 :
-  97:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_4;
- 406              		.loc 1 97 29
- 407 00a6 5F4B     		ldr	r3, .L35+4
- 408 00a8 4122     		movs	r2, #65
- 409 00aa 1A80     		strh	r2, [r3]	@ movhi
-  98:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_4;
- 410              		.loc 1 98 29
- 411 00ac 5E4B     		ldr	r3, .L35+8
- 412 00ae 41F27072 		movw	r2, #6000
- 413 00b2 1A60     		str	r2, [r3]
-  99:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_4; 
- 414              		.loc 1 99 30
- 415 00b4 5D4B     		ldr	r3, .L35+12
- 416 00b6 4122     		movs	r2, #65
- 417 00b8 1A80     		strh	r2, [r3]	@ movhi
- 100:Core/Src/pwm.c ****         break;
- 418              		.loc 1 100 9
- 419 00ba ADE0     		b	.L34
- 420              	.L29:
- 101:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_5 :
- 102:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_5;
- 421              		.loc 1 102 29
- 422 00bc 594B     		ldr	r3, .L35+4
- 423 00be 0522     		movs	r2, #5
- 424 00c0 1A80     		strh	r2, [r3]	@ movhi
- 103:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_5;
- 425              		.loc 1 103 29
- 426 00c2 594B     		ldr	r3, .L35+8
- 427 00c4 41F27072 		movw	r2, #6000
- 428 00c8 1A60     		str	r2, [r3]
- 104:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_5; 
- 429              		.loc 1 104 30
- 430 00ca 584B     		ldr	r3, .L35+12
- 431 00cc 0522     		movs	r2, #5
- 432 00ce 1A80     		strh	r2, [r3]	@ movhi
- 105:Core/Src/pwm.c ****         break;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 10
+ 391 008a 4122     		movs	r2, #65
+ 392 008c 1A80     		strh	r2, [r3]	@ movhi
+  91:Core/Src/pwm.c ****         break;
+ 393              		.loc 1 91 9
+ 394 008e CDE0     		b	.L34
+ 395              	.L31:
+  92:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_3 :
+  93:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_3;
+ 396              		.loc 1 93 29
+ 397 0090 694B     		ldr	r3, .L35+4
+ 398 0092 5A22     		movs	r2, #90
+ 399 0094 1A80     		strh	r2, [r3]	@ movhi
+  94:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_3;
+ 400              		.loc 1 94 29
+ 401 0096 694B     		ldr	r3, .L35+8
+ 402 0098 41F27072 		movw	r2, #6000
+ 403 009c 1A60     		str	r2, [r3]
+  95:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_3; 
+ 404              		.loc 1 95 30
+ 405 009e 684B     		ldr	r3, .L35+12
+ 406 00a0 0522     		movs	r2, #5
+ 407 00a2 1A80     		strh	r2, [r3]	@ movhi
+  96:Core/Src/pwm.c ****         break;
+ 408              		.loc 1 96 9
+ 409 00a4 C2E0     		b	.L34
+ 410              	.L30:
+  97:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_4 :
+  98:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_4;
+ 411              		.loc 1 98 29
+ 412 00a6 644B     		ldr	r3, .L35+4
+ 413 00a8 4122     		movs	r2, #65
+ 414 00aa 1A80     		strh	r2, [r3]	@ movhi
+  99:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_4;
+ 415              		.loc 1 99 29
+ 416 00ac 634B     		ldr	r3, .L35+8
+ 417 00ae 41F27072 		movw	r2, #6000
+ 418 00b2 1A60     		str	r2, [r3]
+ 100:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_4; 
+ 419              		.loc 1 100 30
+ 420 00b4 624B     		ldr	r3, .L35+12
+ 421 00b6 4122     		movs	r2, #65
+ 422 00b8 1A80     		strh	r2, [r3]	@ movhi
+ 101:Core/Src/pwm.c ****         break;
+ 423              		.loc 1 101 9
+ 424 00ba B7E0     		b	.L34
+ 425              	.L29:
+ 102:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_5 :
+ 103:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_5;
+ 426              		.loc 1 103 29
+ 427 00bc 5E4B     		ldr	r3, .L35+4
+ 428 00be 0522     		movs	r2, #5
+ 429 00c0 1A80     		strh	r2, [r3]	@ movhi
+ 104:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_5;
+ 430              		.loc 1 104 29
+ 431 00c2 5E4B     		ldr	r3, .L35+8
+ 432 00c4 41F27072 		movw	r2, #6000
+ 433 00c8 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 10
 
 
- 433              		.loc 1 105 9
- 434 00d0 A2E0     		b	.L34
- 435              	.L28:
- 106:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_6 :
- 107:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_6;
- 436              		.loc 1 107 29
- 437 00d2 544B     		ldr	r3, .L35+4
- 438 00d4 5A22     		movs	r2, #90
- 439 00d6 1A80     		strh	r2, [r3]	@ movhi
- 108:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_6;
- 440              		.loc 1 108 29
- 441 00d8 534B     		ldr	r3, .L35+8
- 442 00da 41F27072 		movw	r2, #6000
- 443 00de 1A60     		str	r2, [r3]
- 109:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_6; 
- 444              		.loc 1 109 30
- 445 00e0 524B     		ldr	r3, .L35+12
- 446 00e2 4122     		movs	r2, #65
- 447 00e4 1A80     		strh	r2, [r3]	@ movhi
- 110:Core/Src/pwm.c ****         break;
- 448              		.loc 1 110 9
- 449 00e6 97E0     		b	.L34
- 450              	.L27:
- 111:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_7 :
- 112:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_7;
- 451              		.loc 1 112 29
- 452 00e8 4E4B     		ldr	r3, .L35+4
- 453 00ea 2822     		movs	r2, #40
- 454 00ec 1A80     		strh	r2, [r3]	@ movhi
- 113:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_7;
- 455              		.loc 1 113 29
- 456 00ee 4E4B     		ldr	r3, .L35+8
- 457 00f0 44F25062 		movw	r2, #18000
- 458 00f4 1A60     		str	r2, [r3]
- 114:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_7; 
- 459              		.loc 1 114 30
- 460 00f6 4D4B     		ldr	r3, .L35+12
- 461 00f8 0522     		movs	r2, #5
- 462 00fa 1A80     		strh	r2, [r3]	@ movhi
- 115:Core/Src/pwm.c ****         break;
- 463              		.loc 1 115 9
- 464 00fc 8CE0     		b	.L34
- 465              	.L26:
- 116:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_8 :
- 117:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_8;
- 466              		.loc 1 117 29
- 467 00fe 494B     		ldr	r3, .L35+4
- 468 0100 5A22     		movs	r2, #90
- 469 0102 1A80     		strh	r2, [r3]	@ movhi
- 118:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_8;
- 470              		.loc 1 118 29
- 471 0104 484B     		ldr	r3, .L35+8
- 472 0106 44F25062 		movw	r2, #18000
- 473 010a 1A60     		str	r2, [r3]
- 119:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_8; 
- 474              		.loc 1 119 30
- 475 010c 474B     		ldr	r3, .L35+12
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 11
+ 105:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_5; 
+ 434              		.loc 1 105 30
+ 435 00ca 5D4B     		ldr	r3, .L35+12
+ 436 00cc 0522     		movs	r2, #5
+ 437 00ce 1A80     		strh	r2, [r3]	@ movhi
+ 106:Core/Src/pwm.c ****         break;
+ 438              		.loc 1 106 9
+ 439 00d0 ACE0     		b	.L34
+ 440              	.L28:
+ 107:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_6 :
+ 108:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_6;
+ 441              		.loc 1 108 29
+ 442 00d2 594B     		ldr	r3, .L35+4
+ 443 00d4 5A22     		movs	r2, #90
+ 444 00d6 1A80     		strh	r2, [r3]	@ movhi
+ 109:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_6;
+ 445              		.loc 1 109 29
+ 446 00d8 584B     		ldr	r3, .L35+8
+ 447 00da 41F27072 		movw	r2, #6000
+ 448 00de 1A60     		str	r2, [r3]
+ 110:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_6; 
+ 449              		.loc 1 110 30
+ 450 00e0 574B     		ldr	r3, .L35+12
+ 451 00e2 4122     		movs	r2, #65
+ 452 00e4 1A80     		strh	r2, [r3]	@ movhi
+ 111:Core/Src/pwm.c ****         break;
+ 453              		.loc 1 111 9
+ 454 00e6 A1E0     		b	.L34
+ 455              	.L27:
+ 112:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_7 :
+ 113:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_7;
+ 456              		.loc 1 113 29
+ 457 00e8 534B     		ldr	r3, .L35+4
+ 458 00ea 2822     		movs	r2, #40
+ 459 00ec 1A80     		strh	r2, [r3]	@ movhi
+ 114:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_7;
+ 460              		.loc 1 114 29
+ 461 00ee 534B     		ldr	r3, .L35+8
+ 462 00f0 44F25062 		movw	r2, #18000
+ 463 00f4 1A60     		str	r2, [r3]
+ 115:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_7; 
+ 464              		.loc 1 115 30
+ 465 00f6 524B     		ldr	r3, .L35+12
+ 466 00f8 0522     		movs	r2, #5
+ 467 00fa 1A80     		strh	r2, [r3]	@ movhi
+ 116:Core/Src/pwm.c ****         break;
+ 468              		.loc 1 116 9
+ 469 00fc 96E0     		b	.L34
+ 470              	.L26:
+ 117:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_8 :
+ 118:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_8;
+ 471              		.loc 1 118 29
+ 472 00fe 4E4B     		ldr	r3, .L35+4
+ 473 0100 5A22     		movs	r2, #90
+ 474 0102 1A80     		strh	r2, [r3]	@ movhi
+ 119:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_8;
+ 475              		.loc 1 119 29
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 11
 
 
- 476 010e 4122     		movs	r2, #65
- 477 0110 1A80     		strh	r2, [r3]	@ movhi
- 120:Core/Src/pwm.c ****         break;
- 478              		.loc 1 120 9
- 479 0112 81E0     		b	.L34
- 480              	.L25:
- 121:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_9 :
- 122:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_9;
- 481              		.loc 1 122 29
- 482 0114 434B     		ldr	r3, .L35+4
- 483 0116 5A22     		movs	r2, #90
- 484 0118 1A80     		strh	r2, [r3]	@ movhi
- 123:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_9;
- 485              		.loc 1 123 29
- 486 011a 434B     		ldr	r3, .L35+8
- 487 011c 4EF66022 		movw	r2, #60000
- 488 0120 1A60     		str	r2, [r3]
- 124:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_9; 
- 489              		.loc 1 124 30
- 490 0122 424B     		ldr	r3, .L35+12
- 491 0124 4122     		movs	r2, #65
- 492 0126 1A80     		strh	r2, [r3]	@ movhi
- 125:Core/Src/pwm.c ****         break;
- 493              		.loc 1 125 9
- 494 0128 76E0     		b	.L34
- 495              	.L24:
- 126:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_10 :
- 127:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_10;
- 496              		.loc 1 127 29
- 497 012a 3E4B     		ldr	r3, .L35+4
- 498 012c 5A22     		movs	r2, #90
- 499 012e 1A80     		strh	r2, [r3]	@ movhi
- 128:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_10;
- 500              		.loc 1 128 29
- 501 0130 3D4B     		ldr	r3, .L35+8
- 502 0132 42F6E062 		movw	r2, #12000
- 503 0136 1A60     		str	r2, [r3]
- 129:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_10; 
- 504              		.loc 1 129 30
- 505 0138 3C4B     		ldr	r3, .L35+12
- 506 013a 4122     		movs	r2, #65
- 507 013c 1A80     		strh	r2, [r3]	@ movhi
- 130:Core/Src/pwm.c ****         break;
- 508              		.loc 1 130 9
- 509 013e 6BE0     		b	.L34
- 510              	.L23:
- 131:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_11 :
- 132:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_11;
- 511              		.loc 1 132 29
- 512 0140 384B     		ldr	r3, .L35+4
- 513 0142 5A22     		movs	r2, #90
- 514 0144 1A80     		strh	r2, [r3]	@ movhi
- 133:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_11;
- 515              		.loc 1 133 29
- 516 0146 384B     		ldr	r3, .L35+8
- 517 0148 47F23052 		movw	r2, #30000
- 518 014c 1A60     		str	r2, [r3]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 12
+ 476 0104 4D4B     		ldr	r3, .L35+8
+ 477 0106 44F25062 		movw	r2, #18000
+ 478 010a 1A60     		str	r2, [r3]
+ 120:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_8; 
+ 479              		.loc 1 120 30
+ 480 010c 4C4B     		ldr	r3, .L35+12
+ 481 010e 4122     		movs	r2, #65
+ 482 0110 1A80     		strh	r2, [r3]	@ movhi
+ 121:Core/Src/pwm.c ****         break;
+ 483              		.loc 1 121 9
+ 484 0112 8BE0     		b	.L34
+ 485              	.L25:
+ 122:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_9 :
+ 123:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_9;
+ 486              		.loc 1 123 29
+ 487 0114 484B     		ldr	r3, .L35+4
+ 488 0116 5A22     		movs	r2, #90
+ 489 0118 1A80     		strh	r2, [r3]	@ movhi
+ 124:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_9;
+ 490              		.loc 1 124 29
+ 491 011a 484B     		ldr	r3, .L35+8
+ 492 011c 4EF66022 		movw	r2, #60000
+ 493 0120 1A60     		str	r2, [r3]
+ 125:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_9; 
+ 494              		.loc 1 125 30
+ 495 0122 474B     		ldr	r3, .L35+12
+ 496 0124 4122     		movs	r2, #65
+ 497 0126 1A80     		strh	r2, [r3]	@ movhi
+ 126:Core/Src/pwm.c ****         break;
+ 498              		.loc 1 126 9
+ 499 0128 80E0     		b	.L34
+ 500              	.L24:
+ 127:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_10 :
+ 128:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_10;
+ 501              		.loc 1 128 29
+ 502 012a 434B     		ldr	r3, .L35+4
+ 503 012c 5A22     		movs	r2, #90
+ 504 012e 1A80     		strh	r2, [r3]	@ movhi
+ 129:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_10;
+ 505              		.loc 1 129 29
+ 506 0130 424B     		ldr	r3, .L35+8
+ 507 0132 42F6E062 		movw	r2, #12000
+ 508 0136 1A60     		str	r2, [r3]
+ 130:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_10; 
+ 509              		.loc 1 130 30
+ 510 0138 414B     		ldr	r3, .L35+12
+ 511 013a 4122     		movs	r2, #65
+ 512 013c 1A80     		strh	r2, [r3]	@ movhi
+ 131:Core/Src/pwm.c ****         break;
+ 513              		.loc 1 131 9
+ 514 013e 75E0     		b	.L34
+ 515              	.L23:
+ 132:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_11 :
+ 133:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_11;
+ 516              		.loc 1 133 29
+ 517 0140 3D4B     		ldr	r3, .L35+4
+ 518 0142 5A22     		movs	r2, #90
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 12
 
 
- 134:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_11; 
- 519              		.loc 1 134 30
- 520 014e 374B     		ldr	r3, .L35+12
- 521 0150 4122     		movs	r2, #65
- 522 0152 1A80     		strh	r2, [r3]	@ movhi
- 135:Core/Src/pwm.c ****         break;
- 523              		.loc 1 135 9
- 524 0154 60E0     		b	.L34
- 525              	.L22:
- 136:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_12 :
- 137:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_12;
- 526              		.loc 1 137 29
- 527 0156 334B     		ldr	r3, .L35+4
- 528 0158 5A22     		movs	r2, #90
- 529 015a 1A80     		strh	r2, [r3]	@ movhi
- 138:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_12;
- 530              		.loc 1 138 29
- 531 015c 324B     		ldr	r3, .L35+8
- 532 015e 41F27072 		movw	r2, #6000
- 533 0162 1A60     		str	r2, [r3]
- 139:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_12; 
- 534              		.loc 1 139 30
- 535 0164 314B     		ldr	r3, .L35+12
- 536 0166 4122     		movs	r2, #65
- 537 0168 1A80     		strh	r2, [r3]	@ movhi
- 140:Core/Src/pwm.c ****         break;
- 538              		.loc 1 140 9
- 539 016a 55E0     		b	.L34
- 540              	.L21:
- 141:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_13 :
- 142:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_13;
- 541              		.loc 1 142 29
- 542 016c 2D4B     		ldr	r3, .L35+4
- 543 016e 5022     		movs	r2, #80
- 544 0170 1A80     		strh	r2, [r3]	@ movhi
- 143:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_13;
- 545              		.loc 1 143 29
- 546 0172 2D4B     		ldr	r3, .L35+8
- 547 0174 2E4A     		ldr	r2, .L35+16
- 548 0176 1A60     		str	r2, [r3]
- 144:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_13; 
- 549              		.loc 1 144 30
- 550 0178 2C4B     		ldr	r3, .L35+12
- 551 017a 4122     		movs	r2, #65
- 552 017c 1A80     		strh	r2, [r3]	@ movhi
- 145:Core/Src/pwm.c ****         break;
- 553              		.loc 1 145 9
- 554 017e 4BE0     		b	.L34
- 555              	.L20:
- 146:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_14 :
- 147:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_14;
- 556              		.loc 1 147 29
- 557 0180 284B     		ldr	r3, .L35+4
- 558 0182 5A22     		movs	r2, #90
- 559 0184 1A80     		strh	r2, [r3]	@ movhi
- 148:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_14;
- 560              		.loc 1 148 29
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 13
+ 519 0144 1A80     		strh	r2, [r3]	@ movhi
+ 134:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_11;
+ 520              		.loc 1 134 29
+ 521 0146 3D4B     		ldr	r3, .L35+8
+ 522 0148 47F23052 		movw	r2, #30000
+ 523 014c 1A60     		str	r2, [r3]
+ 135:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_11; 
+ 524              		.loc 1 135 30
+ 525 014e 3C4B     		ldr	r3, .L35+12
+ 526 0150 4122     		movs	r2, #65
+ 527 0152 1A80     		strh	r2, [r3]	@ movhi
+ 136:Core/Src/pwm.c ****         break;
+ 528              		.loc 1 136 9
+ 529 0154 6AE0     		b	.L34
+ 530              	.L22:
+ 137:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_12 :
+ 138:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_12;
+ 531              		.loc 1 138 29
+ 532 0156 384B     		ldr	r3, .L35+4
+ 533 0158 5A22     		movs	r2, #90
+ 534 015a 1A80     		strh	r2, [r3]	@ movhi
+ 139:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_12;
+ 535              		.loc 1 139 29
+ 536 015c 374B     		ldr	r3, .L35+8
+ 537 015e 41F27072 		movw	r2, #6000
+ 538 0162 1A60     		str	r2, [r3]
+ 140:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_12; 
+ 539              		.loc 1 140 30
+ 540 0164 364B     		ldr	r3, .L35+12
+ 541 0166 4122     		movs	r2, #65
+ 542 0168 1A80     		strh	r2, [r3]	@ movhi
+ 141:Core/Src/pwm.c ****         break;
+ 543              		.loc 1 141 9
+ 544 016a 5FE0     		b	.L34
+ 545              	.L21:
+ 142:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_13 :
+ 143:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_13;
+ 546              		.loc 1 143 29
+ 547 016c 324B     		ldr	r3, .L35+4
+ 548 016e 5022     		movs	r2, #80
+ 549 0170 1A80     		strh	r2, [r3]	@ movhi
+ 144:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_13;
+ 550              		.loc 1 144 29
+ 551 0172 324B     		ldr	r3, .L35+8
+ 552 0174 334A     		ldr	r2, .L35+16
+ 553 0176 1A60     		str	r2, [r3]
+ 145:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_13; 
+ 554              		.loc 1 145 30
+ 555 0178 314B     		ldr	r3, .L35+12
+ 556 017a 4122     		movs	r2, #65
+ 557 017c 1A80     		strh	r2, [r3]	@ movhi
+ 146:Core/Src/pwm.c ****         break;
+ 558              		.loc 1 146 9
+ 559 017e 55E0     		b	.L34
+ 560              	.L20:
+ 147:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_14 :
+ 148:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_14;
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 13
 
 
- 561 0186 284B     		ldr	r3, .L35+8
- 562 0188 42F6E062 		movw	r2, #12000
- 563 018c 1A60     		str	r2, [r3]
- 149:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_14; 
- 564              		.loc 1 149 30
- 565 018e 274B     		ldr	r3, .L35+12
- 566 0190 4122     		movs	r2, #65
- 567 0192 1A80     		strh	r2, [r3]	@ movhi
- 150:Core/Src/pwm.c ****         break;
- 568              		.loc 1 150 9
- 569 0194 40E0     		b	.L34
- 570              	.L19:
- 151:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_15 :
- 152:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_15;
- 571              		.loc 1 152 29
- 572 0196 234B     		ldr	r3, .L35+4
- 573 0198 5A22     		movs	r2, #90
- 574 019a 1A80     		strh	r2, [r3]	@ movhi
- 153:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_15;
- 575              		.loc 1 153 29
- 576 019c 224B     		ldr	r3, .L35+8
- 577 019e 47F23052 		movw	r2, #30000
- 578 01a2 1A60     		str	r2, [r3]
- 154:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_15; 
- 579              		.loc 1 154 30
- 580 01a4 214B     		ldr	r3, .L35+12
- 581 01a6 4122     		movs	r2, #65
- 582 01a8 1A80     		strh	r2, [r3]	@ movhi
- 155:Core/Src/pwm.c ****         break;
- 583              		.loc 1 155 9
- 584 01aa 35E0     		b	.L34
- 585              	.L18:
- 156:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_16 :
- 157:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_16;
- 586              		.loc 1 157 29
- 587 01ac 1D4B     		ldr	r3, .L35+4
- 588 01ae 5A22     		movs	r2, #90
- 589 01b0 1A80     		strh	r2, [r3]	@ movhi
- 158:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_16;
- 590              		.loc 1 158 29
- 591 01b2 1D4B     		ldr	r3, .L35+8
- 592 01b4 42F6E062 		movw	r2, #12000
- 593 01b8 1A60     		str	r2, [r3]
- 159:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_16; 
- 594              		.loc 1 159 30
- 595 01ba 1C4B     		ldr	r3, .L35+12
- 596 01bc 2822     		movs	r2, #40
- 597 01be 1A80     		strh	r2, [r3]	@ movhi
- 160:Core/Src/pwm.c ****         break;
- 598              		.loc 1 160 9
- 599 01c0 2AE0     		b	.L34
- 600              	.L17:
- 161:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_17 :
- 162:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_17;
- 601              		.loc 1 162 29
- 602 01c2 184B     		ldr	r3, .L35+4
- 603 01c4 3222     		movs	r2, #50
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 14
+ 561              		.loc 1 148 29
+ 562 0180 2D4B     		ldr	r3, .L35+4
+ 563 0182 5A22     		movs	r2, #90
+ 564 0184 1A80     		strh	r2, [r3]	@ movhi
+ 149:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_14;
+ 565              		.loc 1 149 29
+ 566 0186 2D4B     		ldr	r3, .L35+8
+ 567 0188 42F6E062 		movw	r2, #12000
+ 568 018c 1A60     		str	r2, [r3]
+ 150:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_14; 
+ 569              		.loc 1 150 30
+ 570 018e 2C4B     		ldr	r3, .L35+12
+ 571 0190 4122     		movs	r2, #65
+ 572 0192 1A80     		strh	r2, [r3]	@ movhi
+ 151:Core/Src/pwm.c ****         break;
+ 573              		.loc 1 151 9
+ 574 0194 4AE0     		b	.L34
+ 575              	.L19:
+ 152:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_15 :
+ 153:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_15;
+ 576              		.loc 1 153 29
+ 577 0196 284B     		ldr	r3, .L35+4
+ 578 0198 5A22     		movs	r2, #90
+ 579 019a 1A80     		strh	r2, [r3]	@ movhi
+ 154:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_15;
+ 580              		.loc 1 154 29
+ 581 019c 274B     		ldr	r3, .L35+8
+ 582 019e 47F23052 		movw	r2, #30000
+ 583 01a2 1A60     		str	r2, [r3]
+ 155:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_15; 
+ 584              		.loc 1 155 30
+ 585 01a4 264B     		ldr	r3, .L35+12
+ 586 01a6 4122     		movs	r2, #65
+ 587 01a8 1A80     		strh	r2, [r3]	@ movhi
+ 156:Core/Src/pwm.c ****         break;
+ 588              		.loc 1 156 9
+ 589 01aa 3FE0     		b	.L34
+ 590              	.L18:
+ 157:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_16 :
+ 158:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_16;
+ 591              		.loc 1 158 29
+ 592 01ac 224B     		ldr	r3, .L35+4
+ 593 01ae 5A22     		movs	r2, #90
+ 594 01b0 1A80     		strh	r2, [r3]	@ movhi
+ 159:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_16;
+ 595              		.loc 1 159 29
+ 596 01b2 224B     		ldr	r3, .L35+8
+ 597 01b4 42F6E062 		movw	r2, #12000
+ 598 01b8 1A60     		str	r2, [r3]
+ 160:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_16; 
+ 599              		.loc 1 160 30
+ 600 01ba 214B     		ldr	r3, .L35+12
+ 601 01bc 2822     		movs	r2, #40
+ 602 01be 1A80     		strh	r2, [r3]	@ movhi
+ 161:Core/Src/pwm.c ****         break;
+ 603              		.loc 1 161 9
+ 604 01c0 34E0     		b	.L34
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 14
 
 
- 604 01c6 1A80     		strh	r2, [r3]	@ movhi
- 163:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_17;
- 605              		.loc 1 163 29
- 606 01c8 174B     		ldr	r3, .L35+8
- 607 01ca 4EF66022 		movw	r2, #60000
- 608 01ce 1A60     		str	r2, [r3]
- 164:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_17; 
- 609              		.loc 1 164 30
- 610 01d0 164B     		ldr	r3, .L35+12
- 611 01d2 0A22     		movs	r2, #10
- 612 01d4 1A80     		strh	r2, [r3]	@ movhi
- 165:Core/Src/pwm.c ****         break;
- 613              		.loc 1 165 9
- 614 01d6 1FE0     		b	.L34
- 615              	.L16:
- 166:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_18 :
- 167:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_18;
- 616              		.loc 1 167 29
- 617 01d8 124B     		ldr	r3, .L35+4
- 618 01da 0522     		movs	r2, #5
- 619 01dc 1A80     		strh	r2, [r3]	@ movhi
- 168:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_18;
- 620              		.loc 1 168 29
- 621 01de 124B     		ldr	r3, .L35+8
- 622 01e0 41F27072 		movw	r2, #6000
- 623 01e4 1A60     		str	r2, [r3]
- 169:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_18; 
- 624              		.loc 1 169 30
- 625 01e6 114B     		ldr	r3, .L35+12
- 626 01e8 0522     		movs	r2, #5
- 627 01ea 1A80     		strh	r2, [r3]	@ movhi
- 170:Core/Src/pwm.c ****         break;
- 628              		.loc 1 170 9
- 629 01ec 14E0     		b	.L34
- 630              	.L14:
- 171:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_19 :
- 172:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_19;
- 631              		.loc 1 172 29
- 632 01ee 0D4B     		ldr	r3, .L35+4
- 633 01f0 3C22     		movs	r2, #60
- 634 01f2 1A80     		strh	r2, [r3]	@ movhi
- 173:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_19;
- 635              		.loc 1 173 29
- 636 01f4 0C4B     		ldr	r3, .L35+8
- 637 01f6 41F27072 		movw	r2, #6000
- 638 01fa 1A60     		str	r2, [r3]
- 174:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_19; 
- 639              		.loc 1 174 30
- 640 01fc 0B4B     		ldr	r3, .L35+12
- 641 01fe 3C22     		movs	r2, #60
- 642 0200 1A80     		strh	r2, [r3]	@ movhi
- 175:Core/Src/pwm.c ****         break;
- 643              		.loc 1 175 9
- 644 0202 09E0     		b	.L34
- 645              	.L13:
- 176:Core/Src/pwm.c ****         default :
- 177:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_0;
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 15
+ 605              	.L17:
+ 162:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_17 :
+ 163:Core/Src/pwm.c ****             Target_Run_Temp = switch_trg_temp;
+ 606              		.loc 1 163 29
+ 607 01c2 214B     		ldr	r3, .L35+20
+ 608 01c4 B3F90020 		ldrsh	r2, [r3]
+ 609 01c8 1B4B     		ldr	r3, .L35+4
+ 610 01ca 1A80     		strh	r2, [r3]	@ movhi
+ 164:Core/Src/pwm.c ****             Target_Run_Time = (sint32)(switch_trg_time * 60 * 100);
+ 611              		.loc 1 164 31
+ 612 01cc 1F4B     		ldr	r3, .L35+24
+ 613 01ce B3F90030 		ldrsh	r3, [r3]
+ 614 01d2 1A46     		mov	r2, r3
+ 615 01d4 41F27073 		movw	r3, #6000
+ 616 01d8 02FB03F3 		mul	r3, r2, r3
+ 617              		.loc 1 164 29
+ 618 01dc 174A     		ldr	r2, .L35+8
+ 619 01de 1360     		str	r3, [r2]
+ 165:Core/Src/pwm.c ****             Target_Idle_Temp = switch_idle_temp; 
+ 620              		.loc 1 165 30
+ 621 01e0 1B4B     		ldr	r3, .L35+28
+ 622 01e2 B3F90020 		ldrsh	r2, [r3]
+ 623 01e6 164B     		ldr	r3, .L35+12
+ 624 01e8 1A80     		strh	r2, [r3]	@ movhi
+ 166:Core/Src/pwm.c ****         break;
+ 625              		.loc 1 166 9
+ 626 01ea 1FE0     		b	.L34
+ 627              	.L16:
+ 167:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_18 :
+ 168:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_18;
+ 628              		.loc 1 168 29
+ 629 01ec 124B     		ldr	r3, .L35+4
+ 630 01ee 0522     		movs	r2, #5
+ 631 01f0 1A80     		strh	r2, [r3]	@ movhi
+ 169:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_18;
+ 632              		.loc 1 169 29
+ 633 01f2 124B     		ldr	r3, .L35+8
+ 634 01f4 41F27072 		movw	r2, #6000
+ 635 01f8 1A60     		str	r2, [r3]
+ 170:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_18; 
+ 636              		.loc 1 170 30
+ 637 01fa 114B     		ldr	r3, .L35+12
+ 638 01fc 0522     		movs	r2, #5
+ 639 01fe 1A80     		strh	r2, [r3]	@ movhi
+ 171:Core/Src/pwm.c ****         break;
+ 640              		.loc 1 171 9
+ 641 0200 14E0     		b	.L34
+ 642              	.L14:
+ 172:Core/Src/pwm.c ****         case SWITCH_SUB_MODE_19 :
+ 173:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_19;
+ 643              		.loc 1 173 29
+ 644 0202 0D4B     		ldr	r3, .L35+4
+ 645 0204 3C22     		movs	r2, #60
+ 646 0206 1A80     		strh	r2, [r3]	@ movhi
+ 174:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_19;
+ 647              		.loc 1 174 29
+ 648 0208 0C4B     		ldr	r3, .L35+8
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 15
 
 
- 646              		.loc 1 177 29
- 647 0204 074B     		ldr	r3, .L35+4
- 648 0206 0022     		movs	r2, #0
- 649 0208 1A80     		strh	r2, [r3]	@ movhi
- 178:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_0;
- 650              		.loc 1 178 29
- 651 020a 074B     		ldr	r3, .L35+8
- 652 020c 0022     		movs	r2, #0
- 653 020e 1A60     		str	r2, [r3]
- 179:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_0; 
- 654              		.loc 1 179 30
- 655 0210 064B     		ldr	r3, .L35+12
- 656 0212 0022     		movs	r2, #0
- 657 0214 1A80     		strh	r2, [r3]	@ movhi
- 180:Core/Src/pwm.c ****         break;
- 658              		.loc 1 180 9
- 659 0216 00BF     		nop
- 660              	.L34:
- 181:Core/Src/pwm.c ****     }
- 182:Core/Src/pwm.c **** }
- 661              		.loc 1 182 1
- 662 0218 00BF     		nop
- 663 021a BD46     		mov	sp, r7
- 664              	.LCFI4:
- 665              		.cfi_def_cfa_register 13
- 666              		@ sp needed
- 667 021c 80BC     		pop	{r7}
- 668              	.LCFI5:
- 669              		.cfi_restore 7
- 670              		.cfi_def_cfa_offset 0
- 671 021e 7047     		bx	lr
- 672              	.L36:
- 673              		.align	2
- 674              	.L35:
- 675 0220 00000000 		.word	switch_submode
- 676 0224 00000000 		.word	Target_Run_Temp
- 677 0228 00000000 		.word	Target_Run_Time
- 678 022c 00000000 		.word	Target_Idle_Temp
- 679 0230 C0D40100 		.word	120000
- 680              		.cfi_endproc
- 681              	.LFE66:
- 683              		.section	.text.Pwm_Control,"ax",%progbits
- 684              		.align	1
- 685              		.syntax unified
- 686              		.thumb
- 687              		.thumb_func
- 689              	Pwm_Control:
- 690              	.LFB67:
- 183:Core/Src/pwm.c **** static void Pwm_Control(void)
- 184:Core/Src/pwm.c **** {
- 691              		.loc 1 184 1
- 692              		.cfi_startproc
- 693              		@ args = 0, pretend = 0, frame = 8
- 694              		@ frame_needed = 1, uses_anonymous_args = 0
- 695 0000 80B5     		push	{r7, lr}
- 696              	.LCFI6:
- 697              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 16
+ 649 020a 41F27072 		movw	r2, #6000
+ 650 020e 1A60     		str	r2, [r3]
+ 175:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_19; 
+ 651              		.loc 1 175 30
+ 652 0210 0B4B     		ldr	r3, .L35+12
+ 653 0212 3C22     		movs	r2, #60
+ 654 0214 1A80     		strh	r2, [r3]	@ movhi
+ 176:Core/Src/pwm.c ****         break;
+ 655              		.loc 1 176 9
+ 656 0216 09E0     		b	.L34
+ 657              	.L13:
+ 177:Core/Src/pwm.c ****         default :
+ 178:Core/Src/pwm.c ****             Target_Run_Temp = PWM_RUN_TEMP_0;
+ 658              		.loc 1 178 29
+ 659 0218 074B     		ldr	r3, .L35+4
+ 660 021a 0022     		movs	r2, #0
+ 661 021c 1A80     		strh	r2, [r3]	@ movhi
+ 179:Core/Src/pwm.c ****             Target_Run_Time = PWM_RUN_TIME_0;
+ 662              		.loc 1 179 29
+ 663 021e 074B     		ldr	r3, .L35+8
+ 664 0220 0022     		movs	r2, #0
+ 665 0222 1A60     		str	r2, [r3]
+ 180:Core/Src/pwm.c ****             Target_Idle_Temp = PWM_IDLE_TEMP_0; 
+ 666              		.loc 1 180 30
+ 667 0224 064B     		ldr	r3, .L35+12
+ 668 0226 0022     		movs	r2, #0
+ 669 0228 1A80     		strh	r2, [r3]	@ movhi
+ 181:Core/Src/pwm.c ****         break;
+ 670              		.loc 1 181 9
+ 671 022a 00BF     		nop
+ 672              	.L34:
+ 182:Core/Src/pwm.c ****     }
+ 183:Core/Src/pwm.c **** }
+ 673              		.loc 1 183 1
+ 674 022c 00BF     		nop
+ 675 022e BD46     		mov	sp, r7
+ 676              	.LCFI4:
+ 677              		.cfi_def_cfa_register 13
+ 678              		@ sp needed
+ 679 0230 80BC     		pop	{r7}
+ 680              	.LCFI5:
+ 681              		.cfi_restore 7
+ 682              		.cfi_def_cfa_offset 0
+ 683 0232 7047     		bx	lr
+ 684              	.L36:
+ 685              		.align	2
+ 686              	.L35:
+ 687 0234 00000000 		.word	switch_submode
+ 688 0238 00000000 		.word	Target_Run_Temp
+ 689 023c 00000000 		.word	Target_Run_Time
+ 690 0240 00000000 		.word	Target_Idle_Temp
+ 691 0244 C0D40100 		.word	120000
+ 692 0248 00000000 		.word	switch_trg_temp
+ 693 024c 00000000 		.word	switch_trg_time
+ 694 0250 00000000 		.word	switch_idle_temp
+ 695              		.cfi_endproc
+ 696              	.LFE66:
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 16
 
 
- 698              		.cfi_offset 7, -8
- 699              		.cfi_offset 14, -4
- 700 0002 82B0     		sub	sp, sp, #8
- 701              	.LCFI7:
- 702              		.cfi_def_cfa_offset 16
- 703 0004 00AF     		add	r7, sp, #0
- 704              	.LCFI8:
- 705              		.cfi_def_cfa_register 7
- 185:Core/Src/pwm.c ****     sint16 tempLoc;
- 186:Core/Src/pwm.c ****     sint16 TrgTempLoc;
- 187:Core/Src/pwm.c ****     static uint8 first_status;
- 188:Core/Src/pwm.c ****     if(first_target_flag == 1)
- 706              		.loc 1 188 26
- 707 0006 714B     		ldr	r3, .L52
- 708 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 709              		.loc 1 188 7
- 710 000a 012B     		cmp	r3, #1
- 711 000c 05D1     		bne	.L38
- 189:Core/Src/pwm.c ****     {
- 190:Core/Src/pwm.c ****         first_status = 0;
- 712              		.loc 1 190 22
- 713 000e 704B     		ldr	r3, .L52+4
- 714 0010 0022     		movs	r2, #0
- 715 0012 1A70     		strb	r2, [r3]
- 191:Core/Src/pwm.c ****         first_target_flag = PWM_SUBMODE_TARGET_OFF;
- 716              		.loc 1 191 27
- 717 0014 6D4B     		ldr	r3, .L52
- 718 0016 0022     		movs	r2, #0
- 719 0018 1A70     		strb	r2, [r3]
- 720              	.L38:
- 192:Core/Src/pwm.c ****     }
- 193:Core/Src/pwm.c ****     tempLoc = Temp_Adc_TP;
- 721              		.loc 1 193 13
- 722 001a 6E4B     		ldr	r3, .L52+8
- 723 001c 1B88     		ldrh	r3, [r3]	@ movhi
- 724 001e BB80     		strh	r3, [r7, #4]	@ movhi
- 194:Core/Src/pwm.c ****     if((Target_Run_Time>0)&&(tempLoc>(Target_Run_Temp-5))&&(tempLoc<(Target_Run_Temp+5)))
- 725              		.loc 1 194 24
- 726 0020 6D4B     		ldr	r3, .L52+12
- 727 0022 1B68     		ldr	r3, [r3]
- 728              		.loc 1 194 7
- 729 0024 002B     		cmp	r3, #0
- 730 0026 12DD     		ble	.L39
- 731              		.loc 1 194 37 discriminator 1
- 732 0028 6C4B     		ldr	r3, .L52+16
- 733 002a B3F90030 		ldrsh	r3, [r3]
- 734 002e 1A1F     		subs	r2, r3, #4
- 735 0030 B7F90430 		ldrsh	r3, [r7, #4]
- 736              		.loc 1 194 27 discriminator 1
- 737 0034 9A42     		cmp	r2, r3
- 738 0036 0ADC     		bgt	.L39
- 739              		.loc 1 194 68 discriminator 2
- 740 0038 684B     		ldr	r3, .L52+16
- 741 003a B3F90030 		ldrsh	r3, [r3]
- 742 003e 1A1D     		adds	r2, r3, #4
- 743 0040 B7F90430 		ldrsh	r3, [r7, #4]
- 744              		.loc 1 194 58 discriminator 2
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 17
+ 698              		.section	.text.Pwm_Control,"ax",%progbits
+ 699              		.align	1
+ 700              		.syntax unified
+ 701              		.thumb
+ 702              		.thumb_func
+ 704              	Pwm_Control:
+ 705              	.LFB67:
+ 184:Core/Src/pwm.c **** static void Pwm_Control(void)
+ 185:Core/Src/pwm.c **** {
+ 706              		.loc 1 185 1
+ 707              		.cfi_startproc
+ 708              		@ args = 0, pretend = 0, frame = 8
+ 709              		@ frame_needed = 1, uses_anonymous_args = 0
+ 710 0000 80B5     		push	{r7, lr}
+ 711              	.LCFI6:
+ 712              		.cfi_def_cfa_offset 8
+ 713              		.cfi_offset 7, -8
+ 714              		.cfi_offset 14, -4
+ 715 0002 82B0     		sub	sp, sp, #8
+ 716              	.LCFI7:
+ 717              		.cfi_def_cfa_offset 16
+ 718 0004 00AF     		add	r7, sp, #0
+ 719              	.LCFI8:
+ 720              		.cfi_def_cfa_register 7
+ 186:Core/Src/pwm.c ****     sint16 tempLoc;
+ 187:Core/Src/pwm.c ****     sint16 TrgTempLoc;
+ 188:Core/Src/pwm.c ****     static uint8 first_status;
+ 189:Core/Src/pwm.c ****     if(first_target_flag == PWM_SUBMODE_TARGET_ON)
+ 721              		.loc 1 189 26
+ 722 0006 714B     		ldr	r3, .L52
+ 723 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 724              		.loc 1 189 7
+ 725 000a 012B     		cmp	r3, #1
+ 726 000c 05D1     		bne	.L38
+ 190:Core/Src/pwm.c ****     {
+ 191:Core/Src/pwm.c ****         first_status = 0;
+ 727              		.loc 1 191 22
+ 728 000e 704B     		ldr	r3, .L52+4
+ 729 0010 0022     		movs	r2, #0
+ 730 0012 1A70     		strb	r2, [r3]
+ 192:Core/Src/pwm.c ****         first_target_flag = PWM_SUBMODE_TARGET_OFF;
+ 731              		.loc 1 192 27
+ 732 0014 6D4B     		ldr	r3, .L52
+ 733 0016 0022     		movs	r2, #0
+ 734 0018 1A70     		strb	r2, [r3]
+ 735              	.L38:
+ 193:Core/Src/pwm.c ****     }
+ 194:Core/Src/pwm.c ****     tempLoc = Temp_Adc_TP;
+ 736              		.loc 1 194 13
+ 737 001a 6E4B     		ldr	r3, .L52+8
+ 738 001c 1B88     		ldrh	r3, [r3]	@ movhi
+ 739 001e BB80     		strh	r3, [r7, #4]	@ movhi
+ 195:Core/Src/pwm.c ****     if((Target_Run_Time>0)&&(tempLoc>(Target_Run_Temp-5))&&(tempLoc<(Target_Run_Temp+5)))
+ 740              		.loc 1 195 24
+ 741 0020 6D4B     		ldr	r3, .L52+12
+ 742 0022 1B68     		ldr	r3, [r3]
+ 743              		.loc 1 195 7
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 17
 
 
- 745 0044 9A42     		cmp	r2, r3
- 746 0046 02DB     		blt	.L39
- 195:Core/Src/pwm.c ****     {
- 196:Core/Src/pwm.c ****         first_status = 1;
- 747              		.loc 1 196 22
- 748 0048 614B     		ldr	r3, .L52+4
- 749 004a 0122     		movs	r2, #1
- 750 004c 1A70     		strb	r2, [r3]
- 751              	.L39:
- 197:Core/Src/pwm.c ****     }
- 198:Core/Src/pwm.c ****     TrgTempLoc = Target_Run_Temp;
- 752              		.loc 1 198 16
- 753 004e 634B     		ldr	r3, .L52+16
- 754 0050 1B88     		ldrh	r3, [r3]	@ movhi
- 755 0052 FB80     		strh	r3, [r7, #6]	@ movhi
- 199:Core/Src/pwm.c **** 
- 200:Core/Src/pwm.c ****     if(first_status == 1)
- 756              		.loc 1 200 21
- 757 0054 5E4B     		ldr	r3, .L52+4
- 758 0056 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 759              		.loc 1 200 7
- 760 0058 012B     		cmp	r3, #1
- 761 005a 0ED1     		bne	.L40
- 201:Core/Src/pwm.c ****     {
- 202:Core/Src/pwm.c ****         Target_Run_Time--;
- 762              		.loc 1 202 24
- 763 005c 5E4B     		ldr	r3, .L52+12
- 764 005e 1B68     		ldr	r3, [r3]
- 765 0060 013B     		subs	r3, r3, #1
- 766 0062 5D4A     		ldr	r2, .L52+12
- 767 0064 1360     		str	r3, [r2]
- 203:Core/Src/pwm.c ****         if(Target_Run_Time<=0)
- 768              		.loc 1 203 27
- 769 0066 5C4B     		ldr	r3, .L52+12
- 770 0068 1B68     		ldr	r3, [r3]
- 771              		.loc 1 203 11
- 772 006a 002B     		cmp	r3, #0
- 773 006c 05DC     		bgt	.L40
- 204:Core/Src/pwm.c ****         {
- 205:Core/Src/pwm.c ****             Target_Run_Time = 0;
- 774              		.loc 1 205 29
- 775 006e 5A4B     		ldr	r3, .L52+12
- 776 0070 0022     		movs	r2, #0
- 777 0072 1A60     		str	r2, [r3]
- 206:Core/Src/pwm.c ****             first_status = 2;
- 778              		.loc 1 206 26
- 779 0074 564B     		ldr	r3, .L52+4
- 780 0076 0222     		movs	r2, #2
- 781 0078 1A70     		strb	r2, [r3]
- 782              	.L40:
- 207:Core/Src/pwm.c ****         }
- 208:Core/Src/pwm.c ****     }
- 209:Core/Src/pwm.c ****     if(first_status == 2)
- 783              		.loc 1 209 21
- 784 007a 554B     		ldr	r3, .L52+4
- 785 007c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 786              		.loc 1 209 7
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 18
+ 744 0024 002B     		cmp	r3, #0
+ 745 0026 12DD     		ble	.L39
+ 746              		.loc 1 195 37 discriminator 1
+ 747 0028 6C4B     		ldr	r3, .L52+16
+ 748 002a B3F90030 		ldrsh	r3, [r3]
+ 749 002e 1A1F     		subs	r2, r3, #4
+ 750 0030 B7F90430 		ldrsh	r3, [r7, #4]
+ 751              		.loc 1 195 27 discriminator 1
+ 752 0034 9A42     		cmp	r2, r3
+ 753 0036 0ADC     		bgt	.L39
+ 754              		.loc 1 195 68 discriminator 2
+ 755 0038 684B     		ldr	r3, .L52+16
+ 756 003a B3F90030 		ldrsh	r3, [r3]
+ 757 003e 1A1D     		adds	r2, r3, #4
+ 758 0040 B7F90430 		ldrsh	r3, [r7, #4]
+ 759              		.loc 1 195 58 discriminator 2
+ 760 0044 9A42     		cmp	r2, r3
+ 761 0046 02DB     		blt	.L39
+ 196:Core/Src/pwm.c ****     {
+ 197:Core/Src/pwm.c ****         first_status = 1;
+ 762              		.loc 1 197 22
+ 763 0048 614B     		ldr	r3, .L52+4
+ 764 004a 0122     		movs	r2, #1
+ 765 004c 1A70     		strb	r2, [r3]
+ 766              	.L39:
+ 198:Core/Src/pwm.c ****     }
+ 199:Core/Src/pwm.c ****     TrgTempLoc = Target_Run_Temp;
+ 767              		.loc 1 199 16
+ 768 004e 634B     		ldr	r3, .L52+16
+ 769 0050 1B88     		ldrh	r3, [r3]	@ movhi
+ 770 0052 FB80     		strh	r3, [r7, #6]	@ movhi
+ 200:Core/Src/pwm.c **** 
+ 201:Core/Src/pwm.c ****     if(first_status == 1)
+ 771              		.loc 1 201 21
+ 772 0054 5E4B     		ldr	r3, .L52+4
+ 773 0056 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 774              		.loc 1 201 7
+ 775 0058 012B     		cmp	r3, #1
+ 776 005a 0ED1     		bne	.L40
+ 202:Core/Src/pwm.c ****     {
+ 203:Core/Src/pwm.c ****         Target_Run_Time--;
+ 777              		.loc 1 203 24
+ 778 005c 5E4B     		ldr	r3, .L52+12
+ 779 005e 1B68     		ldr	r3, [r3]
+ 780 0060 013B     		subs	r3, r3, #1
+ 781 0062 5D4A     		ldr	r2, .L52+12
+ 782 0064 1360     		str	r3, [r2]
+ 204:Core/Src/pwm.c ****         if(Target_Run_Time<=0)
+ 783              		.loc 1 204 27
+ 784 0066 5C4B     		ldr	r3, .L52+12
+ 785 0068 1B68     		ldr	r3, [r3]
+ 786              		.loc 1 204 11
+ 787 006a 002B     		cmp	r3, #0
+ 788 006c 05DC     		bgt	.L40
+ 205:Core/Src/pwm.c ****         {
+ 206:Core/Src/pwm.c ****             Target_Run_Time = 0;
+ 789              		.loc 1 206 29
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 18
 
 
- 787 007e 022B     		cmp	r3, #2
- 788 0080 02D1     		bne	.L41
- 210:Core/Src/pwm.c ****     {
- 211:Core/Src/pwm.c ****         TrgTempLoc = Target_Idle_Temp;
- 789              		.loc 1 211 20
- 790 0082 574B     		ldr	r3, .L52+20
- 791 0084 1B88     		ldrh	r3, [r3]	@ movhi
- 792 0086 FB80     		strh	r3, [r7, #6]	@ movhi
- 793              	.L41:
- 212:Core/Src/pwm.c ****     }
- 213:Core/Src/pwm.c **** 
- 214:Core/Src/pwm.c ****     if((TrgTempLoc - tempLoc)>0)
- 794              		.loc 1 214 20
- 795 0088 B7F90620 		ldrsh	r2, [r7, #6]
- 796 008c B7F90430 		ldrsh	r3, [r7, #4]
- 797 0090 D31A     		subs	r3, r2, r3
- 798              		.loc 1 214 7
- 799 0092 002B     		cmp	r3, #0
- 800 0094 15DD     		ble	.L42
- 215:Core/Src/pwm.c ****     {
- 216:Core/Src/pwm.c ****         Pwm_Duty_Heater++;
- 801              		.loc 1 216 24
- 802 0096 534B     		ldr	r3, .L52+24
- 803 0098 B3F90030 		ldrsh	r3, [r3]
- 804 009c 9BB2     		uxth	r3, r3
- 805 009e 0133     		adds	r3, r3, #1
- 806 00a0 9BB2     		uxth	r3, r3
- 807 00a2 1AB2     		sxth	r2, r3
- 808 00a4 4F4B     		ldr	r3, .L52+24
- 809 00a6 1A80     		strh	r2, [r3]	@ movhi
- 217:Core/Src/pwm.c ****         Pwm_Duty_Peltier--;
- 810              		.loc 1 217 25
- 811 00a8 4F4B     		ldr	r3, .L52+28
- 812 00aa B3F90030 		ldrsh	r3, [r3]
- 813 00ae 9BB2     		uxth	r3, r3
- 814 00b0 013B     		subs	r3, r3, #1
- 815 00b2 9BB2     		uxth	r3, r3
- 816 00b4 1AB2     		sxth	r2, r3
- 817 00b6 4C4B     		ldr	r3, .L52+28
- 818 00b8 1A80     		strh	r2, [r3]	@ movhi
- 218:Core/Src/pwm.c ****         Pwm_Led_Mode = PWM_LED_MODE_HEATING;
- 819              		.loc 1 218 22
- 820 00ba 4C4B     		ldr	r3, .L52+32
- 821 00bc 0222     		movs	r2, #2
- 822 00be 1A70     		strb	r2, [r3]
- 823 00c0 14E0     		b	.L43
- 824              	.L42:
- 219:Core/Src/pwm.c ****     }
- 220:Core/Src/pwm.c ****     else 
- 221:Core/Src/pwm.c ****     {
- 222:Core/Src/pwm.c ****         Pwm_Duty_Heater--;
- 825              		.loc 1 222 24
- 826 00c2 484B     		ldr	r3, .L52+24
- 827 00c4 B3F90030 		ldrsh	r3, [r3]
- 828 00c8 9BB2     		uxth	r3, r3
- 829 00ca 013B     		subs	r3, r3, #1
- 830 00cc 9BB2     		uxth	r3, r3
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 19
+ 790 006e 5A4B     		ldr	r3, .L52+12
+ 791 0070 0022     		movs	r2, #0
+ 792 0072 1A60     		str	r2, [r3]
+ 207:Core/Src/pwm.c ****             first_status = 2;
+ 793              		.loc 1 207 26
+ 794 0074 564B     		ldr	r3, .L52+4
+ 795 0076 0222     		movs	r2, #2
+ 796 0078 1A70     		strb	r2, [r3]
+ 797              	.L40:
+ 208:Core/Src/pwm.c ****         }
+ 209:Core/Src/pwm.c ****     }
+ 210:Core/Src/pwm.c ****     if(first_status == 2)
+ 798              		.loc 1 210 21
+ 799 007a 554B     		ldr	r3, .L52+4
+ 800 007c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 801              		.loc 1 210 7
+ 802 007e 022B     		cmp	r3, #2
+ 803 0080 02D1     		bne	.L41
+ 211:Core/Src/pwm.c ****     {
+ 212:Core/Src/pwm.c ****         TrgTempLoc = Target_Idle_Temp;
+ 804              		.loc 1 212 20
+ 805 0082 574B     		ldr	r3, .L52+20
+ 806 0084 1B88     		ldrh	r3, [r3]	@ movhi
+ 807 0086 FB80     		strh	r3, [r7, #6]	@ movhi
+ 808              	.L41:
+ 213:Core/Src/pwm.c ****     }
+ 214:Core/Src/pwm.c **** 
+ 215:Core/Src/pwm.c ****     if((TrgTempLoc - tempLoc)>0)
+ 809              		.loc 1 215 20
+ 810 0088 B7F90620 		ldrsh	r2, [r7, #6]
+ 811 008c B7F90430 		ldrsh	r3, [r7, #4]
+ 812 0090 D31A     		subs	r3, r2, r3
+ 813              		.loc 1 215 7
+ 814 0092 002B     		cmp	r3, #0
+ 815 0094 15DD     		ble	.L42
+ 216:Core/Src/pwm.c ****     {
+ 217:Core/Src/pwm.c ****         Pwm_Duty_Heater++;
+ 816              		.loc 1 217 24
+ 817 0096 534B     		ldr	r3, .L52+24
+ 818 0098 B3F90030 		ldrsh	r3, [r3]
+ 819 009c 9BB2     		uxth	r3, r3
+ 820 009e 0133     		adds	r3, r3, #1
+ 821 00a0 9BB2     		uxth	r3, r3
+ 822 00a2 1AB2     		sxth	r2, r3
+ 823 00a4 4F4B     		ldr	r3, .L52+24
+ 824 00a6 1A80     		strh	r2, [r3]	@ movhi
+ 218:Core/Src/pwm.c ****         Pwm_Duty_Peltier--;
+ 825              		.loc 1 218 25
+ 826 00a8 4F4B     		ldr	r3, .L52+28
+ 827 00aa B3F90030 		ldrsh	r3, [r3]
+ 828 00ae 9BB2     		uxth	r3, r3
+ 829 00b0 013B     		subs	r3, r3, #1
+ 830 00b2 9BB2     		uxth	r3, r3
+ 831 00b4 1AB2     		sxth	r2, r3
+ 832 00b6 4C4B     		ldr	r3, .L52+28
+ 833 00b8 1A80     		strh	r2, [r3]	@ movhi
+ 219:Core/Src/pwm.c ****         Pwm_Led_Mode = PWM_LED_MODE_HEATING;
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 19
 
 
- 831 00ce 1AB2     		sxth	r2, r3
- 832 00d0 444B     		ldr	r3, .L52+24
- 833 00d2 1A80     		strh	r2, [r3]	@ movhi
- 223:Core/Src/pwm.c ****         Pwm_Duty_Peltier++;
- 834              		.loc 1 223 25
- 835 00d4 444B     		ldr	r3, .L52+28
- 836 00d6 B3F90030 		ldrsh	r3, [r3]
- 837 00da 9BB2     		uxth	r3, r3
- 838 00dc 0133     		adds	r3, r3, #1
- 839 00de 9BB2     		uxth	r3, r3
- 840 00e0 1AB2     		sxth	r2, r3
- 841 00e2 414B     		ldr	r3, .L52+28
- 842 00e4 1A80     		strh	r2, [r3]	@ movhi
- 224:Core/Src/pwm.c ****         Pwm_Led_Mode = PWM_LED_MODE_COOLING;
- 843              		.loc 1 224 22
- 844 00e6 414B     		ldr	r3, .L52+32
- 845 00e8 0122     		movs	r2, #1
- 846 00ea 1A70     		strb	r2, [r3]
- 847              	.L43:
- 225:Core/Src/pwm.c ****     }
- 226:Core/Src/pwm.c **** 
- 227:Core/Src/pwm.c ****     if((TrgTempLoc - tempLoc)>=1)
- 848              		.loc 1 227 20
- 849 00ec B7F90620 		ldrsh	r2, [r7, #6]
- 850 00f0 B7F90430 		ldrsh	r3, [r7, #4]
- 851 00f4 D31A     		subs	r3, r2, r3
- 852              		.loc 1 227 7
- 853 00f6 002B     		cmp	r3, #0
- 854 00f8 09DD     		ble	.L44
- 228:Core/Src/pwm.c ****     {
- 229:Core/Src/pwm.c ****         Pwm_Duty_Fan--;
- 855              		.loc 1 229 21
- 856 00fa 3D4B     		ldr	r3, .L52+36
- 857 00fc B3F90030 		ldrsh	r3, [r3]
- 858 0100 9BB2     		uxth	r3, r3
- 859 0102 013B     		subs	r3, r3, #1
- 860 0104 9BB2     		uxth	r3, r3
- 861 0106 1AB2     		sxth	r2, r3
- 862 0108 394B     		ldr	r3, .L52+36
- 863 010a 1A80     		strh	r2, [r3]	@ movhi
- 864 010c 0FE0     		b	.L45
- 865              	.L44:
- 230:Core/Src/pwm.c ****     }
- 231:Core/Src/pwm.c ****     else if((TrgTempLoc - tempLoc)<= -1)
- 866              		.loc 1 231 25
- 867 010e B7F90620 		ldrsh	r2, [r7, #6]
- 868 0112 B7F90430 		ldrsh	r3, [r7, #4]
- 869 0116 D31A     		subs	r3, r2, r3
- 870              		.loc 1 231 12
- 871 0118 002B     		cmp	r3, #0
- 872 011a 08DA     		bge	.L45
- 232:Core/Src/pwm.c ****     {
- 233:Core/Src/pwm.c **** 
- 234:Core/Src/pwm.c ****         Pwm_Duty_Fan++;
- 873              		.loc 1 234 21
- 874 011c 344B     		ldr	r3, .L52+36
- 875 011e B3F90030 		ldrsh	r3, [r3]
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 20
+ 834              		.loc 1 219 22
+ 835 00ba 4C4B     		ldr	r3, .L52+32
+ 836 00bc 0222     		movs	r2, #2
+ 837 00be 1A70     		strb	r2, [r3]
+ 838 00c0 14E0     		b	.L43
+ 839              	.L42:
+ 220:Core/Src/pwm.c ****     }
+ 221:Core/Src/pwm.c ****     else 
+ 222:Core/Src/pwm.c ****     {
+ 223:Core/Src/pwm.c ****         Pwm_Duty_Heater--;
+ 840              		.loc 1 223 24
+ 841 00c2 484B     		ldr	r3, .L52+24
+ 842 00c4 B3F90030 		ldrsh	r3, [r3]
+ 843 00c8 9BB2     		uxth	r3, r3
+ 844 00ca 013B     		subs	r3, r3, #1
+ 845 00cc 9BB2     		uxth	r3, r3
+ 846 00ce 1AB2     		sxth	r2, r3
+ 847 00d0 444B     		ldr	r3, .L52+24
+ 848 00d2 1A80     		strh	r2, [r3]	@ movhi
+ 224:Core/Src/pwm.c ****         Pwm_Duty_Peltier++;
+ 849              		.loc 1 224 25
+ 850 00d4 444B     		ldr	r3, .L52+28
+ 851 00d6 B3F90030 		ldrsh	r3, [r3]
+ 852 00da 9BB2     		uxth	r3, r3
+ 853 00dc 0133     		adds	r3, r3, #1
+ 854 00de 9BB2     		uxth	r3, r3
+ 855 00e0 1AB2     		sxth	r2, r3
+ 856 00e2 414B     		ldr	r3, .L52+28
+ 857 00e4 1A80     		strh	r2, [r3]	@ movhi
+ 225:Core/Src/pwm.c ****         Pwm_Led_Mode = PWM_LED_MODE_COOLING;
+ 858              		.loc 1 225 22
+ 859 00e6 414B     		ldr	r3, .L52+32
+ 860 00e8 0122     		movs	r2, #1
+ 861 00ea 1A70     		strb	r2, [r3]
+ 862              	.L43:
+ 226:Core/Src/pwm.c ****     }
+ 227:Core/Src/pwm.c **** 
+ 228:Core/Src/pwm.c ****     if((TrgTempLoc - tempLoc)>=1)
+ 863              		.loc 1 228 20
+ 864 00ec B7F90620 		ldrsh	r2, [r7, #6]
+ 865 00f0 B7F90430 		ldrsh	r3, [r7, #4]
+ 866 00f4 D31A     		subs	r3, r2, r3
+ 867              		.loc 1 228 7
+ 868 00f6 002B     		cmp	r3, #0
+ 869 00f8 09DD     		ble	.L44
+ 229:Core/Src/pwm.c ****     {
+ 230:Core/Src/pwm.c ****         Pwm_Duty_Fan--;
+ 870              		.loc 1 230 21
+ 871 00fa 3D4B     		ldr	r3, .L52+36
+ 872 00fc B3F90030 		ldrsh	r3, [r3]
+ 873 0100 9BB2     		uxth	r3, r3
+ 874 0102 013B     		subs	r3, r3, #1
+ 875 0104 9BB2     		uxth	r3, r3
+ 876 0106 1AB2     		sxth	r2, r3
+ 877 0108 394B     		ldr	r3, .L52+36
+ 878 010a 1A80     		strh	r2, [r3]	@ movhi
+ 879 010c 0FE0     		b	.L45
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 20
 
 
- 876 0122 9BB2     		uxth	r3, r3
- 877 0124 0133     		adds	r3, r3, #1
- 878 0126 9BB2     		uxth	r3, r3
- 879 0128 1AB2     		sxth	r2, r3
- 880 012a 314B     		ldr	r3, .L52+36
- 881 012c 1A80     		strh	r2, [r3]	@ movhi
- 882              	.L45:
- 235:Core/Src/pwm.c ****     }
- 236:Core/Src/pwm.c ****     else
- 237:Core/Src/pwm.c ****     {
- 238:Core/Src/pwm.c ****         /* hold fan pwm duty */
- 239:Core/Src/pwm.c ****     }
- 240:Core/Src/pwm.c **** 
- 241:Core/Src/pwm.c ****     if(Pwm_Duty_Heater >= PWM_DUTY_MAX)
- 883              		.loc 1 241 24
- 884 012e 2D4B     		ldr	r3, .L52+24
- 885 0130 B3F90030 		ldrsh	r3, [r3]
- 886              		.loc 1 241 7
- 887 0134 B3F57A7F 		cmp	r3, #1000
- 888 0138 03DB     		blt	.L46
- 242:Core/Src/pwm.c ****     {
- 243:Core/Src/pwm.c ****         Pwm_Duty_Heater = PWM_DUTY_MAX;
- 889              		.loc 1 243 25
- 890 013a 2A4B     		ldr	r3, .L52+24
- 891 013c 4FF47A72 		mov	r2, #1000
- 892 0140 1A80     		strh	r2, [r3]	@ movhi
- 893              	.L46:
- 244:Core/Src/pwm.c ****     }
- 245:Core/Src/pwm.c ****     if(Pwm_Duty_Heater <= PWM_DUTY_MIN)
- 894              		.loc 1 245 24
- 895 0142 284B     		ldr	r3, .L52+24
- 896 0144 B3F90030 		ldrsh	r3, [r3]
- 897              		.loc 1 245 7
- 898 0148 002B     		cmp	r3, #0
- 899 014a 02DC     		bgt	.L47
- 246:Core/Src/pwm.c ****     {
- 247:Core/Src/pwm.c ****         Pwm_Duty_Heater = PWM_DUTY_MIN;
- 900              		.loc 1 247 25
- 901 014c 254B     		ldr	r3, .L52+24
- 902 014e 0022     		movs	r2, #0
- 903 0150 1A80     		strh	r2, [r3]	@ movhi
- 904              	.L47:
- 248:Core/Src/pwm.c ****     }
- 249:Core/Src/pwm.c **** 
- 250:Core/Src/pwm.c ****     if(Pwm_Duty_Peltier >= PWM_DUTY_MAX)
- 905              		.loc 1 250 25
- 906 0152 254B     		ldr	r3, .L52+28
- 907 0154 B3F90030 		ldrsh	r3, [r3]
- 908              		.loc 1 250 7
- 909 0158 B3F57A7F 		cmp	r3, #1000
- 910 015c 03DB     		blt	.L48
- 251:Core/Src/pwm.c ****     {
- 252:Core/Src/pwm.c ****         Pwm_Duty_Peltier = PWM_DUTY_MAX;
- 911              		.loc 1 252 26
- 912 015e 224B     		ldr	r3, .L52+28
- 913 0160 4FF47A72 		mov	r2, #1000
- 914 0164 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 21
+ 880              	.L44:
+ 231:Core/Src/pwm.c ****     }
+ 232:Core/Src/pwm.c ****     else if((TrgTempLoc - tempLoc)<= -1)
+ 881              		.loc 1 232 25
+ 882 010e B7F90620 		ldrsh	r2, [r7, #6]
+ 883 0112 B7F90430 		ldrsh	r3, [r7, #4]
+ 884 0116 D31A     		subs	r3, r2, r3
+ 885              		.loc 1 232 12
+ 886 0118 002B     		cmp	r3, #0
+ 887 011a 08DA     		bge	.L45
+ 233:Core/Src/pwm.c ****     {
+ 234:Core/Src/pwm.c **** 
+ 235:Core/Src/pwm.c ****         Pwm_Duty_Fan++;
+ 888              		.loc 1 235 21
+ 889 011c 344B     		ldr	r3, .L52+36
+ 890 011e B3F90030 		ldrsh	r3, [r3]
+ 891 0122 9BB2     		uxth	r3, r3
+ 892 0124 0133     		adds	r3, r3, #1
+ 893 0126 9BB2     		uxth	r3, r3
+ 894 0128 1AB2     		sxth	r2, r3
+ 895 012a 314B     		ldr	r3, .L52+36
+ 896 012c 1A80     		strh	r2, [r3]	@ movhi
+ 897              	.L45:
+ 236:Core/Src/pwm.c ****     }
+ 237:Core/Src/pwm.c ****     else
+ 238:Core/Src/pwm.c ****     {
+ 239:Core/Src/pwm.c ****         /* hold fan pwm duty */
+ 240:Core/Src/pwm.c ****     }
+ 241:Core/Src/pwm.c **** 
+ 242:Core/Src/pwm.c ****     if(Pwm_Duty_Heater >= PWM_DUTY_MAX)
+ 898              		.loc 1 242 24
+ 899 012e 2D4B     		ldr	r3, .L52+24
+ 900 0130 B3F90030 		ldrsh	r3, [r3]
+ 901              		.loc 1 242 7
+ 902 0134 B3F57A7F 		cmp	r3, #1000
+ 903 0138 03DB     		blt	.L46
+ 243:Core/Src/pwm.c ****     {
+ 244:Core/Src/pwm.c ****         Pwm_Duty_Heater = PWM_DUTY_MAX;
+ 904              		.loc 1 244 25
+ 905 013a 2A4B     		ldr	r3, .L52+24
+ 906 013c 4FF47A72 		mov	r2, #1000
+ 907 0140 1A80     		strh	r2, [r3]	@ movhi
+ 908              	.L46:
+ 245:Core/Src/pwm.c ****     }
+ 246:Core/Src/pwm.c ****     if(Pwm_Duty_Heater <= PWM_DUTY_MIN)
+ 909              		.loc 1 246 24
+ 910 0142 284B     		ldr	r3, .L52+24
+ 911 0144 B3F90030 		ldrsh	r3, [r3]
+ 912              		.loc 1 246 7
+ 913 0148 002B     		cmp	r3, #0
+ 914 014a 02DC     		bgt	.L47
+ 247:Core/Src/pwm.c ****     {
+ 248:Core/Src/pwm.c ****         Pwm_Duty_Heater = PWM_DUTY_MIN;
+ 915              		.loc 1 248 25
+ 916 014c 254B     		ldr	r3, .L52+24
+ 917 014e 0022     		movs	r2, #0
+ 918 0150 1A80     		strh	r2, [r3]	@ movhi
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 21
 
 
- 915              	.L48:
- 253:Core/Src/pwm.c ****     }
- 254:Core/Src/pwm.c ****     if(Pwm_Duty_Peltier <= PWM_DUTY_MIN)
- 916              		.loc 1 254 25
- 917 0166 204B     		ldr	r3, .L52+28
- 918 0168 B3F90030 		ldrsh	r3, [r3]
- 919              		.loc 1 254 7
- 920 016c 002B     		cmp	r3, #0
- 921 016e 02DC     		bgt	.L49
- 255:Core/Src/pwm.c ****     {
- 256:Core/Src/pwm.c ****         Pwm_Duty_Peltier = PWM_DUTY_MIN;
- 922              		.loc 1 256 26
- 923 0170 1D4B     		ldr	r3, .L52+28
- 924 0172 0022     		movs	r2, #0
- 925 0174 1A80     		strh	r2, [r3]	@ movhi
- 926              	.L49:
- 257:Core/Src/pwm.c ****     }
- 258:Core/Src/pwm.c **** 
- 259:Core/Src/pwm.c ****     if(Pwm_Duty_Fan >= PWM_DUTY_MAX)
- 927              		.loc 1 259 21
- 928 0176 1E4B     		ldr	r3, .L52+36
- 929 0178 B3F90030 		ldrsh	r3, [r3]
- 930              		.loc 1 259 7
- 931 017c B3F57A7F 		cmp	r3, #1000
- 932 0180 03DB     		blt	.L50
- 260:Core/Src/pwm.c ****     {
- 261:Core/Src/pwm.c ****         Pwm_Duty_Fan = PWM_DUTY_MAX;
- 933              		.loc 1 261 22
- 934 0182 1B4B     		ldr	r3, .L52+36
- 935 0184 4FF47A72 		mov	r2, #1000
- 936 0188 1A80     		strh	r2, [r3]	@ movhi
- 937              	.L50:
- 262:Core/Src/pwm.c ****     }
- 263:Core/Src/pwm.c ****     if(Pwm_Duty_Fan <= PWM_DUTY_MIN)
- 938              		.loc 1 263 21
- 939 018a 194B     		ldr	r3, .L52+36
- 940 018c B3F90030 		ldrsh	r3, [r3]
- 941              		.loc 1 263 7
- 942 0190 002B     		cmp	r3, #0
- 943 0192 02DC     		bgt	.L51
- 264:Core/Src/pwm.c ****     {
- 265:Core/Src/pwm.c ****         Pwm_Duty_Fan = PWM_DUTY_MIN;
- 944              		.loc 1 265 22
- 945 0194 164B     		ldr	r3, .L52+36
- 946 0196 0022     		movs	r2, #0
- 947 0198 1A80     		strh	r2, [r3]	@ movhi
- 948              	.L51:
- 266:Core/Src/pwm.c ****     }
- 267:Core/Src/pwm.c **** 
- 268:Core/Src/pwm.c ****     Pwm_Heater_Set_Duty(Pwm_Duty_Heater);
- 949              		.loc 1 268 5
- 950 019a 124B     		ldr	r3, .L52+24
- 951 019c B3F90030 		ldrsh	r3, [r3]
- 952 01a0 9BB2     		uxth	r3, r3
- 953 01a2 1846     		mov	r0, r3
- 954 01a4 FFF7FEFF 		bl	Pwm_Heater_Set_Duty
- 269:Core/Src/pwm.c ****     Pwm_Peltier_Set_Duty(Pwm_Duty_Peltier);
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 22
+ 919              	.L47:
+ 249:Core/Src/pwm.c ****     }
+ 250:Core/Src/pwm.c **** 
+ 251:Core/Src/pwm.c ****     if(Pwm_Duty_Peltier >= PWM_DUTY_MAX)
+ 920              		.loc 1 251 25
+ 921 0152 254B     		ldr	r3, .L52+28
+ 922 0154 B3F90030 		ldrsh	r3, [r3]
+ 923              		.loc 1 251 7
+ 924 0158 B3F57A7F 		cmp	r3, #1000
+ 925 015c 03DB     		blt	.L48
+ 252:Core/Src/pwm.c ****     {
+ 253:Core/Src/pwm.c ****         Pwm_Duty_Peltier = PWM_DUTY_MAX;
+ 926              		.loc 1 253 26
+ 927 015e 224B     		ldr	r3, .L52+28
+ 928 0160 4FF47A72 		mov	r2, #1000
+ 929 0164 1A80     		strh	r2, [r3]	@ movhi
+ 930              	.L48:
+ 254:Core/Src/pwm.c ****     }
+ 255:Core/Src/pwm.c ****     if(Pwm_Duty_Peltier <= PWM_DUTY_MIN)
+ 931              		.loc 1 255 25
+ 932 0166 204B     		ldr	r3, .L52+28
+ 933 0168 B3F90030 		ldrsh	r3, [r3]
+ 934              		.loc 1 255 7
+ 935 016c 002B     		cmp	r3, #0
+ 936 016e 02DC     		bgt	.L49
+ 256:Core/Src/pwm.c ****     {
+ 257:Core/Src/pwm.c ****         Pwm_Duty_Peltier = PWM_DUTY_MIN;
+ 937              		.loc 1 257 26
+ 938 0170 1D4B     		ldr	r3, .L52+28
+ 939 0172 0022     		movs	r2, #0
+ 940 0174 1A80     		strh	r2, [r3]	@ movhi
+ 941              	.L49:
+ 258:Core/Src/pwm.c ****     }
+ 259:Core/Src/pwm.c **** 
+ 260:Core/Src/pwm.c ****     if(Pwm_Duty_Fan >= PWM_DUTY_MAX)
+ 942              		.loc 1 260 21
+ 943 0176 1E4B     		ldr	r3, .L52+36
+ 944 0178 B3F90030 		ldrsh	r3, [r3]
+ 945              		.loc 1 260 7
+ 946 017c B3F57A7F 		cmp	r3, #1000
+ 947 0180 03DB     		blt	.L50
+ 261:Core/Src/pwm.c ****     {
+ 262:Core/Src/pwm.c ****         Pwm_Duty_Fan = PWM_DUTY_MAX;
+ 948              		.loc 1 262 22
+ 949 0182 1B4B     		ldr	r3, .L52+36
+ 950 0184 4FF47A72 		mov	r2, #1000
+ 951 0188 1A80     		strh	r2, [r3]	@ movhi
+ 952              	.L50:
+ 263:Core/Src/pwm.c ****     }
+ 264:Core/Src/pwm.c ****     if(Pwm_Duty_Fan <= PWM_DUTY_MIN)
+ 953              		.loc 1 264 21
+ 954 018a 194B     		ldr	r3, .L52+36
+ 955 018c B3F90030 		ldrsh	r3, [r3]
+ 956              		.loc 1 264 7
+ 957 0190 002B     		cmp	r3, #0
+ 958 0192 02DC     		bgt	.L51
+ 265:Core/Src/pwm.c ****     {
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 22
 
 
- 955              		.loc 1 269 5
- 956 01a8 0F4B     		ldr	r3, .L52+28
- 957 01aa B3F90030 		ldrsh	r3, [r3]
- 958 01ae 9BB2     		uxth	r3, r3
- 959 01b0 1846     		mov	r0, r3
- 960 01b2 FFF7FEFF 		bl	Pwm_Peltier_Set_Duty
- 270:Core/Src/pwm.c ****     Pwm_Fan_Set_Duty(Pwm_Duty_Fan);
- 961              		.loc 1 270 5
- 962 01b6 0E4B     		ldr	r3, .L52+36
- 963 01b8 B3F90030 		ldrsh	r3, [r3]
- 964 01bc 9BB2     		uxth	r3, r3
- 965 01be 1846     		mov	r0, r3
- 966 01c0 FFF7FEFF 		bl	Pwm_Fan_Set_Duty
- 271:Core/Src/pwm.c **** }
- 967              		.loc 1 271 1
- 968 01c4 00BF     		nop
- 969 01c6 0837     		adds	r7, r7, #8
- 970              	.LCFI9:
- 971              		.cfi_def_cfa_offset 8
- 972 01c8 BD46     		mov	sp, r7
- 973              	.LCFI10:
- 974              		.cfi_def_cfa_register 13
- 975              		@ sp needed
- 976 01ca 80BD     		pop	{r7, pc}
- 977              	.L53:
- 978              		.align	2
- 979              	.L52:
- 980 01cc 00000000 		.word	first_target_flag
- 981 01d0 00000000 		.word	first_status.0
- 982 01d4 00000000 		.word	Temp_Adc_TP
- 983 01d8 00000000 		.word	Target_Run_Time
- 984 01dc 00000000 		.word	Target_Run_Temp
- 985 01e0 00000000 		.word	Target_Idle_Temp
- 986 01e4 00000000 		.word	Pwm_Duty_Heater
- 987 01e8 00000000 		.word	Pwm_Duty_Peltier
- 988 01ec 00000000 		.word	Pwm_Led_Mode
- 989 01f0 00000000 		.word	Pwm_Duty_Fan
- 990              		.cfi_endproc
- 991              	.LFE67:
- 993              		.section	.text.Pwm_Peltier_Set_Duty,"ax",%progbits
- 994              		.align	1
- 995              		.syntax unified
- 996              		.thumb
- 997              		.thumb_func
- 999              	Pwm_Peltier_Set_Duty:
- 1000              	.LFB68:
- 272:Core/Src/pwm.c **** 
- 273:Core/Src/pwm.c **** static void Pwm_Peltier_Set_Duty(uint16 duty)
- 274:Core/Src/pwm.c **** {
- 1001              		.loc 1 274 1
- 1002              		.cfi_startproc
- 1003              		@ args = 0, pretend = 0, frame = 8
- 1004              		@ frame_needed = 1, uses_anonymous_args = 0
- 1005              		@ link register save eliminated.
- 1006 0000 80B4     		push	{r7}
- 1007              	.LCFI11:
- 1008              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 23
+ 266:Core/Src/pwm.c ****         Pwm_Duty_Fan = PWM_DUTY_MIN;
+ 959              		.loc 1 266 22
+ 960 0194 164B     		ldr	r3, .L52+36
+ 961 0196 0022     		movs	r2, #0
+ 962 0198 1A80     		strh	r2, [r3]	@ movhi
+ 963              	.L51:
+ 267:Core/Src/pwm.c ****     }
+ 268:Core/Src/pwm.c **** 
+ 269:Core/Src/pwm.c ****     Pwm_Heater_Set_Duty(Pwm_Duty_Heater);
+ 964              		.loc 1 269 5
+ 965 019a 124B     		ldr	r3, .L52+24
+ 966 019c B3F90030 		ldrsh	r3, [r3]
+ 967 01a0 9BB2     		uxth	r3, r3
+ 968 01a2 1846     		mov	r0, r3
+ 969 01a4 FFF7FEFF 		bl	Pwm_Heater_Set_Duty
+ 270:Core/Src/pwm.c ****     Pwm_Peltier_Set_Duty(Pwm_Duty_Peltier);
+ 970              		.loc 1 270 5
+ 971 01a8 0F4B     		ldr	r3, .L52+28
+ 972 01aa B3F90030 		ldrsh	r3, [r3]
+ 973 01ae 9BB2     		uxth	r3, r3
+ 974 01b0 1846     		mov	r0, r3
+ 975 01b2 FFF7FEFF 		bl	Pwm_Peltier_Set_Duty
+ 271:Core/Src/pwm.c ****     Pwm_Fan_Set_Duty(Pwm_Duty_Fan);
+ 976              		.loc 1 271 5
+ 977 01b6 0E4B     		ldr	r3, .L52+36
+ 978 01b8 B3F90030 		ldrsh	r3, [r3]
+ 979 01bc 9BB2     		uxth	r3, r3
+ 980 01be 1846     		mov	r0, r3
+ 981 01c0 FFF7FEFF 		bl	Pwm_Fan_Set_Duty
+ 272:Core/Src/pwm.c **** }
+ 982              		.loc 1 272 1
+ 983 01c4 00BF     		nop
+ 984 01c6 0837     		adds	r7, r7, #8
+ 985              	.LCFI9:
+ 986              		.cfi_def_cfa_offset 8
+ 987 01c8 BD46     		mov	sp, r7
+ 988              	.LCFI10:
+ 989              		.cfi_def_cfa_register 13
+ 990              		@ sp needed
+ 991 01ca 80BD     		pop	{r7, pc}
+ 992              	.L53:
+ 993              		.align	2
+ 994              	.L52:
+ 995 01cc 00000000 		.word	first_target_flag
+ 996 01d0 00000000 		.word	first_status.0
+ 997 01d4 00000000 		.word	Temp_Adc_TP
+ 998 01d8 00000000 		.word	Target_Run_Time
+ 999 01dc 00000000 		.word	Target_Run_Temp
+ 1000 01e0 00000000 		.word	Target_Idle_Temp
+ 1001 01e4 00000000 		.word	Pwm_Duty_Heater
+ 1002 01e8 00000000 		.word	Pwm_Duty_Peltier
+ 1003 01ec 00000000 		.word	Pwm_Led_Mode
+ 1004 01f0 00000000 		.word	Pwm_Duty_Fan
+ 1005              		.cfi_endproc
+ 1006              	.LFE67:
+ 1008              		.section	.text.Pwm_Peltier_Set_Duty,"ax",%progbits
+ 1009              		.align	1
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 23
 
 
- 1009              		.cfi_offset 7, -4
- 1010 0002 83B0     		sub	sp, sp, #12
- 1011              	.LCFI12:
- 1012              		.cfi_def_cfa_offset 16
- 1013 0004 00AF     		add	r7, sp, #0
- 1014              	.LCFI13:
- 1015              		.cfi_def_cfa_register 7
- 1016 0006 0346     		mov	r3, r0
- 1017 0008 FB80     		strh	r3, [r7, #6]	@ movhi
- 275:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
- 276:Core/Src/pwm.c ****     PWM_TIM_MODULE_PELTIER-> PWM_TIM_CH_PELTIER = duty;
- 1018              		.loc 1 276 27
- 1019 000a 044A     		ldr	r2, .L55
- 1020              		.loc 1 276 49
- 1021 000c FB88     		ldrh	r3, [r7, #6]
- 1022 000e 9363     		str	r3, [r2, #56]
- 277:Core/Src/pwm.c **** }
- 1023              		.loc 1 277 1
- 1024 0010 00BF     		nop
- 1025 0012 0C37     		adds	r7, r7, #12
- 1026              	.LCFI14:
- 1027              		.cfi_def_cfa_offset 4
- 1028 0014 BD46     		mov	sp, r7
- 1029              	.LCFI15:
- 1030              		.cfi_def_cfa_register 13
- 1031              		@ sp needed
- 1032 0016 80BC     		pop	{r7}
- 1033              	.LCFI16:
- 1034              		.cfi_restore 7
- 1035              		.cfi_def_cfa_offset 0
- 1036 0018 7047     		bx	lr
- 1037              	.L56:
- 1038 001a 00BF     		.align	2
- 1039              	.L55:
- 1040 001c 00040040 		.word	1073742848
- 1041              		.cfi_endproc
- 1042              	.LFE68:
- 1044              		.section	.text.Pwm_Heater_Set_Duty,"ax",%progbits
- 1045              		.align	1
- 1046              		.syntax unified
- 1047              		.thumb
- 1048              		.thumb_func
- 1050              	Pwm_Heater_Set_Duty:
- 1051              	.LFB69:
- 278:Core/Src/pwm.c **** 
- 279:Core/Src/pwm.c **** static void Pwm_Heater_Set_Duty(uint16 duty)
- 280:Core/Src/pwm.c **** {
- 1052              		.loc 1 280 1
- 1053              		.cfi_startproc
- 1054              		@ args = 0, pretend = 0, frame = 8
- 1055              		@ frame_needed = 1, uses_anonymous_args = 0
- 1056              		@ link register save eliminated.
- 1057 0000 80B4     		push	{r7}
- 1058              	.LCFI17:
- 1059              		.cfi_def_cfa_offset 4
- 1060              		.cfi_offset 7, -4
- 1061 0002 83B0     		sub	sp, sp, #12
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 24
+ 1010              		.syntax unified
+ 1011              		.thumb
+ 1012              		.thumb_func
+ 1014              	Pwm_Peltier_Set_Duty:
+ 1015              	.LFB68:
+ 273:Core/Src/pwm.c **** 
+ 274:Core/Src/pwm.c **** static void Pwm_Peltier_Set_Duty(uint16 duty)
+ 275:Core/Src/pwm.c **** {
+ 1016              		.loc 1 275 1
+ 1017              		.cfi_startproc
+ 1018              		@ args = 0, pretend = 0, frame = 8
+ 1019              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1020              		@ link register save eliminated.
+ 1021 0000 80B4     		push	{r7}
+ 1022              	.LCFI11:
+ 1023              		.cfi_def_cfa_offset 4
+ 1024              		.cfi_offset 7, -4
+ 1025 0002 83B0     		sub	sp, sp, #12
+ 1026              	.LCFI12:
+ 1027              		.cfi_def_cfa_offset 16
+ 1028 0004 00AF     		add	r7, sp, #0
+ 1029              	.LCFI13:
+ 1030              		.cfi_def_cfa_register 7
+ 1031 0006 0346     		mov	r3, r0
+ 1032 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 276:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
+ 277:Core/Src/pwm.c ****     PWM_TIM_MODULE_PELTIER-> PWM_TIM_CH_PELTIER = duty;
+ 1033              		.loc 1 277 27
+ 1034 000a 044A     		ldr	r2, .L55
+ 1035              		.loc 1 277 49
+ 1036 000c FB88     		ldrh	r3, [r7, #6]
+ 1037 000e 9363     		str	r3, [r2, #56]
+ 278:Core/Src/pwm.c **** }
+ 1038              		.loc 1 278 1
+ 1039 0010 00BF     		nop
+ 1040 0012 0C37     		adds	r7, r7, #12
+ 1041              	.LCFI14:
+ 1042              		.cfi_def_cfa_offset 4
+ 1043 0014 BD46     		mov	sp, r7
+ 1044              	.LCFI15:
+ 1045              		.cfi_def_cfa_register 13
+ 1046              		@ sp needed
+ 1047 0016 80BC     		pop	{r7}
+ 1048              	.LCFI16:
+ 1049              		.cfi_restore 7
+ 1050              		.cfi_def_cfa_offset 0
+ 1051 0018 7047     		bx	lr
+ 1052              	.L56:
+ 1053 001a 00BF     		.align	2
+ 1054              	.L55:
+ 1055 001c 00040040 		.word	1073742848
+ 1056              		.cfi_endproc
+ 1057              	.LFE68:
+ 1059              		.section	.text.Pwm_Heater_Set_Duty,"ax",%progbits
+ 1060              		.align	1
+ 1061              		.syntax unified
+ 1062              		.thumb
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 24
 
 
- 1062              	.LCFI18:
- 1063              		.cfi_def_cfa_offset 16
- 1064 0004 00AF     		add	r7, sp, #0
- 1065              	.LCFI19:
- 1066              		.cfi_def_cfa_register 7
- 1067 0006 0346     		mov	r3, r0
- 1068 0008 FB80     		strh	r3, [r7, #6]	@ movhi
- 281:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
- 282:Core/Src/pwm.c ****     PWM_TIM_MODULE_HEATER-> PWM_TIM_CH_HEATER = duty;
- 1069              		.loc 1 282 26
- 1070 000a 044A     		ldr	r2, .L58
- 1071              		.loc 1 282 47
- 1072 000c FB88     		ldrh	r3, [r7, #6]
- 1073 000e 5363     		str	r3, [r2, #52]
- 283:Core/Src/pwm.c **** }
- 1074              		.loc 1 283 1
- 1075 0010 00BF     		nop
- 1076 0012 0C37     		adds	r7, r7, #12
- 1077              	.LCFI20:
- 1078              		.cfi_def_cfa_offset 4
- 1079 0014 BD46     		mov	sp, r7
- 1080              	.LCFI21:
- 1081              		.cfi_def_cfa_register 13
- 1082              		@ sp needed
- 1083 0016 80BC     		pop	{r7}
- 1084              	.LCFI22:
- 1085              		.cfi_restore 7
- 1086              		.cfi_def_cfa_offset 0
- 1087 0018 7047     		bx	lr
- 1088              	.L59:
- 1089 001a 00BF     		.align	2
- 1090              	.L58:
- 1091 001c 00040040 		.word	1073742848
- 1092              		.cfi_endproc
- 1093              	.LFE69:
- 1095              		.section	.text.Pwm_Servo_Set_Duty,"ax",%progbits
- 1096              		.align	1
- 1097              		.syntax unified
- 1098              		.thumb
- 1099              		.thumb_func
- 1101              	Pwm_Servo_Set_Duty:
- 1102              	.LFB70:
- 284:Core/Src/pwm.c **** 
- 285:Core/Src/pwm.c **** static void Pwm_Servo_Set_Duty(uint16 duty)
- 286:Core/Src/pwm.c **** {
- 1103              		.loc 1 286 1
- 1104              		.cfi_startproc
- 1105              		@ args = 0, pretend = 0, frame = 8
- 1106              		@ frame_needed = 1, uses_anonymous_args = 0
- 1107              		@ link register save eliminated.
- 1108 0000 80B4     		push	{r7}
- 1109              	.LCFI23:
- 1110              		.cfi_def_cfa_offset 4
- 1111              		.cfi_offset 7, -4
- 1112 0002 83B0     		sub	sp, sp, #12
- 1113              	.LCFI24:
- 1114              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 25
+ 1063              		.thumb_func
+ 1065              	Pwm_Heater_Set_Duty:
+ 1066              	.LFB69:
+ 279:Core/Src/pwm.c **** 
+ 280:Core/Src/pwm.c **** static void Pwm_Heater_Set_Duty(uint16 duty)
+ 281:Core/Src/pwm.c **** {
+ 1067              		.loc 1 281 1
+ 1068              		.cfi_startproc
+ 1069              		@ args = 0, pretend = 0, frame = 8
+ 1070              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1071              		@ link register save eliminated.
+ 1072 0000 80B4     		push	{r7}
+ 1073              	.LCFI17:
+ 1074              		.cfi_def_cfa_offset 4
+ 1075              		.cfi_offset 7, -4
+ 1076 0002 83B0     		sub	sp, sp, #12
+ 1077              	.LCFI18:
+ 1078              		.cfi_def_cfa_offset 16
+ 1079 0004 00AF     		add	r7, sp, #0
+ 1080              	.LCFI19:
+ 1081              		.cfi_def_cfa_register 7
+ 1082 0006 0346     		mov	r3, r0
+ 1083 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 282:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
+ 283:Core/Src/pwm.c ****     PWM_TIM_MODULE_HEATER-> PWM_TIM_CH_HEATER = duty;
+ 1084              		.loc 1 283 26
+ 1085 000a 044A     		ldr	r2, .L58
+ 1086              		.loc 1 283 47
+ 1087 000c FB88     		ldrh	r3, [r7, #6]
+ 1088 000e 5363     		str	r3, [r2, #52]
+ 284:Core/Src/pwm.c **** }
+ 1089              		.loc 1 284 1
+ 1090 0010 00BF     		nop
+ 1091 0012 0C37     		adds	r7, r7, #12
+ 1092              	.LCFI20:
+ 1093              		.cfi_def_cfa_offset 4
+ 1094 0014 BD46     		mov	sp, r7
+ 1095              	.LCFI21:
+ 1096              		.cfi_def_cfa_register 13
+ 1097              		@ sp needed
+ 1098 0016 80BC     		pop	{r7}
+ 1099              	.LCFI22:
+ 1100              		.cfi_restore 7
+ 1101              		.cfi_def_cfa_offset 0
+ 1102 0018 7047     		bx	lr
+ 1103              	.L59:
+ 1104 001a 00BF     		.align	2
+ 1105              	.L58:
+ 1106 001c 00040040 		.word	1073742848
+ 1107              		.cfi_endproc
+ 1108              	.LFE69:
+ 1110              		.section	.text.Pwm_Servo_Set_Duty,"ax",%progbits
+ 1111              		.align	1
+ 1112              		.syntax unified
+ 1113              		.thumb
+ 1114              		.thumb_func
+ 1116              	Pwm_Servo_Set_Duty:
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 25
 
 
- 1115 0004 00AF     		add	r7, sp, #0
- 1116              	.LCFI25:
- 1117              		.cfi_def_cfa_register 7
- 1118 0006 0346     		mov	r3, r0
- 1119 0008 FB80     		strh	r3, [r7, #6]	@ movhi
- 287:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
- 288:Core/Src/pwm.c ****     PWM_TIM_MODULE_SERVO-> PWM_TIM_CH_SERVO = duty;
- 1120              		.loc 1 288 25
- 1121 000a 044A     		ldr	r2, .L61
- 1122              		.loc 1 288 45
- 1123 000c FB88     		ldrh	r3, [r7, #6]
- 1124 000e D363     		str	r3, [r2, #60]
- 289:Core/Src/pwm.c **** }
- 1125              		.loc 1 289 1
- 1126 0010 00BF     		nop
- 1127 0012 0C37     		adds	r7, r7, #12
- 1128              	.LCFI26:
- 1129              		.cfi_def_cfa_offset 4
- 1130 0014 BD46     		mov	sp, r7
- 1131              	.LCFI27:
- 1132              		.cfi_def_cfa_register 13
- 1133              		@ sp needed
- 1134 0016 80BC     		pop	{r7}
- 1135              	.LCFI28:
- 1136              		.cfi_restore 7
- 1137              		.cfi_def_cfa_offset 0
- 1138 0018 7047     		bx	lr
- 1139              	.L62:
- 1140 001a 00BF     		.align	2
- 1141              	.L61:
- 1142 001c 002C0140 		.word	1073818624
- 1143              		.cfi_endproc
- 1144              	.LFE70:
- 1146              		.section	.text.Pwm_Fan_Set_Duty,"ax",%progbits
- 1147              		.align	1
- 1148              		.syntax unified
- 1149              		.thumb
- 1150              		.thumb_func
- 1152              	Pwm_Fan_Set_Duty:
- 1153              	.LFB71:
- 290:Core/Src/pwm.c **** 
- 291:Core/Src/pwm.c **** static void Pwm_Fan_Set_Duty(uint16 duty)
- 292:Core/Src/pwm.c **** {
- 1154              		.loc 1 292 1
- 1155              		.cfi_startproc
- 1156              		@ args = 0, pretend = 0, frame = 8
- 1157              		@ frame_needed = 1, uses_anonymous_args = 0
- 1158              		@ link register save eliminated.
- 1159 0000 80B4     		push	{r7}
- 1160              	.LCFI29:
- 1161              		.cfi_def_cfa_offset 4
- 1162              		.cfi_offset 7, -4
- 1163 0002 83B0     		sub	sp, sp, #12
- 1164              	.LCFI30:
- 1165              		.cfi_def_cfa_offset 16
- 1166 0004 00AF     		add	r7, sp, #0
- 1167              	.LCFI31:
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 26
+ 1117              	.LFB70:
+ 285:Core/Src/pwm.c **** 
+ 286:Core/Src/pwm.c **** static void Pwm_Servo_Set_Duty(uint16 duty)
+ 287:Core/Src/pwm.c **** {
+ 1118              		.loc 1 287 1
+ 1119              		.cfi_startproc
+ 1120              		@ args = 0, pretend = 0, frame = 8
+ 1121              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1122              		@ link register save eliminated.
+ 1123 0000 80B4     		push	{r7}
+ 1124              	.LCFI23:
+ 1125              		.cfi_def_cfa_offset 4
+ 1126              		.cfi_offset 7, -4
+ 1127 0002 83B0     		sub	sp, sp, #12
+ 1128              	.LCFI24:
+ 1129              		.cfi_def_cfa_offset 16
+ 1130 0004 00AF     		add	r7, sp, #0
+ 1131              	.LCFI25:
+ 1132              		.cfi_def_cfa_register 7
+ 1133 0006 0346     		mov	r3, r0
+ 1134 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 288:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
+ 289:Core/Src/pwm.c ****     PWM_TIM_MODULE_SERVO-> PWM_TIM_CH_SERVO = duty;
+ 1135              		.loc 1 289 25
+ 1136 000a 044A     		ldr	r2, .L61
+ 1137              		.loc 1 289 45
+ 1138 000c FB88     		ldrh	r3, [r7, #6]
+ 1139 000e D363     		str	r3, [r2, #60]
+ 290:Core/Src/pwm.c **** }
+ 1140              		.loc 1 290 1
+ 1141 0010 00BF     		nop
+ 1142 0012 0C37     		adds	r7, r7, #12
+ 1143              	.LCFI26:
+ 1144              		.cfi_def_cfa_offset 4
+ 1145 0014 BD46     		mov	sp, r7
+ 1146              	.LCFI27:
+ 1147              		.cfi_def_cfa_register 13
+ 1148              		@ sp needed
+ 1149 0016 80BC     		pop	{r7}
+ 1150              	.LCFI28:
+ 1151              		.cfi_restore 7
+ 1152              		.cfi_def_cfa_offset 0
+ 1153 0018 7047     		bx	lr
+ 1154              	.L62:
+ 1155 001a 00BF     		.align	2
+ 1156              	.L61:
+ 1157 001c 002C0140 		.word	1073818624
+ 1158              		.cfi_endproc
+ 1159              	.LFE70:
+ 1161              		.section	.text.Pwm_Fan_Set_Duty,"ax",%progbits
+ 1162              		.align	1
+ 1163              		.syntax unified
+ 1164              		.thumb
+ 1165              		.thumb_func
+ 1167              	Pwm_Fan_Set_Duty:
+ 1168              	.LFB71:
+ 291:Core/Src/pwm.c **** 
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 26
 
 
- 1168              		.cfi_def_cfa_register 7
- 1169 0006 0346     		mov	r3, r0
- 1170 0008 FB80     		strh	r3, [r7, #6]	@ movhi
- 293:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
- 294:Core/Src/pwm.c ****     PWM_TIM_MIDULE_FAN-> PWM_TIM_CH_FAN = duty;
- 1171              		.loc 1 294 23
- 1172 000a 044A     		ldr	r2, .L64
- 1173              		.loc 1 294 41
- 1174 000c FB88     		ldrh	r3, [r7, #6]
- 1175 000e 5363     		str	r3, [r2, #52]
- 295:Core/Src/pwm.c **** }...
- 1176              		.loc 1 295 1
- 1177 0010 00BF     		nop
- 1178 0012 0C37     		adds	r7, r7, #12
- 1179              	.LCFI32:
- 1180              		.cfi_def_cfa_offset 4
- 1181 0014 BD46     		mov	sp, r7
- 1182              	.LCFI33:
- 1183              		.cfi_def_cfa_register 13
- 1184              		@ sp needed
- 1185 0016 80BC     		pop	{r7}
- 1186              	.LCFI34:
- 1187              		.cfi_restore 7
- 1188              		.cfi_def_cfa_offset 0
- 1189 0018 7047     		bx	lr
- 1190              	.L65:
- 1191 001a 00BF     		.align	2
- 1192              	.L64:
- 1193 001c 002C0140 		.word	1073818624
- 1194              		.cfi_endproc
- 1195              	.LFE71:
- 1197              		.section	.bss.first_status.0,"aw",%nobits
- 1200              	first_status.0:
- 1201 0000 00       		.space	1
- 1202              		.text
- 1203              	.Letext0:
- 1204              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
- 1205              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
- 1206              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
- 1207              		.file 5 "Core/Inc/vardef.h"
- 1208              		.file 6 "Core/Inc/switch.h"
- 1209              		.file 7 "Core/Inc/pwm.h"
-ARM GAS  C:\Users\jisu8\AppData\Local\Temp\cclskycK.s 			page 27
+ 292:Core/Src/pwm.c **** static void Pwm_Fan_Set_Duty(uint16 duty)
+ 293:Core/Src/pwm.c **** {
+ 1169              		.loc 1 293 1
+ 1170              		.cfi_startproc
+ 1171              		@ args = 0, pretend = 0, frame = 8
+ 1172              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1173              		@ link register save eliminated.
+ 1174 0000 80B4     		push	{r7}
+ 1175              	.LCFI29:
+ 1176              		.cfi_def_cfa_offset 4
+ 1177              		.cfi_offset 7, -4
+ 1178 0002 83B0     		sub	sp, sp, #12
+ 1179              	.LCFI30:
+ 1180              		.cfi_def_cfa_offset 16
+ 1181 0004 00AF     		add	r7, sp, #0
+ 1182              	.LCFI31:
+ 1183              		.cfi_def_cfa_register 7
+ 1184 0006 0346     		mov	r3, r0
+ 1185 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 294:Core/Src/pwm.c ****     /* Resolution : 0.1[%] */
+ 295:Core/Src/pwm.c ****     PWM_TIM_MIDULE_FAN-> PWM_TIM_CH_FAN = duty;
+ 1186              		.loc 1 295 23
+ 1187 000a 044A     		ldr	r2, .L64
+ 1188              		.loc 1 295 41
+ 1189 000c FB88     		ldrh	r3, [r7, #6]
+ 1190 000e 5363     		str	r3, [r2, #52]
+ 296:Core/Src/pwm.c **** }...
+ 1191              		.loc 1 296 1
+ 1192 0010 00BF     		nop
+ 1193 0012 0C37     		adds	r7, r7, #12
+ 1194              	.LCFI32:
+ 1195              		.cfi_def_cfa_offset 4
+ 1196 0014 BD46     		mov	sp, r7
+ 1197              	.LCFI33:
+ 1198              		.cfi_def_cfa_register 13
+ 1199              		@ sp needed
+ 1200 0016 80BC     		pop	{r7}
+ 1201              	.LCFI34:
+ 1202              		.cfi_restore 7
+ 1203              		.cfi_def_cfa_offset 0
+ 1204 0018 7047     		bx	lr
+ 1205              	.L65:
+ 1206 001a 00BF     		.align	2
+ 1207              	.L64:
+ 1208 001c 002C0140 		.word	1073818624
+ 1209              		.cfi_endproc
+ 1210              	.LFE71:
+ 1212              		.section	.bss.first_status.0,"aw",%nobits
+ 1215              	first_status.0:
+ 1216 0000 00       		.space	1
+ 1217              		.text
+ 1218              	.Letext0:
+ 1219              		.file 2 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 1220              		.file 3 "d:\\3.tools\\arm_gcc_toolchain\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 1221              		.file 4 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 1222              		.file 5 "Core/Inc/vardef.h"
+ 1223              		.file 6 "Core/Inc/switch.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 27
+
+
+ 1224              		.file 7 "Core/Inc/pwm.h"
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 28
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 pwm.c
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:22     .bss.Pwm_Duty_Peltier:00000000 Pwm_Duty_Peltier
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:19     .bss.Pwm_Duty_Peltier:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:29     .bss.Pwm_Duty_Heater:00000000 Pwm_Duty_Heater
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:26     .bss.Pwm_Duty_Heater:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:36     .bss.Pwm_Duty_Servo:00000000 Pwm_Duty_Servo
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:33     .bss.Pwm_Duty_Servo:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:43     .bss.Pwm_Duty_Fan:00000000 Pwm_Duty_Fan
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:40     .bss.Pwm_Duty_Fan:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:49     .bss.Pwm_Servo_status:00000000 Pwm_Servo_status
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:50     .bss.Pwm_Servo_status:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:55     .bss.Pwm_Led_Mode:00000000 Pwm_Led_Mode
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:56     .bss.Pwm_Led_Mode:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:62     .bss.Target_Run_Temp:00000000 Target_Run_Temp
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:59     .bss.Target_Run_Temp:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:69     .bss.Target_Run_Time:00000000 Target_Run_Time
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:66     .bss.Target_Run_Time:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:76     .bss.Target_Idle_Temp:00000000 Target_Idle_Temp
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:73     .bss.Target_Idle_Temp:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:82     .bss.first_target_flag:00000000 first_target_flag
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:83     .bss.first_target_flag:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:89     .bss.Servo_timer:00000000 Servo_timer
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:86     .bss.Servo_timer:00000000 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:92     .text.Pwm_Output:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:98     .text.Pwm_Output:00000000 Pwm_Output
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:316    .text.Pwm_SubMode_Target_Set:00000000 Pwm_SubMode_Target_Set
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:689    .text.Pwm_Control:00000000 Pwm_Control
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:999    .text.Pwm_Peltier_Set_Duty:00000000 Pwm_Peltier_Set_Duty
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1050   .text.Pwm_Heater_Set_Duty:00000000 Pwm_Heater_Set_Duty
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1152   .text.Pwm_Fan_Set_Duty:00000000 Pwm_Fan_Set_Duty
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1101   .text.Pwm_Servo_Set_Duty:00000000 Pwm_Servo_Set_Duty
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:293    .text.Pwm_Output:00000104 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:311    .text.Pwm_SubMode_Target_Set:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:340    .text.Pwm_SubMode_Target_Set:00000018 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:359    .text.Pwm_SubMode_Target_Set:00000064 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:675    .text.Pwm_SubMode_Target_Set:00000220 $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:684    .text.Pwm_Control:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:980    .text.Pwm_Control:000001cc $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1200   .bss.first_status.0:00000000 first_status.0
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:994    .text.Pwm_Peltier_Set_Duty:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1040   .text.Pwm_Peltier_Set_Duty:0000001c $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1045   .text.Pwm_Heater_Set_Duty:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1091   .text.Pwm_Heater_Set_Duty:0000001c $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1096   .text.Pwm_Servo_Set_Duty:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1142   .text.Pwm_Servo_Set_Duty:0000001c $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1147   .text.Pwm_Fan_Set_Duty:00000000 $t
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1193   .text.Pwm_Fan_Set_Duty:0000001c $d
-C:\Users\jisu8\AppData\Local\Temp\cclskycK.s:1201   .bss.first_status.0:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:22     .bss.Pwm_Duty_Peltier:00000000 Pwm_Duty_Peltier
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:19     .bss.Pwm_Duty_Peltier:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:29     .bss.Pwm_Duty_Heater:00000000 Pwm_Duty_Heater
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:26     .bss.Pwm_Duty_Heater:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:36     .bss.Pwm_Duty_Servo:00000000 Pwm_Duty_Servo
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:33     .bss.Pwm_Duty_Servo:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:43     .bss.Pwm_Duty_Fan:00000000 Pwm_Duty_Fan
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:40     .bss.Pwm_Duty_Fan:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:49     .bss.Pwm_Servo_status:00000000 Pwm_Servo_status
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:50     .bss.Pwm_Servo_status:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:55     .bss.Pwm_Led_Mode:00000000 Pwm_Led_Mode
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:56     .bss.Pwm_Led_Mode:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:62     .bss.Target_Run_Temp:00000000 Target_Run_Temp
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:59     .bss.Target_Run_Temp:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:69     .bss.Target_Run_Time:00000000 Target_Run_Time
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:66     .bss.Target_Run_Time:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:76     .bss.Target_Idle_Temp:00000000 Target_Idle_Temp
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:73     .bss.Target_Idle_Temp:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:82     .bss.first_target_flag:00000000 first_target_flag
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:83     .bss.first_target_flag:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:89     .bss.Servo_timer:00000000 Servo_timer
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:86     .bss.Servo_timer:00000000 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:92     .text.Pwm_Output:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:98     .text.Pwm_Output:00000000 Pwm_Output
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:321    .text.Pwm_SubMode_Target_Set:00000000 Pwm_SubMode_Target_Set
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:704    .text.Pwm_Control:00000000 Pwm_Control
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1014   .text.Pwm_Peltier_Set_Duty:00000000 Pwm_Peltier_Set_Duty
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1065   .text.Pwm_Heater_Set_Duty:00000000 Pwm_Heater_Set_Duty
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1167   .text.Pwm_Fan_Set_Duty:00000000 Pwm_Fan_Set_Duty
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1116   .text.Pwm_Servo_Set_Duty:00000000 Pwm_Servo_Set_Duty
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:297    .text.Pwm_Output:0000010c $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:316    .text.Pwm_SubMode_Target_Set:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:345    .text.Pwm_SubMode_Target_Set:00000018 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:364    .text.Pwm_SubMode_Target_Set:00000064 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:687    .text.Pwm_SubMode_Target_Set:00000234 $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:699    .text.Pwm_Control:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:995    .text.Pwm_Control:000001cc $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1215   .bss.first_status.0:00000000 first_status.0
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1009   .text.Pwm_Peltier_Set_Duty:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1055   .text.Pwm_Peltier_Set_Duty:0000001c $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1060   .text.Pwm_Heater_Set_Duty:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1106   .text.Pwm_Heater_Set_Duty:0000001c $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1111   .text.Pwm_Servo_Set_Duty:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1157   .text.Pwm_Servo_Set_Duty:0000001c $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1162   .text.Pwm_Fan_Set_Duty:00000000 $t
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1208   .text.Pwm_Fan_Set_Duty:0000001c $d
+C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s:1216   .bss.first_status.0:00000000 $d
 
 UNDEFINED SYMBOLS
 switch_mode
 cup_in
 switch_submode
 switch4_mode
+switch_trg_temp
+switch_trg_time
+ARM GAS  C:\Users\jisu8\AppData\Local\Temp\ccEFlPfe.s 			page 29
+
+
+switch_idle_temp
 Temp_Adc_TP

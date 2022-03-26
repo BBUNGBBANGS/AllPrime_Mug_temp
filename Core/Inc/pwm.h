@@ -93,9 +93,9 @@
 #define PWM_RUN_TIME_16                (2 * 60 * 100)
 #define PWM_IDLE_TEMP_16               (40)
 
-#define PWM_RUN_TEMP_17                (50)
-#define PWM_RUN_TIME_17                (10 * 60 * 100)
-#define PWM_IDLE_TEMP_17               (10)
+#define PWM_RUN_TEMP_17                (0)
+#define PWM_RUN_TIME_17                (0)
+#define PWM_IDLE_TEMP_17               (0)
 
 #define PWM_RUN_TEMP_18                (5)
 #define PWM_RUN_TIME_18                (1 * 60 * 100)
