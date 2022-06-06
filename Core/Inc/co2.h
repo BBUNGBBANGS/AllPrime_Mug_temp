@@ -1,3 +1,6 @@
+#ifndef _CO2_H
+#define _CO2_H
+
 #include "main.h"
 
 #define CO2_HW_MODULE                   (hi2c2)
@@ -22,3 +25,4 @@ extern uint16 CO2_Data16;
 
 extern void CO2_Init(void);
 extern void CO2_Communication(void);
+#endif

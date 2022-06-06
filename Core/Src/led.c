@@ -6,10 +6,12 @@
 
 uint16 LED_TimeCounter;
 uint16 LED_TimeCounter_Co2;
+uint16 LED_TimeCounter_Co2_Sound;
 void LED_Control(void)
 {
     LED_TimeCounter++;
     LED_TimeCounter_Co2++;
+    LED_TimeCounter_Co2_Sound++;
     if(LED_TimeCounter>20)
     {
         LED_TimeCounter = 0;
@@ -17,6 +19,10 @@ void LED_Control(void)
     if(LED_TimeCounter_Co2>10)
     {
         LED_TimeCounter_Co2 = 0;
+    }
+    if(LED_TimeCounter_Co2_Sound>30)
+    {
+        LED_TimeCounter_Co2_Sound = 0;
     }
 
     if((Target_Run_Time == 0)&&(Pwm_Led_Mode == PWM_LED_MODE_COOLING))
@@ -41,13 +47,22 @@ void LED_Control(void)
         if(LED_TimeCounter_Co2 < LED_BLANKING_TIME_0P5S)
         {
             HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_ON);                
-            HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_OFF);        
+            HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_OFF);     
         }
         if(LED_TimeCounter_Co2 >= LED_BLANKING_TIME_0P5S)
         {
             HAL_GPIO_WritePin(LED_3_1_GROUP,LED_3_1_PIN,LED_OFF);                
-            HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_ON);     
+            HAL_GPIO_WritePin(LED_3_2_GROUP,LED_3_2_PIN,LED_ON);   
         }
+        if(LED_TimeCounter_Co2_Sound<20)
+        {
+            HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_SET);  
+        }
+        else
+        {
+            HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_RESET);   
+        }
+
     }
     else
     {

@@ -1,12 +1,20 @@
 #include "oled.h"
+#include "pwm.h"
+#include "co2.h"
 uint8 OLED_Address;
 OLED_t OLED;
 
 uint8 Tx_data[100]; 
+uint8 Tx_data_Korean[100];
+
+static sint16 OLED_Run_Temp;
+static sint32 OLED_Run_Time;
+static sint16 OLED_Idle_Temp;
 /* OLED data buffer */
 static uint8 OLED_Buffer[OLED_WIDTH * OLED_HEIGHT / 8];
 static void Clear_TxBuffer(void);
 static void Print_TxBuffer(void);
+static void Print_TxBufferKorean(void);
 static void OLED_Write_Command(uint8 command);
 static void OLED_Fill_Screen(OLED_COLOR_t color);
 static void OLED_Update_Screen(void);
@@ -18,6 +26,8 @@ static void OLED_Print_Run(void);
 static void OLED_Print_Select(void);
 static void OLED_Print_Idle(void);
 static void OLED_Print_Custom(void);
+static void OLED_KoreanFonts(uint8 submenu);
+static void OLED_Select_Menu(void);
 
 void OLED_FindAddress(void)
 {
@@ -72,17 +82,14 @@ void OLED_Init(void)
     OLED_Update_Screen();
 
     Clear_TxBuffer();
-    sprintf(Tx_data,"https://www.allprime.co.kr");
-    length = strlen(Tx_data);
+    //sprintf(Tx_data,"https://www.allprime.co.kr");
+    //length = strlen(Tx_data);
     Tx_data[length] = ' ';
     Print_TxBuffer();
     
     OLED_Update_Screen();
 }
-extern uint16 Temp_Adc_TP_Volt;
-extern sint16 Temp_Adc_TP;
-extern uint16 Target_Run_Time;
-extern uint16 CO2_Data16;
+
 void OLED_Display(void)
 {
     uint8 dummy;
@@ -114,6 +121,7 @@ static void Clear_TxBuffer(void)
     for(int i=0;i<100;i++)
     {
         Tx_data[i] = ' ';
+        Tx_data_Korean[i] = 43u;
     }
 }
 
@@ -138,6 +146,22 @@ static void Print_TxBuffer(void)
     }
 }
 
+static void Print_TxBufferKorean(void)
+{
+    uint8 dummy;
+    for(uint8 idx=0;idx<25;idx++)
+    {
+        if(10*(idx+1)<128)
+        {
+            OLED_Set_X_Y(10*idx,0); 
+        }
+        else if(10*(idx+1)<256)
+        {
+            OLED_Set_X_Y(10*(idx-12),15);  
+        }
+        dummy = OLED_Set_Char(Tx_data_Korean[idx],&OLED_Font_10x16,OLED_COLOR_WHITE);
+    }
+}
 static void OLED_Print_Run(void)
 {
     uint8 n1,n10,n100,n1000;
@@ -236,8 +260,9 @@ static void OLED_Print_Run(void)
 
 static void OLED_Print_Select(void)
 {    
-    uint8 n1,n10;
+    uint8 n1,n10,n100,n1000;
     uint16 length;
+    OLED_Select_Menu();
     Clear_TxBuffer();
     sprintf(Tx_data,"  < Select Menu >");
     length = strlen(Tx_data);
@@ -249,6 +274,31 @@ static void OLED_Print_Select(void)
     Tx_data[length+1] = n10 + 16 + 32;
     Tx_data[length+2] = n1 + 16 + 32;
     Tx_data[length+3] = ']';
+    length = length + 9;
+    n1 = OLED_Run_Temp%10;
+    n10 = (OLED_Run_Temp/10)%10;
+    Tx_data[length+1] = n10 + 16 + 32;
+    Tx_data[length+2] = n1 + 16 + 32;
+    length = length + 3;
+    sprintf(&Tx_data[length],"[*C]");
+    length = strlen(Tx_data);
+    Tx_data[length] = ' ';
+    n1 = (OLED_Run_Time/6000)%10;
+    n10 = (OLED_Run_Time/6000)%10;
+    Tx_data[length+1] = n10 + 16 + 32;
+    Tx_data[length+2] = n1 + 16 + 32;
+    length = length + 3;
+    sprintf(&Tx_data[length],"[m]");
+    length = strlen(Tx_data);
+    Tx_data[length] = ' ';
+    n1 = OLED_Idle_Temp%10;
+    n10 = (OLED_Idle_Temp/10)%10;
+    Tx_data[length+1] = n10 + 16 + 32;
+    Tx_data[length+2] = n1 + 16 + 32;
+    length = length + 2;
+    sprintf(&Tx_data[length],"[*C]");
+    length = strlen(Tx_data);
+    Tx_data[length] = ' ';
     Print_TxBuffer();
     OLED_Update_Screen();
 }
@@ -304,7 +354,7 @@ static void OLED_Print_Custom(void)
         {
             Tx_data[length+3] = n1 + 16 + 32;                     
         }
-        sprintf(&Tx_data[length+4]," [s]");
+        sprintf(&Tx_data[length+4]," [m]");
         length = strlen(Tx_data);
         Tx_data[length] = ' ';
     }
@@ -344,29 +394,11 @@ static void OLED_Print_Custom(void)
 static void OLED_Print_Idle(void)
 {    
     uint8 n1,n10;
-    uint16 length;
+    //uint16 length;
 
     Clear_TxBuffer();
-    sprintf(Tx_data,"   < IDLE Mode >  ");
-    length = strlen(Tx_data);    
-    Tx_data[length] = ' ';  
-    length = length +5;
-    sprintf(&Tx_data[length],"Menu :");
-    length = strlen(Tx_data);    
-    Tx_data[length] = ' ';  
-    n1 = switch_submode%10;
-    n10 = (switch_submode%100)/10;
-    if(n10>0)
-    {
-        Tx_data[length] = n10 + 16 + 32;
-        Tx_data[length+1] = n1 + 16 + 32;
-    }
-    else
-    {
-        length = length + 1;
-        Tx_data[length] = n1 + 16 + 32;
-    }
-    Print_TxBuffer();  
+    OLED_KoreanFonts(switch_submode);
+    Print_TxBufferKorean();  
     OLED_Update_Screen();
 }
 
@@ -468,5 +500,258 @@ static void OLED_DrawPixel(uint16 x, uint16 y, OLED_COLOR_t color)
     else 
     {
         OLED_Buffer[x + (y / 8) * OLED_WIDTH] &= ~(1 << (y % 8));
+    }
+}
+
+static void OLED_KoreanFonts(uint8 submenu)
+{
+    uint16 length = 0;
+    switch(submenu)
+    {
+        case SWITCH_SUB_MODE_1 : 
+            length = 4;
+            Tx_data_Korean[length] = 16;
+            Tx_data_Korean[length+1] = 42;
+            Tx_data_Korean[length+2] = 4;
+            Tx_data_Korean[length+3] = 31;
+        break;
+        case SWITCH_SUB_MODE_2 : 
+            length = 3;
+            Tx_data_Korean[length] = 11;
+            Tx_data_Korean[length+1] = 1;
+            Tx_data_Korean[length+2] = 26;
+            Tx_data_Korean[length+3] = 33;
+            Tx_data_Korean[length+4] = 36;
+        break;
+        case SWITCH_SUB_MODE_3 : 
+            length = 3;
+            Tx_data_Korean[length] = 11;
+            Tx_data_Korean[length+1] = 1;
+            Tx_data_Korean[length+2] = 26;
+            Tx_data_Korean[length+3] = 33;
+            Tx_data_Korean[length+4] = 36;
+        break;
+        case SWITCH_SUB_MODE_4 : 
+            length = 3;
+            Tx_data_Korean[length] = 11;
+            Tx_data_Korean[length+1] = 1;
+            Tx_data_Korean[length+2] = 26;
+            Tx_data_Korean[length+3] = 27;
+            Tx_data_Korean[length+4] = 15;
+        break;
+        case SWITCH_SUB_MODE_5 : 
+            length = 3;
+            Tx_data_Korean[length] = 20;
+            Tx_data_Korean[length+1] = 28;
+            Tx_data_Korean[length+2] = 41;
+            Tx_data_Korean[length+3] = 27;
+            Tx_data_Korean[length+4] = 15;
+        break;
+        case SWITCH_SUB_MODE_6 : 
+            length = 3;
+            Tx_data_Korean[length] = 11;
+            Tx_data_Korean[length+1] = 1;
+            Tx_data_Korean[length+2] = 26;
+            Tx_data_Korean[length+3] = 8;
+            Tx_data_Korean[length+4] = 31;
+        break;
+        case SWITCH_SUB_MODE_7 : 
+            length = 3;
+            Tx_data_Korean[length] = 20;
+            Tx_data_Korean[length+1] = 28;
+            Tx_data_Korean[length+2] = 41;
+            Tx_data_Korean[length+3] = 8;
+            Tx_data_Korean[length+4] = 31;
+        break;
+        case SWITCH_SUB_MODE_8 : 
+            length = 5;
+            Tx_data_Korean[length] = 6;
+            Tx_data_Korean[length+1] = 31;
+        break;
+        case SWITCH_SUB_MODE_9 : 
+            length = 5;
+            Tx_data_Korean[length] = 40;
+            Tx_data_Korean[length+1] = 31;
+        break;
+        case SWITCH_SUB_MODE_10 : 
+            length = 4;
+            Tx_data_Korean[length] = 17;
+            Tx_data_Korean[length+1] = 13;
+            Tx_data_Korean[length+2] = 31;
+        break;
+        case SWITCH_SUB_MODE_11 : 
+            length = 4;
+            Tx_data_Korean[length] = 9;
+            Tx_data_Korean[length+1] = 32;
+            Tx_data_Korean[length+2] = 31;
+        break;
+        case SWITCH_SUB_MODE_12 : 
+            length = 4;
+            Tx_data_Korean[length] = 17;
+            Tx_data_Korean[length+1] = 23;
+            Tx_data_Korean[length+2] = 31;
+        break;
+        case SWITCH_SUB_MODE_13 : 
+            length = 4;
+            Tx_data_Korean[length] = 38;
+            Tx_data_Korean[length+1] = 18;
+            Tx_data_Korean[length+2] = 31;
+        break;
+        case SWITCH_SUB_MODE_14 : 
+            length = 4;
+            Tx_data_Korean[length] = 5;
+            Tx_data_Korean[length+1] = 34;
+            Tx_data_Korean[length+2] = 14;
+            Tx_data_Korean[length+3] = 31;
+        break;
+        case SWITCH_SUB_MODE_15 : 
+            length = 4;
+            Tx_data_Korean[length] = 39;
+            Tx_data_Korean[length+1] = 24;
+            Tx_data_Korean[length+2] = 29;
+            Tx_data_Korean[length+3] = 31;
+        break;
+        case SWITCH_SUB_MODE_16 : 
+            length = 4;
+            Tx_data_Korean[length] = 22;
+            Tx_data_Korean[length+1] = 2;
+            Tx_data_Korean[length+2] = 19;
+            Tx_data_Korean[length+3] = 25;
+        break;
+        case SWITCH_SUB_MODE_17 : 
+            length = 3;
+            Tx_data_Korean[length] = 7;
+            Tx_data_Korean[length+1] = 0;
+            Tx_data_Korean[length+2] = 21;
+            Tx_data_Korean[length+3] = 30;
+            Tx_data_Korean[length+4] = 37;
+            Tx_data_Korean[length+5] = 2;
+        break;
+        case SWITCH_SUB_MODE_18 : 
+            length = 3;
+            Tx_data_Korean[length] = 2;
+            Tx_data_Korean[length+1] = 35;
+            Tx_data_Korean[length+2] = 20;
+            Tx_data_Korean[length+3] = 28;
+            Tx_data_Korean[length+4] = 37;
+            Tx_data_Korean[length+5] = 3;
+        break;
+        case SWITCH_SUB_MODE_19 : 
+            length = 3;
+            Tx_data_Korean[length] = 2;
+            Tx_data_Korean[length+1] = 35;
+            Tx_data_Korean[length+2] = 10;
+            Tx_data_Korean[length+3] = 12;
+            Tx_data_Korean[length+4] = 37;
+            Tx_data_Korean[length+5] = 3;
+        break;
+    }
+    return;
+}
+
+static void OLED_Select_Menu(void)
+{
+    switch(switch_submode)
+    {
+        case SWITCH_SUB_MODE_1 :
+            OLED_Run_Temp = PWM_RUN_TEMP_1;
+            OLED_Run_Time = PWM_RUN_TIME_1;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_1;
+        break;
+        case SWITCH_SUB_MODE_2 :
+            OLED_Run_Temp = PWM_RUN_TEMP_2;
+            OLED_Run_Time = PWM_RUN_TIME_2;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_2; 
+        break;
+        case SWITCH_SUB_MODE_3 :
+            OLED_Run_Temp = PWM_RUN_TEMP_3;
+            OLED_Run_Time = PWM_RUN_TIME_3;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_3; 
+        break;
+        case SWITCH_SUB_MODE_4 :
+            OLED_Run_Temp = PWM_RUN_TEMP_4;
+            OLED_Run_Time = PWM_RUN_TIME_4;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_4; 
+        break;
+        case SWITCH_SUB_MODE_5 :
+            OLED_Run_Temp = PWM_RUN_TEMP_5;
+            OLED_Run_Time = PWM_RUN_TIME_5;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_5; 
+        break;
+        case SWITCH_SUB_MODE_6 :
+            OLED_Run_Temp = PWM_RUN_TEMP_6;
+            OLED_Run_Time = PWM_RUN_TIME_6;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_6; 
+        break;
+        case SWITCH_SUB_MODE_7 :
+            OLED_Run_Temp = PWM_RUN_TEMP_7;
+            OLED_Run_Time = PWM_RUN_TIME_7;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_7; 
+        break;
+        case SWITCH_SUB_MODE_8 :
+            OLED_Run_Temp = PWM_RUN_TEMP_8;
+            OLED_Run_Time = PWM_RUN_TIME_8;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_8; 
+        break;
+        case SWITCH_SUB_MODE_9 :
+            OLED_Run_Temp = PWM_RUN_TEMP_9;
+            OLED_Run_Time = PWM_RUN_TIME_9;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_9; 
+        break;
+        case SWITCH_SUB_MODE_10 :
+            OLED_Run_Temp = PWM_RUN_TEMP_10;
+            OLED_Run_Time = PWM_RUN_TIME_10;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_10; 
+        break;
+        case SWITCH_SUB_MODE_11 :
+            OLED_Run_Temp = PWM_RUN_TEMP_11;
+            OLED_Run_Time = PWM_RUN_TIME_11;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_11; 
+        break;
+        case SWITCH_SUB_MODE_12 :
+            OLED_Run_Temp = PWM_RUN_TEMP_12;
+            OLED_Run_Time = PWM_RUN_TIME_12;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_12; 
+        break;
+        case SWITCH_SUB_MODE_13 :
+            OLED_Run_Temp = PWM_RUN_TEMP_13;
+            OLED_Run_Time = PWM_RUN_TIME_13;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_13; 
+        break;
+        case SWITCH_SUB_MODE_14 :
+            OLED_Run_Temp = PWM_RUN_TEMP_14;
+            OLED_Run_Time = PWM_RUN_TIME_14;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_14; 
+        break;
+        case SWITCH_SUB_MODE_15 :
+            OLED_Run_Temp = PWM_RUN_TEMP_15;
+            OLED_Run_Time = PWM_RUN_TIME_15;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_15; 
+        break;
+        case SWITCH_SUB_MODE_16 :
+            OLED_Run_Temp = PWM_RUN_TEMP_16;
+            OLED_Run_Time = PWM_RUN_TIME_16;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_16; 
+        break;
+        case SWITCH_SUB_MODE_17 :
+            OLED_Run_Temp = switch_trg_temp;
+            OLED_Run_Time = (sint32)(switch_trg_time * 60 * 100);
+            OLED_Idle_Temp = switch_idle_temp; 
+        break;
+        case SWITCH_SUB_MODE_18 :
+            OLED_Run_Temp = PWM_RUN_TEMP_18;
+            OLED_Run_Time = PWM_RUN_TIME_18;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_18; 
+        break;
+        case SWITCH_SUB_MODE_19 :
+            OLED_Run_Temp = PWM_RUN_TEMP_19;
+            OLED_Run_Time = PWM_RUN_TIME_19;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_19; 
+        break;
+        default :
+            OLED_Run_Temp = PWM_RUN_TEMP_0;
+            OLED_Run_Time = PWM_RUN_TIME_0;
+            OLED_Idle_Temp = PWM_IDLE_TEMP_0; 
+        break;
     }
 }

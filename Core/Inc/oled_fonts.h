@@ -23,4 +23,7 @@ extern OLED_Font_t OLED_Font_16x26;
 /* 12 x 16 pixels font size structure */
 extern OLED_Font_t OLED_Font_12x16;
 
+/* 10 x 16 pixels font size structure */
+extern OLED_Font_t OLED_Font_10x16;
+
 extern void OLED_Font_GetStringSize(const char* str, OLED_Font_Size_t* SizeStruct, const OLED_Font_t* Font);

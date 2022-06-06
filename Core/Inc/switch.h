@@ -1,3 +1,6 @@
+#ifndef _SWITCH_H
+#define _SWITCH_H
+
 #include "main.h"
 
 #define SWITCH_1                (0u)
@@ -53,8 +56,9 @@
 #define SWITCH_SUB_MODE_18      (18u)
 #define SWITCH_SUB_MODE_19      (19u)
 
-#define SWITCH1_DEBOUNCE_TIME       (2 * 50)
-#define SWITCH3_DEBOUNCE_TIME       (2 * 50)
+#define SWITCH1_DEBOUNCE_TIME       (1 * 50)
+#define SWITCH3_DEBOUNCE_TIME       (1 * 50)
+#define SWITCH3_1_DEBOUNCE_TIME       (1 * 50)
 
 extern uint8 cup_in;
 extern uint8 switch_mode;
@@ -69,3 +73,4 @@ extern uint8 switch_custom_mode;
 extern void Switch_Val_Init(void);
 extern void Switch_Control(void);
 
+#endif

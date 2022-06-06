@@ -1,3 +1,6 @@
+#ifndef _PWM_H
+#define _PWM_H
+
 #include "main.h"
 #include "switch.h"
 
@@ -117,3 +120,4 @@ extern sint32 Target_Run_Time;
 extern sint16 Target_Idle_Temp;
 extern uint8 Pwm_Servo_status;
 extern void Pwm_Output(void);
+#endif

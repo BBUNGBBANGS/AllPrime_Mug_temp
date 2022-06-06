@@ -1,3 +1,6 @@
+#ifndef _TEMP_H
+#define _TEMP_h
+
 #include "main.h"
 
 #define TEMP_MODULE (hadc1)
@@ -126,3 +129,5 @@ extern void Temp_Read(void);
 #define TEMP_ZONE119_THRESHOLD          (673)
 #define TEMP_ZONE120_THRESHOLD          (660)
 #define TEMP_ZONE121_THRESHOLD          (647)
+
+#endif

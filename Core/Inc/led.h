@@ -17,7 +17,7 @@
 #define LED_ON                  (GPIO_PIN_SET)
 #define LED_OFF                 (GPIO_PIN_RESET)
 
-#define LED_CO2_BLANKING_THRESHOLD  (2500)
+#define LED_CO2_BLANKING_THRESHOLD  (2000)
 
 #define LED_BLANKING_TIME_1S        (10)
 #define LED_BLANKING_TIME_0P5S      (5)

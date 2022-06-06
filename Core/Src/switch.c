@@ -1,6 +1,8 @@
 #include "switch.h"
 #include "pwm.h"
 #include "eeprom.h"
+#include "co2.h"
+#include "led.h"
 
 uint8 switch1_status,switch2_status,switch3_status,switch4_status;
 uint8 switch1_status_old,switch2_status_old,switch3_status_old,switch4_status_old;
@@ -10,12 +12,13 @@ uint8 switch_submode;
 uint8 cup_in,cup_in_old;
 uint8 switch4_mode,switch4_mode_old;
 uint8 switch_custom_mode;
+uint8 switch3_flag;
 
 sint16 switch_trg_temp;
 sint16 switch_trg_time;
 sint16 switch_idle_temp;
 
-uint16 switch_timer1,switch_timer2,switch_timer3;
+uint16 switch_timer1,switch_timer2,switch_timer3,switch_timer3_1;
 extern uint16 Servo_timer;
 void Switch_Val_Init(void)
 {
@@ -53,6 +56,7 @@ void Switch_Val_Init(void)
     }
     return;
 }
+uint16 speaker_counter;
 void Switch_Control(void)
 {
     switch_timer2 = 0;
@@ -63,14 +67,38 @@ void Switch_Control(void)
     switch4_status = HAL_GPIO_ReadPin(SWITCH_GROUP_4,SWITCH_PIN_4);
     switch_overtemp = HAL_GPIO_ReadPin(OVERTEMP_GROUP,OVERTEMP_PIN);
     cup_in = HAL_GPIO_ReadPin(CUP_GROUP,CUP_PIN); 
+    speaker_counter++;
+    if(speaker_counter>2)
+    {
+        speaker_counter = 0 ;
+    }
 
     if((1 == switch1_status)||(1 == switch2_status)||(1 == switch3_status))
     {   
         HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_SET);
+        
+        //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_3,GPIO_PIN_SET);
+        if(speaker_counter<2)
+        {
+            //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+            //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_RESET);
+        }
+        else
+        {
+            //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+            //HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_RESET);            
+        }
+    }
+    else if(CO2_Data16 >= LED_CO2_BLANKING_THRESHOLD)
+    {
+
     }
     else
     {
-        HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_RESET);       
+        HAL_GPIO_WritePin(BUZZER_GROUP,BUZZER_PIN,GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOB,GPIO_PIN_3,GPIO_PIN_RESET);      
+        HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_RESET); 
     }
 
     if((switch1_status == 1)&&(switch_mode == SWITCH_MODE_NONE))
@@ -80,14 +108,19 @@ void Switch_Control(void)
         {
             switch_timer1 = 0;
             switch_mode = SWITCH_MODE_MENUSELECT;
+            
         }
     }
     else
     {
         switch_timer1 = 0;
     }
+    if(switch3_status==0)
+    {
+        switch3_flag = 0u;
+    }
 
-    if((switch3_status == 1)&&(switch_mode == SWITCH_MODE_RUN))
+    if((switch3_status == 1)&&(switch_mode == SWITCH_MODE_RUN)&&(switch3_flag == 0))
     {
         switch_timer3++;
         if(switch_timer3>=SWITCH3_DEBOUNCE_TIME)
@@ -101,6 +134,21 @@ void Switch_Control(void)
     {
         switch_timer3 = 0;
     }
+
+    if((switch3_status == 1)&&(switch3_status_old == 0)&&(switch_mode == SWITCH_MODE_NONE))
+    {
+        //switch_timer3_1++;
+        //if(switch_timer3_1>=SWITCH3_1_DEBOUNCE_TIME)
+        //{
+            //switch_timer3_1 = 0;
+            switch_mode = SWITCH_MODE_RUN;
+            switch3_flag = 1;
+        //}
+    }
+    //else
+    //{
+        //switch_timer3_1 = 0;
+    //}
 
     if((switch_submode != SWITCH_SUB_MODE_18)&&(switch_submode != SWITCH_SUB_MODE_19))
     {

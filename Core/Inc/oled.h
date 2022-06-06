@@ -1,3 +1,6 @@
+#ifndef _OLED_H
+#define _OLED_H
+
 #include "main.h"
 #include "string.h"
 #include "oled_fonts.h"
@@ -11,6 +14,8 @@
 /* OLED height in pixels */
 #define OLED_HEIGHT           32
 
+#define OLED_FONT_DEFAULT       (0u)
+#define OLED_FONT_KOREAN        (1u)
 
 typedef enum {
     OLED_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
@@ -25,3 +30,4 @@ typedef struct {
 extern void OLED_FindAddress(void);
 extern void OLED_Init(void);
 extern void OLED_Display(void);
+#endif
